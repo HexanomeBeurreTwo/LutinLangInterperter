@@ -1,0 +1,77 @@
+@startuml
+!include ./base.txt
+
+title UML Diagram
+
+object Automate
+
+Automate : lecture()
+
+object Lexer
+Lexer : Symbole getNext()
+
+object Symbole
+object Expr
+object Number
+object ExprBin
+object ExprMult
+object ExprDivide
+object ExprPlus
+object ExprMinus
+
+object Type
+object Const
+object Var
+
+object Operator
+object Mult
+object Divide
+object Plus
+object Minus
+object OpenBy
+object CloseBy
+
+object Instruction
+object Affect
+object Lire
+object Ecrire
+
+object End
+object Sep
+
+object Etat
+
+Automate *-- Lexer
+Automate *-- Symbole : pileSymboles *
+Automate *-- Etat : pileEtats *
+
+Symbole <|-- Expr
+Symbole <|-- Type
+Symbole <|-- Operator
+Symbole <|-- Instruction
+Symbole <|-- Sep
+Symbole <|-- End
+
+Expr <|-- Number
+Expr <|-- ExprBin
+
+ExprBin <|-- ExprMult
+ExprBin <|-- ExprDivide
+ExprBin <|-- ExprPlus
+ExprBin <|-- ExprMinus
+
+Type <|-- Const
+Type <|-- Var
+
+Operator <|-- Mult
+Operator <|-- Divide
+Operator <|-- Plus
+Operator <|-- Minus
+Operator <|-- OpenBy
+Operator <|-- CloseBy
+
+Instruction <|-- Affect
+Instruction <|-- Lire
+Instruction <|-- Ecrire
+
+@enduml
