@@ -15,26 +15,22 @@ note left: Enum (Minus, OpenBy, CloseBy, Mult, Divide, Plus) & Enum (End, Sep, O
 object Expr
 object Number
 object Variable
+object DeclarationVariable
+object DeclarationConst
 object ExprBin
 object ExprMult
 object ExprDivide
 object ExprPlus
 object ExprMinus
 
-object Type
-object Const
-object Var
-
 object Instruction
 object PartieInstruction
 object PartieDeclarative
-object Declare
+object Declaration
+Declaration : String name
 object Affect
 object Lire
 object Ecrire
-
-object End
-object Sep
 
 object Etat
 
@@ -43,18 +39,15 @@ Automate *-- Symbole : pileSymboles 0..*
 Automate *-- Etat : pileEtats 0..*
 
 Symbole <|-- Expr
-Symbole <|-- Type
-Symbole <|-- Operator
 Symbole <|-- Instruction
 Symbole <|-- PartieInstruction
 Symbole <|-- PartieDeclarative
-Symbole <|-- Sep
-Symbole <|-- End
 
 
 Expr <|-- Number
 Expr <|-- Variable
 Expr <|-- ExprBin
+Instruction <|-- Expr
 
 ExprBin --* Expr: 2..2
 ExprBin <|-- ExprMult
@@ -62,18 +55,20 @@ ExprBin <|-- ExprDivide
 ExprBin <|-- ExprPlus
 ExprBin <|-- ExprMinus
 
-Type <|-- Const
-Type <|-- Var
+PartieDeclarative <|-- Declaration
+
+Declaration <|-- DeclarationVariable
+Declaration <|-- DeclarationConst
 
 Intruction --* PartieInstruction : 0..*
 Instruction <|-- Affect
-Instruction <|-- Declare
 Instruction <|-- Lire
 Instruction <|-- Ecrire
 
-Lire *-- Number
+Lire *-- Variable
 Ecrire *-- Expr
 
 Affect *-- Variable
+Affect *-- Expr
 
 @enduml
