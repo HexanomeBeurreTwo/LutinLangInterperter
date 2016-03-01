@@ -60,7 +60,7 @@ PartieDeclarative <|-- Declaration
 Declaration <|-- DeclarationVariable
 Declaration <|-- DeclarationConst
 
-Intruction --* PartieInstruction : 0..*
+Instruction --* PartieInstruction : 0..*
 Instruction <|-- Affect
 Instruction <|-- Lire
 Instruction <|-- Ecrire
