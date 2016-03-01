@@ -1,5 +1,5 @@
 @startuml
-!include ./base.txt
+!include ../base.txt
 
 title UML Diagram
 
@@ -11,8 +11,10 @@ object Lexer
 Lexer : Symbole getNext()
 
 object Symbole
+note left: Enum (Minus, OpenBy, CloseBy, Mult, Divide, Plus) & Enum (End, Sep, Operator, Const, Var)
 object Expr
 object Number
+object Variable
 object ExprBin
 object ExprMult
 object ExprDivide
@@ -23,15 +25,10 @@ object Type
 object Const
 object Var
 
-object Operator
-object Mult
-object Divide
-object Plus
-object Minus
-object OpenBy
-object CloseBy
-
 object Instruction
+object PartieInstruction
+object PartieDeclarative
+object Declare
 object Affect
 object Lire
 object Ecrire
@@ -42,19 +39,24 @@ object Sep
 object Etat
 
 Automate *-- Lexer
-Automate *-- Symbole : pileSymboles *
-Automate *-- Etat : pileEtats *
+Automate *-- Symbole : pileSymboles 0..*
+Automate *-- Etat : pileEtats 0..*
 
 Symbole <|-- Expr
 Symbole <|-- Type
 Symbole <|-- Operator
 Symbole <|-- Instruction
+Symbole <|-- PartieInstruction
+Symbole <|-- PartieDeclarative
 Symbole <|-- Sep
 Symbole <|-- End
 
+
 Expr <|-- Number
+Expr <|-- Variable
 Expr <|-- ExprBin
 
+ExprBin --* Expr: 2..2
 ExprBin <|-- ExprMult
 ExprBin <|-- ExprDivide
 ExprBin <|-- ExprPlus
@@ -63,15 +65,15 @@ ExprBin <|-- ExprMinus
 Type <|-- Const
 Type <|-- Var
 
-Operator <|-- Mult
-Operator <|-- Divide
-Operator <|-- Plus
-Operator <|-- Minus
-Operator <|-- OpenBy
-Operator <|-- CloseBy
-
+Intruction --* PartieInstruction : 0..*
 Instruction <|-- Affect
+Instruction <|-- Declare
 Instruction <|-- Lire
 Instruction <|-- Ecrire
+
+Lire *-- Number
+Ecrire *-- Expr
+
+Affect *-- Variable
 
 @enduml
