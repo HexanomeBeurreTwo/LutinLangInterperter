@@ -15,8 +15,14 @@ E33::E33() : State() { }
 
 bool E33::transition(Automaton *automaton, Symbol *s) {
   switch(*s) {
-    case XXX:
-      // Do();
+    case OPENBY:
+    	automaton.shift(*s, new E37());
+      break;
+    case ID:
+    	automaton.shift(*s, new E24());
+      break;
+    case VAL:
+    	automaton.shift(*s, new E40());
       break;
   }
   return false;

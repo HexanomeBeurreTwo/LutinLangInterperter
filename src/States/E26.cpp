@@ -15,8 +15,8 @@ E26::E26() : State() { }
 
 bool E26::transition(Automaton *automaton, Symbol *s) {
   switch(*s) {
-    case XXX:
-      // Do();
+    case END:
+    automaton.reduce(2, *s, new E19());
       break;
   }
   return false;
