@@ -13,12 +13,16 @@
 
 E17::E17() : State() { }
 
-bool E17::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
-    case XXX:
-      // Do();
+bool E17::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
+    case ID:
+    case VAR:
+    case CONST:
+    case READ:
+    case WRITE:
+    case ENDFILE:
+      automaton.reduce(3, *s, new E1());
       break;
   }
   return false;
 }
-

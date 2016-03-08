@@ -13,8 +13,8 @@
 
 E33::E33() : State() { }
 
-bool E33::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E33::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;

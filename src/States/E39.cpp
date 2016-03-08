@@ -13,8 +13,8 @@
 
 E39::E39() : State() { }
 
-bool E39::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E39::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;

@@ -13,12 +13,14 @@
 
 E4::E4() : State() { }
 
-bool E4::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
-    case XXX:
-      // Do();
+bool E4::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
+    case SEP:
+      automaton.shift(*s, new E7());
+      break;
+    case END:
+      automaton.shift(2, *s, new E16());
       break;
   }
   return false;
 }
-

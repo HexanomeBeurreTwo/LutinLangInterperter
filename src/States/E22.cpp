@@ -13,8 +13,8 @@
 
 E22::E22() : State() { }
 
-bool E22::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E22::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;

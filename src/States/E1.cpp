@@ -13,12 +13,20 @@
 
 E1::E1() : State() { }
 
-bool E1::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
-    case XXX:
-      // Do();
+bool E1::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
+    case ID:
+    case READ:
+    case WRITE:
+    case ENDFILE:
+      automaton.reduce(0, *s, new E18());
+      break;
+    case VAR:
+      automaton.shift(*s, new E2());
+      break;
+    case CONST:
+      automaton.shift(*s, new E5());
       break;
   }
   return false;
 }
-
