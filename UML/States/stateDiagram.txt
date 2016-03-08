@@ -1,0 +1,14 @@
+@startuml
+!include ../base.txt
+
+title State Diagram
+
+object Automate
+
+Automate : lecture()
+
+Symbole <-- Expr : operator ';' <
+
+Symbole --> Expr
+
+@enduml
