@@ -55,7 +55,7 @@ ExprBin <|-- ExprDivide
 ExprBin <|-- ExprPlus
 ExprBin <|-- ExprMinus
 
-PartieDeclarative <|-- Declaration
+PartieDeclarative *-- Declaration
 
 Declaration <|-- DeclarationVariable
 Declaration <|-- DeclarationConst
