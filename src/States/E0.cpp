@@ -9,7 +9,7 @@
 #include "../State.h"
 #include "../Symbol.h"
 
-#include E0.h
+#include "E0.h"
 
 E0::E0() : State() { }
 
@@ -21,4 +21,3 @@ bool E0::transition(Automaton *automaton, Symbol *t) {
   }
   return false;
 }
-

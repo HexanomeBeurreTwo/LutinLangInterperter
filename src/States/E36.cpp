@@ -9,7 +9,7 @@
 #include "../State.h"
 #include "../Symbol.h"
 
-#include E36.h
+#include "E36.h"
 
 E36::E36() : State() { }
 

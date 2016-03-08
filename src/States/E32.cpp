@@ -9,7 +9,7 @@
 #include "../State.h"
 #include "../Symbol.h"
 
-#include E32.h
+#include "E32.h"
 
 E32::E32() : State() { }
 

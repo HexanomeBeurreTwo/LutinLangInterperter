@@ -9,7 +9,7 @@
 #include "../State.h"
 #include "../Symbol.h"
 
-#include E30.h
+#include "E30.h"
 
 E30::E30() : State() { }
 

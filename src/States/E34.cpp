@@ -9,7 +9,7 @@
 #include "../State.h"
 #include "../Symbol.h"
 
-#include E34.h
+#include "E34.h"
 
 E34::E34() : State() { }
 

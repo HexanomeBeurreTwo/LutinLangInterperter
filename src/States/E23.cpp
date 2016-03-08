@@ -9,7 +9,7 @@
 #include "../State.h"
 #include "../Symbol.h"
 
-#include E23.h
+#include "E23.h"
 
 E23::E23() : State() { }
 
