@@ -39,7 +39,7 @@ echo "//
 #include \"../State.h\"
 #include \"../Symbol.h\"
 
-#include "E$i.h"
+#include \"E$i.h\"
 
 E$i::E$i() : State() { }
 
