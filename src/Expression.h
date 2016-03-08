@@ -17,7 +17,7 @@ class Expression  : public Symbol{
       //Expression():Symbol(E){};
       virtual ~Expression(){};
       virtual void print(){};
-      virtual double Evaluation(const Vars & variables) {return 0;};
+      virtual double Evaluation(const Vars & variables) = 0;
 };
 
 class Valeur: public Expression {
@@ -60,7 +60,7 @@ class OperateurBinaire: public Expression { // MINUS MULT DIVIDE PLUS
       OperateurBinaire(TokenSymbol id_symb,Expression * g, Expression * d):Expression(id_symb),gauche (g),droite (d){};
       ~OperateurBinaire();
       double Evaluation(const Vars & variables);
-      virtual void print();
+      void print();
    protected:
       virtual double operation(double g, double d) = 0;
       void printOperator(TokenSymbol id_symb);
@@ -72,7 +72,6 @@ class OperateurPlus: public OperateurBinaire {
    public:
       OperateurPlus(Expression * g, Expression * d):OperateurBinaire(PLUS,g,d){};
       ~OperateurPlus(){};
-      void print();
    protected:
       double operation(double g, double d);
 };
@@ -81,7 +80,6 @@ class OperateurMoins: public OperateurBinaire {
    public:
       OperateurMoins(Expression * g, Expression * d):OperateurBinaire(MINUS,g,d){};
       ~OperateurMoins(){};
-      void print();
    protected:
       double operation(double g, double d);
 };
@@ -90,7 +88,6 @@ class OperateurDiv: public OperateurBinaire {
    public:
       OperateurDiv(Expression * g, Expression * d):OperateurBinaire(DIVIDE,g,d){};
       ~OperateurDiv(){};
-      void print();
    protected:
       double operation(double g, double d);
 };
@@ -99,7 +96,6 @@ class OperateurMul: public OperateurBinaire {
    public:
       OperateurMul(Expression * g, Expression * d):OperateurBinaire(MULT,g,d){};
       ~OperateurMul(){};
-      void print();
    protected:
       double operation(double g, double d);
 };

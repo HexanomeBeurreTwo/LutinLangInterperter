@@ -6,11 +6,23 @@ using namespace std;
 #include "Expression.h"
 
 int main() {
-    Valeur* e = new Valeur(4.5);
+    Expression *e;
+    map<string,double> var;
+    var["x"] = 5.;
+    var["y"] = -4.;
+
+    /*Valeur* e = new Valeur(4.5);
     Variable v("A");
 	AffectSymb symbole(e,v) ;
-	symbole.print();
+	symbole.print();*/
 
+	e = new OperateurPlus(new OperateurDiv(new Valeur(2),new Variable("x")), new Variable("y"));
+    cout <<"l'evaluation de ";
+    e->print();
+    cout << "pour x=" << var["x"]
+         << " et y="  << var["y"]
+         <<" donne : "<< e->Evaluation(var) << "\n";
+    delete e;
 	return 0;
 
 }
