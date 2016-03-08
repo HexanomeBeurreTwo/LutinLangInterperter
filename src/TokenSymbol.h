@@ -1,3 +1,4 @@
+
 //
 //  LutinLangInterperter
 //  Symbol.h
@@ -25,7 +26,7 @@ typedef enum {
 	MINUS,
 	OPENBY,
 	CLOSEBY,
-	MILT,
+	MULT,
 	DIVIDE,
 	PLUS,
 	//Non terminal symbols

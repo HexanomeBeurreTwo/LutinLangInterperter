@@ -9,15 +9,19 @@
 #include <iostream>
 #include "AffectSymb.h"
 
+
 using namespace std;
 
-  
+
 AffectSymb::~AffectSymb()
 {
-
+    delete expression;
 }
 
 void AffectSymb::print()
 {
-	cout << "Symbole d'affectation = \n";
+	variable.print();
+	cout << " = ";
+	expression -> print();
+
 }

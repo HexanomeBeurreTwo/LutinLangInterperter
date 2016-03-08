@@ -1,3 +1,4 @@
+
 //
 //  LutinLangInterperter
 //  Symbol.h
@@ -12,14 +13,21 @@
 
 #include "Instruction.h"
 #include "Symbol.h"
+#include "Expression.h"
+
+
+// TODO Gerer la liste des varible et leurs valeurs
+// la map Vars
 
 class AffectSymb : public Instruction {
 
  public:
-    AffectSymb() : Instruction(AFFECT){} ;
+    AffectSymb(Expression *expr,Variable var) : Instruction(AFFECT),expression(expr),variable(var){} ;
     virtual ~AffectSymb();
-    void print();   
-
+    void print();
+ private :
+    Expression *expression;
+    Variable variable;
 };
 
 
