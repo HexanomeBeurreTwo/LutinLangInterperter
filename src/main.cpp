@@ -7,7 +7,8 @@ using namespace std;
 
 int main() {
 
-	cout << "haha \n"	;
+	AffectSymb symbole ;
+	symbole.print();
 
 	return 0;
 

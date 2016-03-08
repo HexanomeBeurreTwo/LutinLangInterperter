@@ -18,7 +18,7 @@ protected:
 public:
     Symbol(TokenSymbol id) : ident(id) {} 
     virtual ~Symbol() ;
-    virtual void print();
+    virtual void print()=0;
     operator int() const { return (int)ident; }
 
 };

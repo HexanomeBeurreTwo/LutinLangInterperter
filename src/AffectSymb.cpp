@@ -11,7 +11,13 @@
 
 using namespace std;
 
+  
+AffectSymb::~AffectSymb()
+{
+
+}
+
 void AffectSymb::print()
 {
-	cout << "Symbole d'affectation\n";
+	cout << "Symbole d'affectation = \n";
 }

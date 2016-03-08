@@ -1,6 +1,6 @@
 #Variables
 CC=g++
-INT=AffectSymb.h 
+INT=AffectSymb.h Instruction.h Symbol.h
 SOURCE= $(INT:.h=.cpp) Main.cpp
 HEADER= TokenSymbol.h Symbol.h Instruction.h 
 OBJ=$(patsubst %.cpp,%.o,$(SOURCE)) 

@@ -18,8 +18,7 @@ class AffectSymb : public Instruction {
  public:
     AffectSymb() : Instruction(AFFECT){} ;
     virtual ~AffectSymb();
-    void print();
-
+    void print();   
 
 };
 

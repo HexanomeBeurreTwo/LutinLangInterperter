@@ -8,7 +8,7 @@
 
 
 #ifndef INSTRUCTION_H
-#define INSTRUCTION_H
+#define INSTRUCTION_H  
 
 #include "Symbol.h"
 
@@ -17,7 +17,6 @@ class Instruction : public Symbol {
  public:
     Instruction(TokenSymbol id) : Symbol(id){};
     virtual ~Instruction() ;
-    virtual void print();
 
 
 };
