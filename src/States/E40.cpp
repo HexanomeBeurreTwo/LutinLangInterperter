@@ -13,8 +13,8 @@
 
 E40::E40() : State() { }
 
-bool E40::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E40::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;

@@ -13,12 +13,11 @@
 
 E18::E18() : State() { }
 
-bool E18::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
-    case XXX:
+bool E18::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
+    case ID:
       // Do();
       break;
   }
   return false;
 }
-

@@ -13,8 +13,8 @@
 
 E21::E21() : State() { }
 
-bool E21::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E21::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;

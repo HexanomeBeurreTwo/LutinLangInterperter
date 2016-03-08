@@ -13,12 +13,12 @@
 
 E9::E9() : State() { }
 
-bool E9::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
-    case XXX:
-      // Do();
+bool E9::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
+    case SEP:
+    case END:
+      automaton.reduce(1, *s, new E10());
       break;
   }
   return false;
 }
-

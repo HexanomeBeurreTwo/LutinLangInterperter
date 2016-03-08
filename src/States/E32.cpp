@@ -13,8 +13,8 @@
 
 E32::E32() : State() { }
 
-bool E32::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E32::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;

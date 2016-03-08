@@ -13,8 +13,8 @@
 
 E35::E35() : State() { }
 
-bool E35::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E35::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;

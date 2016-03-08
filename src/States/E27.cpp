@@ -13,8 +13,8 @@
 
 E27::E27() : State() { }
 
-bool E27::transition(Automaton *automaton, Symbol *t) {
-  switch(*t) {
+bool E27::transition(Automaton *automaton, Symbol *s) {
+  switch(*s) {
     case XXX:
       // Do();
       break;
