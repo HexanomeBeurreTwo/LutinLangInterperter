@@ -3,22 +3,24 @@
 //  Symbol.h
 //
 //  Created by H4115 on 08/03/2016.
-//  Copyright (c) 2016 H4115. All rights reserved.
-//
-
+//  Copyright (c) 2016 H4115. All rights 
 
 #ifndef SYMBOL_H
 #define SYMBOL_H
 
-class Symbol {
-protected:
-  int ident;
+#include "TokenSymbol.h"
 
- public:
-    virtual Symbol(int id) : ident(id) {} = 0;
-    virtual ~Symbol() {};
+class Symbol {
+
+protected:
+  TokenSymbol ident;
+
+public:
+    Symbol(TokenSymbol id) : ident(id) {} 
+    virtual ~Symbol() ;
     virtual void print();
-    operator int() const { return ident; }
+    operator int() const { return (int)ident; }
+
 };
 
 
