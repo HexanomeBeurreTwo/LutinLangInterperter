@@ -18,6 +18,7 @@ class Instruction : public Symbol {
     Instruction(Tokens id) : Symbol(id){};
     virtual ~Instruction(){} ;
     virtual void print() = 0;
+    virtual bool execute(Declrs & variables){return true;};
 
 
 };

@@ -15,7 +15,7 @@
 using namespace std;
 
 
-bool Affectation::effectuer_affect(Declrs & variables)
+bool Affectation::execute(Declrs & variables)
 {
     string nom = variable -> get_nom();
     Declrs::const_iterator var = variables.find(nom);
@@ -45,6 +45,6 @@ void Affectation::print()
 	variable->print();
 	cout << " := ";
 	expression -> print();
-	cout << ";\n";
+	cout << ";";
 
 }

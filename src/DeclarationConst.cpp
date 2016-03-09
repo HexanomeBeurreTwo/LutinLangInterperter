@@ -5,5 +5,5 @@ using namespace std;
 
 void DeclarationConst::print()
 {
-    cout << "const " << nom << "=" << valeur <<";"<<endl;
+    cout << "const " << nom << " = " << valeur <<";"<<endl;
 }

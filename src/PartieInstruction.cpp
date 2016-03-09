@@ -20,12 +20,22 @@ void PartieInstruction::print()
 
 }
 
-bool PartieInstruction::add_instruction(Instruction *inst)//ajout a la fin
+void PartieInstruction::add_instruction(Instruction *inst)//ajout a la fin
 {
     instructions.push_back(inst);
-    return true;
+    //return true;
 }
 
 
-
+bool PartieInstruction::execute(Declrs & variables)
+{
+    for (deque<Instruction*>::iterator it = instructions.begin(); it!=instructions.end(); ++it)
+    {
+        if( ! (*it)->execute(variables) )
+        {
+            return false;
+        }
+    }
+    return true;
+}
 

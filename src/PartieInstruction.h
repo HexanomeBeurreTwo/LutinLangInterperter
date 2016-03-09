@@ -16,8 +16,9 @@ class PartieInstruction : public Symbol
     public:
         PartieInstruction(): Symbol(PI){};
         virtual ~PartieInstruction();
-        bool add_instruction(Instruction *inst);
+        void add_instruction(Instruction *inst);
         void print();
+        bool execute(Declrs & variables);
 
     protected:
         deque<Instruction*> instructions; // une file d'instruction

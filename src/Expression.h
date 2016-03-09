@@ -10,9 +10,9 @@
 
 
 
-class Expression  : public Instruction{
+class Expression  : public Symbol{
    public:
-      Expression(Tokens id_symb):Instruction(id_symb){};
+      Expression(Tokens id_symb):Symbol(id_symb){};
       //Expression():Instruction(E){};
       virtual ~Expression(){};
       virtual void print() = 0;

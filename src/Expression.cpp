@@ -59,11 +59,11 @@ double OperateurMul::operation(double g, double d) {
 }
 
 void Variable::print(){
-    cout <<" "<<nom<<" ";
+    cout <<""<<nom<<"";
 }
 
 void Valeur::print(){
-    cout <<" "<<valeur<<" ";
+    cout <<""<<valeur<<"";
 }
 
 void Parentese::print(){
@@ -80,10 +80,10 @@ void OperateurBinaire::print(){
 void OperateurBinaire::printOperator(Tokens id_symb){
     string op = "OPP";
     switch(id_symb){
-        case MINUS: op = "-"; break;
-        case MULT:  op = "*"; break;
-        case DIVIDE:op = "/"; break;
-        case PLUS:  op = "+"; break;
+        case MINUS: op = " - "; break;
+        case MULT:  op = " * "; break;
+        case DIVIDE:op = " / "; break;
+        case PLUS:  op = " + "; break;
         default: break;
     }
     cout << op;

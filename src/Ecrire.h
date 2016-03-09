@@ -1,8 +1,8 @@
 #ifndef ECRIRE_H
 #define ECRIRE_H
 
-#include "Expression.h"
 #include "Instruction.h"
+#include "Expression.h"
 
 
 class Ecrire : public Instruction
@@ -11,7 +11,7 @@ class Ecrire : public Instruction
         Ecrire(Variable* var):Instruction(WRITE),variable(var){};
         virtual ~Ecrire();
         void print();
-        bool writes(Declrs & variables);
+        bool execute(Declrs & variables);
     protected:
         Variable* variable;
     private:

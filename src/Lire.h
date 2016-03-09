@@ -11,7 +11,7 @@ class Lire : public Instruction
         Lire(Variable *var):Instruction(READ),variable(var){};
         virtual ~Lire();
         void print();
-        bool reads(Declrs & variables);
+        bool execute(Declrs & variables);
     protected:
         Variable* variable;
     private:

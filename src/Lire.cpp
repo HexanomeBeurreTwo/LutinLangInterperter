@@ -6,7 +6,7 @@ Lire::~Lire()
     //delete variable;
 }
 
-bool Lire::reads(Declrs & variables)
+bool Lire::execute(Declrs & variables)
 {
     string nom = variable -> get_nom();
     double valeur;

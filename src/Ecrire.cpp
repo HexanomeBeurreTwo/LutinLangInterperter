@@ -1,13 +1,12 @@
 #include "Ecrire.h"
-
+#include "DeclarationVariable.h"
 
 Ecrire::~Ecrire()
 {
     //delete variable;
 }
 
-
-bool Ecrire::writes(Declrs & variables)
+bool Ecrire::execute(Declrs & variables)
 {
     string nom = this->variable -> get_nom();
     double valeur;
@@ -28,5 +27,5 @@ void Ecrire::print()
 {
 	cout << "Write ";
 	variable->print();
-	cout <<"\n";
+	cout <<"";
 }

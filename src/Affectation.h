@@ -25,7 +25,8 @@ class Affectation : public Instruction {
     Affectation(Expression *expr,Variable* var) : Instruction(AFFECT),expression(expr),variable(var){} ;
     virtual ~Affectation();
     void print();
-    bool effectuer_affect(Declrs & variables);
+    bool execute(Declrs & variables);
+
  private :
     Expression *expression;
     Variable* variable;

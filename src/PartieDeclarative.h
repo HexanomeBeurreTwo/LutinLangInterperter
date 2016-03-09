@@ -9,9 +9,10 @@ class PartieDeclarative : public Symbol
 {
     public:
         PartieDeclarative(): Symbol(PD){};
-        virtual ~PartieDeclarative(){};
+        virtual ~PartieDeclarative();
         bool add_declaration(Declaration *inst);
         void print() ;
+        Declrs& get_variables();
 
     protected:
         Declrs variables;
