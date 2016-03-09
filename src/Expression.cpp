@@ -77,7 +77,7 @@ void OperateurBinaire::print(){
     droite->print();
 }
 
-void OperateurBinaire::printOperator(TokenSymbol id_symb){
+void OperateurBinaire::printOperator(Tokens id_symb){
     string op = "OPP";
     switch(id_symb){
         case MINUS: op = "-"; break;

@@ -7,7 +7,7 @@
 class Declaration : public Symbol
 {
     public:
-        Declaration(TokenSymbol id,string n,double v):Symbol(id),nom(n),valeur(v){};
+        Declaration(Tokens id,string n,double v):Symbol(id),nom(n),valeur(v){};
         virtual ~Declaration(){};
         virtual void print()=0;
         string get_nom(){return nom;}

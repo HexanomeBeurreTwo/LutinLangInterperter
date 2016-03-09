@@ -12,7 +12,7 @@
 
 class Expression  : public Instruction{
    public:
-      Expression(TokenSymbol id_symb):Instruction(id_symb){};
+      Expression(Tokens id_symb):Instruction(id_symb){};
       //Expression():Instruction(E){};
       virtual ~Expression(){};
       virtual void print() = 0;
@@ -57,13 +57,13 @@ class OperateurBinaire: public Expression { // MINUS MULT DIVIDE PLUS
    // un opérateur binaire générique, pour l'implémenter, il faut
    // implémenter la méthode operation()
    public:
-      OperateurBinaire(TokenSymbol id_symb,Expression * g, Expression * d):Expression(id_symb),gauche (g),droite (d){};
+      OperateurBinaire(Tokens id_symb,Expression * g, Expression * d):Expression(id_symb),gauche (g),droite (d){};
       ~OperateurBinaire();
       double Evaluation(const Declrs & variables);
       void print();
    protected:
       virtual double operation(double g, double d) = 0;
-      void printOperator(TokenSymbol id_symb);
+      void printOperator(Tokens id_symb);
       Expression * gauche;
       Expression * droite;
 };

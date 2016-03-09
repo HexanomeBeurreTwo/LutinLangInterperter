@@ -1,7 +1,7 @@
 #ifndef SYMBOL_H
 #define SYMBOL_H
 
-#include "TokenSymbol.h"
+#include "Tokens.h"
 
 #include <map>
 #include <iostream>
@@ -15,11 +15,11 @@ typedef map<string,Declaration*> Declrs;
 class Symbol {
 
 protected:
-  TokenSymbol ident;
+  Tokens ident;
 
 public:
-    Symbol(TokenSymbol id) : ident(id) {}
-    virtual ~Symbol() ;
+    Symbol(Tokens id) : ident(id) {}
+    virtual ~Symbol(){} ;
     virtual void print()=0;
     operator int() const { return (int)ident; }
 

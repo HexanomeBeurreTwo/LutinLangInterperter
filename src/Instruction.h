@@ -15,8 +15,8 @@
 class Instruction : public Symbol {
 
  public:
-    Instruction(TokenSymbol id) : Symbol(id){};
-    virtual ~Instruction() ;
+    Instruction(Tokens id) : Symbol(id){};
+    virtual ~Instruction(){} ;
     virtual void print() = 0;
 
 

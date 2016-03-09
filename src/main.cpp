@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-#include "AffectSymb.h"
+#include "Affectation.h"
 #include "Expression.h"
 
 #include "DeclarationConst.h"
@@ -23,17 +23,17 @@ int main() {
     vars["y"]->print();
     vars["x"]->print();
 
-	AffectSymb affectation1(val2,y) ;
+	Affectation affectation1(val2,y) ;
 	affectation1.effectuer_affect(vars);
 	affectation1.print();
 
     e = new OperateurPlus(new OperateurDiv(val2,x), new Parentese(new OperateurMoins(y,new Valeur(1.1))));
 
-    AffectSymb affectation2(e,y) ;
+    Affectation affectation2(e,y) ;
     affectation2.effectuer_affect(vars);
 	affectation2.print();
 
-    EcrireInstruction* out = new EcrireInstruction(y);
+    Ecrire* out = new Ecrire(y);
     out->print();
     out->writes(vars);
 
