@@ -35,26 +35,26 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="src/Affectation.cpp" />
+		<Unit filename="src/DeclarationConst.cpp" />
+		<Unit filename="src/DeclarationVariable.cpp" />
+		<Unit filename="src/Ecrire.cpp" />
+		<Unit filename="src/Expression.cpp" />
+		<Unit filename="src/PartieDeclarative.cpp" />
+		<Unit filename="src/PartieInstruction.cpp" />
+		<Unit filename="src/main.cpp" />
 		<Unit filename="src/Affectation.h" />
 		<Unit filename="src/Declaration.h" />
-		<Unit filename="src/DeclarationConst.cpp" />
 		<Unit filename="src/DeclarationConst.h" />
-		<Unit filename="src/DeclarationVariable.cpp" />
 		<Unit filename="src/DeclarationVariable.h" />
-		<Unit filename="src/Ecrire.cpp" />
 		<Unit filename="src/Ecrire.h" />
-		<Unit filename="src/Expression.cpp" />
 		<Unit filename="src/Expression.h" />
 		<Unit filename="src/Instruction.h" />
 		<Unit filename="src/Lire.cpp" />
 		<Unit filename="src/Lire.h" />
-		<Unit filename="src/PartieDeclarative.cpp" />
 		<Unit filename="src/PartieDeclarative.h" />
-		<Unit filename="src/PartieInstruction.cpp" />
 		<Unit filename="src/PartieInstruction.h" />
 		<Unit filename="src/Symbol.h" />
 		<Unit filename="src/Tokens.h" />
-		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
