@@ -15,9 +15,17 @@ E34::E34() : State() { }
 
 bool E34::transition(Automaton *automaton, Symbol *s) {
   switch(*s) {
-    case XXX:
-      // Do();
+    case MULT:
+    	automaton.shift(*s, new E32());
       break;
+    case DIVIDE:
+    	automaton.shift(*s, new E33());
+      break;
+    case PLUS:
+    case MINUS:
+    case END:
+    	automaton.reduce(1,*s,new E34());
+  	  break;
   }
   return false;
 }

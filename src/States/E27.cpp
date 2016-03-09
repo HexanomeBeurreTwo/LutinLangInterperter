@@ -15,8 +15,11 @@ E27::E27() : State() { }
 
 bool E27::transition(Automaton *automaton, Symbol *s) {
   switch(*s) {
-    case XXX:
-      // Do();
+    case OPENBY:
+    	automaton.shift(*s, new E37());
+    	break;
+    case VAL:
+    	automaton.shift(*s, new E40());
       break;
   }
   return false;

@@ -15,8 +15,13 @@ E35::E35() : State() { }
 
 bool E35::transition(Automaton *automaton, Symbol *s) {
   switch(*s) {
-    case XXX:
-      // Do();
+    case PLUS:
+    case MINUS:
+    case MULT:
+    case DIVIDE:
+    case CLOSEBY:
+    case END:
+    	automaton.reduce(1, *s, new E35());
       break;
   }
   return false;
