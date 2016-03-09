@@ -22,12 +22,13 @@
 class AffectSymb : public Instruction {
 
  public:
-    AffectSymb(Expression *expr,Variable var) : Instruction(AFFECT),expression(expr),variable(var){} ;
+    AffectSymb(Expression *expr,Variable* var) : Instruction(AFFECT),expression(expr),variable(var){} ;
     virtual ~AffectSymb();
     void print();
+    bool effectuer_affect(Declrs & variables);
  private :
     Expression *expression;
-    Variable variable;
+    Variable* variable;
 };
 
 

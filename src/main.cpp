@@ -5,24 +5,44 @@ using namespace std;
 #include "AffectSymb.h"
 #include "Expression.h"
 
+#include "DeclarationConst.h"
+#include "DeclarationVariable.h"
+#include "EcrireInstruction.h"
+
 int main() {
     Expression *e;
-    map<string,double> var;
-    var["x"] = 5.;
-    var["y"] = -4.;
+    Variable* x = new Variable("x");
+    Variable* y = new Variable("y");
+    Valeur *val2 = new Valeur(2);
 
-    /*Valeur* e = new Valeur(4.5);
-    Variable v("A");
-	AffectSymb symbole(e,v) ;
-	symbole.print();*/
 
-	e = new OperateurPlus(new OperateurDiv(new Valeur(2),new Variable("x")), new Variable("y"));
-    cout <<"l'evaluation de ";
-    e->print();
-    cout << "pour x=" << var["x"]
-         << " et y="  << var["y"]
-         <<" donne : "<< e->Evaluation(var) << "\n";
+    Declrs vars;
+    vars["x"] = new DeclarationConst("x",4.5);
+    vars["y"] = new DeclarationVariable("y");
+
+    vars["y"]->print();
+    vars["x"]->print();
+
+	AffectSymb affectation1(val2,y) ;
+	affectation1.effectuer_affect(vars);
+	affectation1.print();
+
+    e = new OperateurPlus(new OperateurDiv(val2,x), new Parentese(new OperateurMoins(y,new Valeur(1.1))));
+
+    AffectSymb affectation2(e,y) ;
+    affectation2.effectuer_affect(vars);
+	affectation2.print();
+
+    EcrireInstruction* out = new EcrireInstruction(y);
+    out->print();
+    out->writes(vars);
+
     delete e;
+    delete x;
+    delete y;
+    delete out;
+    delete val2;
+
 	return 0;
 
 }

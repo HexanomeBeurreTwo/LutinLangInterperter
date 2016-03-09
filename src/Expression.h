@@ -2,22 +2,21 @@
 #define _EXPR_H
 
 #include <string>
-#include <map>
 
-#include "Symbol.h"
-
-using namespace std;
-
-typedef map<string,double> Vars;
+#include "Instruction.h"
 
 
-class Expression  : public Symbol{
+
+
+
+
+class Expression  : public Instruction{
    public:
-      Expression(TokenSymbol id_symb):Symbol(id_symb){};
-      //Expression():Symbol(E){};
+      Expression(TokenSymbol id_symb):Instruction(id_symb){};
+      //Expression():Instruction(E){};
       virtual ~Expression(){};
-      virtual void print(){};
-      virtual double Evaluation(const Vars & variables) = 0;
+      virtual void print() = 0;
+      virtual double Evaluation(const Declrs & variables) = 0;
 };
 
 class Valeur: public Expression {
@@ -26,7 +25,7 @@ class Valeur: public Expression {
       Valeur(int val):Expression(VAL),valeur(val){};
       Valeur(double val):Expression(VAL),valeur(val){};
       ~Valeur(){};
-      double Evaluation(const Vars & variables);
+      double Evaluation(const Declrs & variables);
       void print();
    protected:
       double valeur;
@@ -37,8 +36,9 @@ class Variable: public Expression {
    public:
       Variable(string n):Expression(VAR),nom(n){};
       ~Variable(){};
-      double Evaluation(const Vars & variables);
+      double Evaluation(const Declrs & variables);
       void print();
+      string get_nom(){return nom;}
    protected:
       string nom;
 };
@@ -48,7 +48,7 @@ class Parentese: public Expression {
       Parentese(Expression * expr):Expression(OPENBY),expression(expr){};
       ~Parentese(){delete expression;};
       void print();
-      virtual double Evaluation(const Vars & variables) ;
+      virtual double Evaluation(const Declrs & variables) ;
    protected:
       Expression *expression;
 };
@@ -59,7 +59,7 @@ class OperateurBinaire: public Expression { // MINUS MULT DIVIDE PLUS
    public:
       OperateurBinaire(TokenSymbol id_symb,Expression * g, Expression * d):Expression(id_symb),gauche (g),droite (d){};
       ~OperateurBinaire();
-      double Evaluation(const Vars & variables);
+      double Evaluation(const Declrs & variables);
       void print();
    protected:
       virtual double operation(double g, double d) = 0;

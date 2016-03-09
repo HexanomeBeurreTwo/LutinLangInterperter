@@ -1,36 +1,40 @@
 #include "Expression.h"
 #include <cmath>
 #include<iostream>
+#include "Declaration.h"
+#include "DeclarationConst.h"
+#include "DeclarationVariable.h"
+
 using namespace std;
 
 
-double Valeur::Evaluation(const Vars & variables) {
-   return valeur;
+double Valeur::Evaluation(const Declrs & variables) {
+   return this->valeur;
 }
 
 
-double Variable::Evaluation(const Vars & variables) {
-   Vars::const_iterator var = variables.find(nom);
+double Variable::Evaluation(const Declrs & variables) {
+   Declrs::const_iterator var = variables.find(nom);
    if (var!=variables.end()) {
-      return (*var).second;
+      return (var->second)->get_valeur();
    } else {
       return .0;
    }
 }
 
 OperateurBinaire::~OperateurBinaire() {
-   delete gauche;
-   delete droite;
+   //delete gauche;
+   //delete droite;
 }
 
-double OperateurBinaire::Evaluation(const Vars & variables) {
+double OperateurBinaire::Evaluation(const Declrs & variables) {
    double valg,vald;
    valg = gauche->Evaluation(variables);
    vald = droite->Evaluation(variables);
    return operation(valg,vald);
 }
 
-double Parentese::Evaluation(const Vars & variables) {
+double Parentese::Evaluation(const Declrs & variables) {
    return expression->Evaluation(variables);
 }
 
@@ -76,10 +80,10 @@ void OperateurBinaire::print(){
 void OperateurBinaire::printOperator(TokenSymbol id_symb){
     string op = "OPP";
     switch(id_symb){
-        case MINUS: op = " - "; break;
-        case MULT:  op = " * "; break;
-        case DIVIDE:op = " / "; break;
-        case PLUS:  op = " + "; break;
+        case MINUS: op = "-"; break;
+        case MULT:  op = "*"; break;
+        case DIVIDE:op = "/"; break;
+        case PLUS:  op = "+"; break;
         default: break;
     }
     cout << op;

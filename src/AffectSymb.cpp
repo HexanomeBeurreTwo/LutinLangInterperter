@@ -8,20 +8,43 @@
 
 #include <iostream>
 #include "AffectSymb.h"
-
+#include "Declaration.h"
+#include "DeclarationConst.h"
+#include "DeclarationVariable.h"
 
 using namespace std;
 
 
+bool AffectSymb::effectuer_affect(Declrs & variables)
+{
+    string nom = variable -> get_nom();
+    Declrs::const_iterator var = variables.find(nom);
+    if (var!=variables.end())  //if existe
+    {
+        if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(variables[nom]))
+        {
+            v->affect(this->expression->Evaluation(variables));
+            return true;
+        }
+        return false; // Error : affectaion de const !
+    }
+    else{ // Error Variable non déclarée
+        return false;
+    }
+
+}
+
 AffectSymb::~AffectSymb()
 {
-    delete expression;
+    //delete expression;
+    //delete variable;
 }
 
 void AffectSymb::print()
 {
-	variable.print();
-	cout << " = ";
+	variable->print();
+	cout << " := ";
 	expression -> print();
+	cout << ";\n";
 
 }

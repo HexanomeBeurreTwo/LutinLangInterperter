@@ -3,6 +3,15 @@
 
 #include "TokenSymbol.h"
 
+#include <map>
+#include <iostream>
+using namespace std;
+
+class Declaration;
+
+typedef map<string,Declaration*> Declrs;
+
+
 class Symbol {
 
 protected:
