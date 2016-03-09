@@ -8,6 +8,7 @@ using namespace std;
 #include "DeclarationConst.h"
 #include "DeclarationVariable.h"
 #include "EcrireInstruction.h"
+#include "Lire.h"
 
 int main() {
     Expression *e;
@@ -37,7 +38,12 @@ int main() {
     out->print();
     out->writes(vars);
 
+    Lire* in = new Lire(new Variable("z"));
+    in -> print();
+    in->reads(vars);
+
     delete e;
+    delete in;
     delete x;
     delete y;
     delete out;

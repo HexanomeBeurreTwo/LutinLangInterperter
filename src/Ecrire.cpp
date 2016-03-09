@@ -15,7 +15,7 @@ bool Ecrire::writes(Declrs & variables)
     if (var!=variables.end())  //if existe
     {
         valeur = this->variable->Evaluation(variables);
-        cout << valeur;
+        cout << valeur <<endl;
         return true;
     }
     else{ // Error Variable non déclarée
