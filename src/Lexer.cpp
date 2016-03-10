@@ -1,12 +1,22 @@
-// include Boost lib
+
+#include "Lexer.h"
+
 int cursor;
 
-getNext()	{
+Symbol* Lexer::getNext()	{
+	Symbol symbolFetched = new Symbol();
+
+	//Some code here
+
+	return symbolFetched;
+}
+
+bool Lexer::consumeNext()	{
 
 }
 
-consumeNext()	{
-
+bool has_next()	{
+	
 }
 
 Lexer Lexer(file)	{
