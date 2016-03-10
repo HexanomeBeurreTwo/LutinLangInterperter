@@ -5,14 +5,13 @@ using namespace std;
 
 bool PartieDeclarative::add_declaration(Declaration *inst)
 {
-    string nom;
+    string nom = inst->get_nom();
     Declrs::const_iterator var = variables.find(nom);
-    if (var==variables.end())  // Erreur variable déja prise !
+    if (var==variables.end())  // variable non utilisé -> ok
     {
         variables[inst->get_nom()] = inst;
         return true;
     }else{
-        //if existe
         return false;
     }
 }
