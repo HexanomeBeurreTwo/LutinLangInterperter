@@ -1,7 +1,7 @@
 
 //
 //  LutinLangInterperter
-//  Symbol.h
+//  Tokens.h
 //
 //  Created by H4115 on 08/03/2016.
 //  Copyright (c) 2016 H4115. All rights reserved.
@@ -38,7 +38,11 @@ typedef enum {
 	D,
 	PI,
 	LI,
-	E
+	E,
+
+	//Other
+	INVALID,
+	END_OF_FILE
 } Tokens;
 
 #endif  // TOKENS
