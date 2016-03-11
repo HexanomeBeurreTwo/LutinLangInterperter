@@ -14,7 +14,7 @@ class Automaton {
 		int init (int nbParam, char * param[]);
 		void read();
 		void shift(Symbol s, State nextState);
-		void reduce(int count, Symbol s, State nextState);
+		void reduce(int count, Symbol s);
 
 	private :
 	
