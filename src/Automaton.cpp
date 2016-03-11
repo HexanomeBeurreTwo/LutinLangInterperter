@@ -1,5 +1,6 @@
 #include "Automaton.h"
 #include "E0.h"
+#include "State.h"
 using namespace std;
 
 Automaton::Automaton(void){
@@ -33,9 +34,9 @@ void Automaton::shift(Symbol s, State nextState){
 	stateStack.push(nextState);
 }
 
-void Automaton::reduce(int count, Symbol s, State nextState){
+void Automaton::reduce(int count, Symbol s){
 	for(int i=0; i<count, i++){
 		stateStack.pop();
 	}
-	stateStack.push(nextState);
+	stateStack.push(stateStack.top().transition(s));
 }
