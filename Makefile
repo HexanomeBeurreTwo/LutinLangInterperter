@@ -123,32 +123,32 @@ lut/fast:
 	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/build
 .PHONY : lut/fast
 
-src/Automate.o: src/Automate.cpp.o
+src/Affectation.o: src/Affectation.cpp.o
 
-.PHONY : src/Automate.o
+.PHONY : src/Affectation.o
 
 # target to build an object file
-src/Automate.cpp.o:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Automate.cpp.o
-.PHONY : src/Automate.cpp.o
+src/Affectation.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Affectation.cpp.o
+.PHONY : src/Affectation.cpp.o
 
-src/Automate.i: src/Automate.cpp.i
+src/Affectation.i: src/Affectation.cpp.i
 
-.PHONY : src/Automate.i
+.PHONY : src/Affectation.i
 
 # target to preprocess a source file
-src/Automate.cpp.i:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Automate.cpp.i
-.PHONY : src/Automate.cpp.i
+src/Affectation.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Affectation.cpp.i
+.PHONY : src/Affectation.cpp.i
 
-src/Automate.s: src/Automate.cpp.s
+src/Affectation.s: src/Affectation.cpp.s
 
-.PHONY : src/Automate.s
+.PHONY : src/Affectation.s
 
 # target to generate assembly for a file
-src/Automate.cpp.s:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Automate.cpp.s
-.PHONY : src/Automate.cpp.s
+src/Affectation.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Affectation.cpp.s
+.PHONY : src/Affectation.cpp.s
 
 src/Automaton.o: src/Automaton.cpp.o
 
@@ -177,32 +177,140 @@ src/Automaton.cpp.s:
 	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Automaton.cpp.s
 .PHONY : src/Automaton.cpp.s
 
-src/EtatN.o: src/EtatN.cpp.o
+src/DeclarationConst.o: src/DeclarationConst.cpp.o
 
-.PHONY : src/EtatN.o
+.PHONY : src/DeclarationConst.o
 
 # target to build an object file
-src/EtatN.cpp.o:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EtatN.cpp.o
-.PHONY : src/EtatN.cpp.o
+src/DeclarationConst.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/DeclarationConst.cpp.o
+.PHONY : src/DeclarationConst.cpp.o
 
-src/EtatN.i: src/EtatN.cpp.i
+src/DeclarationConst.i: src/DeclarationConst.cpp.i
 
-.PHONY : src/EtatN.i
+.PHONY : src/DeclarationConst.i
 
 # target to preprocess a source file
-src/EtatN.cpp.i:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EtatN.cpp.i
-.PHONY : src/EtatN.cpp.i
+src/DeclarationConst.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/DeclarationConst.cpp.i
+.PHONY : src/DeclarationConst.cpp.i
 
-src/EtatN.s: src/EtatN.cpp.s
+src/DeclarationConst.s: src/DeclarationConst.cpp.s
 
-.PHONY : src/EtatN.s
+.PHONY : src/DeclarationConst.s
 
 # target to generate assembly for a file
-src/EtatN.cpp.s:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EtatN.cpp.s
-.PHONY : src/EtatN.cpp.s
+src/DeclarationConst.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/DeclarationConst.cpp.s
+.PHONY : src/DeclarationConst.cpp.s
+
+src/DeclarationVariable.o: src/DeclarationVariable.cpp.o
+
+.PHONY : src/DeclarationVariable.o
+
+# target to build an object file
+src/DeclarationVariable.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/DeclarationVariable.cpp.o
+.PHONY : src/DeclarationVariable.cpp.o
+
+src/DeclarationVariable.i: src/DeclarationVariable.cpp.i
+
+.PHONY : src/DeclarationVariable.i
+
+# target to preprocess a source file
+src/DeclarationVariable.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/DeclarationVariable.cpp.i
+.PHONY : src/DeclarationVariable.cpp.i
+
+src/DeclarationVariable.s: src/DeclarationVariable.cpp.s
+
+.PHONY : src/DeclarationVariable.s
+
+# target to generate assembly for a file
+src/DeclarationVariable.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/DeclarationVariable.cpp.s
+.PHONY : src/DeclarationVariable.cpp.s
+
+src/Ecrire.o: src/Ecrire.cpp.o
+
+.PHONY : src/Ecrire.o
+
+# target to build an object file
+src/Ecrire.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Ecrire.cpp.o
+.PHONY : src/Ecrire.cpp.o
+
+src/Ecrire.i: src/Ecrire.cpp.i
+
+.PHONY : src/Ecrire.i
+
+# target to preprocess a source file
+src/Ecrire.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Ecrire.cpp.i
+.PHONY : src/Ecrire.cpp.i
+
+src/Ecrire.s: src/Ecrire.cpp.s
+
+.PHONY : src/Ecrire.s
+
+# target to generate assembly for a file
+src/Ecrire.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Ecrire.cpp.s
+.PHONY : src/Ecrire.cpp.s
+
+src/EcrireInstruction.o: src/EcrireInstruction.cpp.o
+
+.PHONY : src/EcrireInstruction.o
+
+# target to build an object file
+src/EcrireInstruction.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EcrireInstruction.cpp.o
+.PHONY : src/EcrireInstruction.cpp.o
+
+src/EcrireInstruction.i: src/EcrireInstruction.cpp.i
+
+.PHONY : src/EcrireInstruction.i
+
+# target to preprocess a source file
+src/EcrireInstruction.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EcrireInstruction.cpp.i
+.PHONY : src/EcrireInstruction.cpp.i
+
+src/EcrireInstruction.s: src/EcrireInstruction.cpp.s
+
+.PHONY : src/EcrireInstruction.s
+
+# target to generate assembly for a file
+src/EcrireInstruction.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EcrireInstruction.cpp.s
+.PHONY : src/EcrireInstruction.cpp.s
+
+src/Expression.o: src/Expression.cpp.o
+
+.PHONY : src/Expression.o
+
+# target to build an object file
+src/Expression.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Expression.cpp.o
+.PHONY : src/Expression.cpp.o
+
+src/Expression.i: src/Expression.cpp.i
+
+.PHONY : src/Expression.i
+
+# target to preprocess a source file
+src/Expression.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Expression.cpp.i
+.PHONY : src/Expression.cpp.i
+
+src/Expression.s: src/Expression.cpp.s
+
+.PHONY : src/Expression.s
+
+# target to generate assembly for a file
+src/Expression.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Expression.cpp.s
+.PHONY : src/Expression.cpp.s
 
 src/Lexer.o: src/Lexer.cpp.o
 
@@ -231,32 +339,113 @@ src/Lexer.cpp.s:
 	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Lexer.cpp.s
 .PHONY : src/Lexer.cpp.s
 
-src/lutin.o: src/lutin.cpp.o
+src/Lire.o: src/Lire.cpp.o
 
-.PHONY : src/lutin.o
+.PHONY : src/Lire.o
 
 # target to build an object file
-src/lutin.cpp.o:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/lutin.cpp.o
-.PHONY : src/lutin.cpp.o
+src/Lire.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Lire.cpp.o
+.PHONY : src/Lire.cpp.o
 
-src/lutin.i: src/lutin.cpp.i
+src/Lire.i: src/Lire.cpp.i
 
-.PHONY : src/lutin.i
+.PHONY : src/Lire.i
 
 # target to preprocess a source file
-src/lutin.cpp.i:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/lutin.cpp.i
-.PHONY : src/lutin.cpp.i
+src/Lire.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Lire.cpp.i
+.PHONY : src/Lire.cpp.i
 
-src/lutin.s: src/lutin.cpp.s
+src/Lire.s: src/Lire.cpp.s
 
-.PHONY : src/lutin.s
+.PHONY : src/Lire.s
 
 # target to generate assembly for a file
-src/lutin.cpp.s:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/lutin.cpp.s
-.PHONY : src/lutin.cpp.s
+src/Lire.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Lire.cpp.s
+.PHONY : src/Lire.cpp.s
+
+src/PartieDeclarative.o: src/PartieDeclarative.cpp.o
+
+.PHONY : src/PartieDeclarative.o
+
+# target to build an object file
+src/PartieDeclarative.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/PartieDeclarative.cpp.o
+.PHONY : src/PartieDeclarative.cpp.o
+
+src/PartieDeclarative.i: src/PartieDeclarative.cpp.i
+
+.PHONY : src/PartieDeclarative.i
+
+# target to preprocess a source file
+src/PartieDeclarative.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/PartieDeclarative.cpp.i
+.PHONY : src/PartieDeclarative.cpp.i
+
+src/PartieDeclarative.s: src/PartieDeclarative.cpp.s
+
+.PHONY : src/PartieDeclarative.s
+
+# target to generate assembly for a file
+src/PartieDeclarative.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/PartieDeclarative.cpp.s
+.PHONY : src/PartieDeclarative.cpp.s
+
+src/PartieInstruction.o: src/PartieInstruction.cpp.o
+
+.PHONY : src/PartieInstruction.o
+
+# target to build an object file
+src/PartieInstruction.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/PartieInstruction.cpp.o
+.PHONY : src/PartieInstruction.cpp.o
+
+src/PartieInstruction.i: src/PartieInstruction.cpp.i
+
+.PHONY : src/PartieInstruction.i
+
+# target to preprocess a source file
+src/PartieInstruction.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/PartieInstruction.cpp.i
+.PHONY : src/PartieInstruction.cpp.i
+
+src/PartieInstruction.s: src/PartieInstruction.cpp.s
+
+.PHONY : src/PartieInstruction.s
+
+# target to generate assembly for a file
+src/PartieInstruction.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/PartieInstruction.cpp.s
+.PHONY : src/PartieInstruction.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -267,21 +456,42 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lut"
-	@echo "... src/Automate.o"
-	@echo "... src/Automate.i"
-	@echo "... src/Automate.s"
+	@echo "... src/Affectation.o"
+	@echo "... src/Affectation.i"
+	@echo "... src/Affectation.s"
 	@echo "... src/Automaton.o"
 	@echo "... src/Automaton.i"
 	@echo "... src/Automaton.s"
-	@echo "... src/EtatN.o"
-	@echo "... src/EtatN.i"
-	@echo "... src/EtatN.s"
+	@echo "... src/DeclarationConst.o"
+	@echo "... src/DeclarationConst.i"
+	@echo "... src/DeclarationConst.s"
+	@echo "... src/DeclarationVariable.o"
+	@echo "... src/DeclarationVariable.i"
+	@echo "... src/DeclarationVariable.s"
+	@echo "... src/Ecrire.o"
+	@echo "... src/Ecrire.i"
+	@echo "... src/Ecrire.s"
+	@echo "... src/EcrireInstruction.o"
+	@echo "... src/EcrireInstruction.i"
+	@echo "... src/EcrireInstruction.s"
+	@echo "... src/Expression.o"
+	@echo "... src/Expression.i"
+	@echo "... src/Expression.s"
 	@echo "... src/Lexer.o"
 	@echo "... src/Lexer.i"
 	@echo "... src/Lexer.s"
-	@echo "... src/lutin.o"
-	@echo "... src/lutin.i"
-	@echo "... src/lutin.s"
+	@echo "... src/Lire.o"
+	@echo "... src/Lire.i"
+	@echo "... src/Lire.s"
+	@echo "... src/PartieDeclarative.o"
+	@echo "... src/PartieDeclarative.i"
+	@echo "... src/PartieDeclarative.s"
+	@echo "... src/PartieInstruction.o"
+	@echo "... src/PartieInstruction.i"
+	@echo "... src/PartieInstruction.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
