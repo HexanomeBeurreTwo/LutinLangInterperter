@@ -3,7 +3,7 @@
 
 Lire::~Lire()
 {
-    //delete variable;
+    delete variable;
 }
 
 bool Lire::execute(Declrs & variables)
@@ -32,7 +32,7 @@ bool Lire::execute(Declrs & variables)
 
 void Lire::print()
 {
-	cout << "Read ";
+	cout << "lire ";
 	variable->print();
-	cout <<" ";
+	cout <<";";
 }

@@ -41,6 +41,12 @@ typedef enum {
 	E
 } Tokens;
 
+typedef struct {
+    Tokens token;
+    void* value;
+}ValuableToken;
+
+
 #endif  // TOKENS
 
 

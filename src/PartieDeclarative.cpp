@@ -34,6 +34,10 @@ void PartieDeclarative::print()
 PartieDeclarative::~PartieDeclarative()
 {
      for (Declrs::iterator it=variables.begin(); it!=variables.end(); ++it)
-    //std::cout << it->first << " => " << it->second << '\n';
-    delete (it->second);
+     {
+        delete (it->second);
+     }
+
 }
+
+

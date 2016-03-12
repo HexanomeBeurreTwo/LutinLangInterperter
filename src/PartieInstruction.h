@@ -23,6 +23,7 @@ class PartieInstruction : public Symbol
     protected:
         deque<Instruction*> instructions; // une file d'instruction
 
+
     private:
 };
 

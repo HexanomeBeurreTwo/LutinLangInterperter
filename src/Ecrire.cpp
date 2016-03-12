@@ -3,7 +3,7 @@
 
 Ecrire::~Ecrire()
 {
-    //delete variable;
+    delete variable;
 }
 
 bool Ecrire::execute(Declrs & variables)
@@ -25,7 +25,7 @@ bool Ecrire::execute(Declrs & variables)
 
 void Ecrire::print()
 {
-	cout << "Write ";
+	cout << "ecrire ";
 	variable->print();
-	cout <<"";
+	cout <<";";
 }

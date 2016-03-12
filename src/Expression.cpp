@@ -23,8 +23,8 @@ double Variable::Evaluation(const Declrs & variables) {
 }
 
 OperateurBinaire::~OperateurBinaire() {
-   //delete gauche;
-   //delete droite;
+   delete gauche;
+   delete droite;
 }
 
 double OperateurBinaire::Evaluation(const Declrs & variables) {

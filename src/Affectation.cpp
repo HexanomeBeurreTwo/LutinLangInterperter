@@ -36,8 +36,8 @@ bool Affectation::execute(Declrs & variables)
 
 Affectation::~Affectation()
 {
-    //delete expression;
-    //delete variable;
+    delete expression;
+    delete variable;
 }
 
 void Affectation::print()

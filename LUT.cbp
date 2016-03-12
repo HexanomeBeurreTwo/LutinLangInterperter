@@ -36,6 +36,8 @@
 		</Compiler>
 		<Unit filename="src/Affectation.cpp" />
 		<Unit filename="src/Affectation.h" />
+		<Unit filename="src/Programme.cpp" />
+		<Unit filename="src/Programme.h" />
 		<Unit filename="src/Declaration.h" />
 		<Unit filename="src/DeclarationConst.cpp" />
 		<Unit filename="src/DeclarationConst.h" />
@@ -52,7 +54,7 @@
 		<Unit filename="src/PartieDeclarative.h" />
 		<Unit filename="src/PartieInstruction.cpp" />
 		<Unit filename="src/PartieInstruction.h" />
-		<Unit filename="src/Symbol.h" />  
+		<Unit filename="src/Symbol.h" />
 		<Unit filename="src/Tokens.h" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
