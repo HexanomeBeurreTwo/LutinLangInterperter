@@ -19,7 +19,7 @@
 	<map>
 	<iostream>
 
-1457800580 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\tokens.h
+1457910167 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\tokens.h
 
 1457553075 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\expression.h
 	<string>
@@ -66,8 +66,12 @@
 	"Instruction.h"
 	"Expression.h"
 
-1457801632 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\main.cpp
+1457911507 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\main.cpp
 	"Programme.h"
+	"Lexer.h"
+	<iostream>
+	<string>
+	<fstream>
 
 1457545863 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\ecrireinstruction.h
 	"Expression.h"
@@ -108,7 +112,7 @@
 	"PartieInstruction.h"
 	"Tokens.h"
 
-1457802260 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.cpp
+1457808349 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.cpp
 	"Programme.h"
 	"DeclarationConst.h"
 	"DeclarationVariable.h"
@@ -117,7 +121,7 @@
 	"Ecrire.h"
 	"Lire.h"
 
-1457802302 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.h
+1457808340 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.h
 	<iostream>
 	<stack>
 	"Expression.h"
@@ -136,4 +140,13 @@
 	"EcrireInstruction.h"
 	"Lire.h"
 	"Ecrire.h"
+
+1457909275 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lexer.cpp
+	"Lexer.h"
+
+1457908298 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lexer.h
+	<iostream>
+	<string>
+	"Tokens.h"
+	<boost/regex.hpp>
 

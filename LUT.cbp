@@ -57,6 +57,8 @@
 		<Unit filename="src/Symbol.h" />
 		<Unit filename="src/Tokens.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/Lexer.h" />
+		<Unit filename="src/Lexer.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

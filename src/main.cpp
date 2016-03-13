@@ -1,9 +1,43 @@
 #include "Programme.h"
-//#include "Lexer.h"
+#include "Lexer.h"
 //#include "Automaton.h"
 
 
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
 int main()
+{
+    string fileInput = "";
+	string line = "";
+	// Read file
+	ifstream myfile;
+	myfile.open("./bin/Debug/example.txt");
+	if (myfile)
+	{
+		while ( getline (myfile,line) )
+		{
+		  fileInput += line;
+		}
+		myfile.close();
+	}	else	{
+		cout << "Error reading the file" << endl;
+	}
+
+	// Create Lexer instance with it
+	Lexer lex = Lexer(fileInput);
+
+	if(lex.analyseAll())	{
+		cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
+	}
+
+	return 0;
+}
+
+
+int main_X()
 {
     string file;
     bool error;
@@ -21,4 +55,5 @@ int main()
     programme.print();
     //sion si l'optoin est -o faire
     programme.optimize();
+    return 0;
 }
