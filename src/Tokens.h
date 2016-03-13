@@ -38,13 +38,17 @@ typedef enum {
 	D,
 	PI,
 	LI,
-	E
+	E,
+
+	//Other
+	INVALID,
+	END_OF_FILE
 } Tokens;
 
 typedef struct {
     Tokens token;
     void* value;
-}ValuableToken;
+} ValuableToken;
 
 
 #endif  // TOKENS
