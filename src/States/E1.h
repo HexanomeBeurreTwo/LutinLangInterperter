@@ -16,7 +16,8 @@
 class E1 : public State {
  public:
     E1();
-    bool transition(Automaton *automaton, Symbol * t);
+    ~E1(){};
+    bool transition(Automaton *automaton, ValuableToken t);
     inline int getStateNumber(){return 1;}
 };
 

@@ -10,13 +10,14 @@
 #define STATE_E0_H_
 
 #include "../State.h"
-#include "../Symbol.h"
+#include "../Tokens.h"
 #include "../Automaton.h"
 
 class E0 : public State {
  public:
     E0();
-    bool transition(Automaton *automaton, Symbol * t);
+    ~E0(){};
+    bool transition(Automaton *automaton, ValuableToken t);
     inline int getStateNumber(){return 0;}
 };
 

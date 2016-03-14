@@ -66,9 +66,10 @@
 	"Instruction.h"
 	"Expression.h"
 
-1457911507 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\main.cpp
+1457917150 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\main.cpp
 	"Programme.h"
 	"Lexer.h"
+	"Automaton.h"
 	<iostream>
 	<string>
 	<fstream>
@@ -112,7 +113,7 @@
 	"PartieInstruction.h"
 	"Tokens.h"
 
-1457808349 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.cpp
+1457916989 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.cpp
 	"Programme.h"
 	"DeclarationConst.h"
 	"DeclarationVariable.h"
@@ -121,7 +122,7 @@
 	"Ecrire.h"
 	"Lire.h"
 
-1457808340 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.h
+1457917004 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.h
 	<iostream>
 	<stack>
 	"Expression.h"
@@ -141,7 +142,7 @@
 	"Lire.h"
 	"Ecrire.h"
 
-1457909275 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lexer.cpp
+1457911779 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lexer.cpp
 	"Lexer.h"
 
 1457908298 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lexer.h
@@ -149,4 +150,40 @@
 	<string>
 	"Tokens.h"
 	<boost/regex.hpp>
+
+1457917030 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\automaton.cpp
+	"Automaton.h"
+	"States/E0.h"
+	"State.h"
+
+1457917013 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\automaton.h
+	<stack>
+	"State.h"
+	"Tokens.h"
+	"Lexer.h"
+	"Programme.h"
+
+1457913848 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\state.h
+	"Tokens.h"
+
+1457915105 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e0.h
+	"../State.h"
+	"../Tokens.h"
+	"../Automaton.h"
+
+1457917110 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e0.cpp
+	"../State.h"
+	"../Automaton.h"
+	"E0.h"
+	"E1.h"
+
+1457915379 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e1.h
+	"../State.h"
+	"../Symbol.h"
+	"../Automaton.h"
+
+1457915884 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e1.cpp
+	"../State.h"
+	"../Tokens.h"
+	"E1.h"
 

@@ -1,6 +1,6 @@
 #include "Programme.h"
 #include "Lexer.h"
-//#include "Automaton.h"
+#include "Automaton.h"
 
 
 #include <iostream>
@@ -43,11 +43,11 @@ int main_X()
     bool error;
     // traiter les option -e -o -p ... et récuperer le nom du fichier
 
-    // Lexer lexer(file);
+    Lexer lexer("file_contenent");
     Programme programme;
-    // Automaton automate(lexer,programme);
-    // error = automate.read();
-    // traiter erreur lexical selon de error
+    Automaton automate(&lexer,&programme);
+    error = automate.read();
+    // traiter erreur lexical et syntaxique selon de error
     // si l'option est -e faire
     error = programme.execute();
     // traiter erreur excution selon error
@@ -55,5 +55,6 @@ int main_X()
     programme.print();
     //sion si l'optoin est -o faire
     programme.optimize();
-    return 0;
+
+    return error;
 }

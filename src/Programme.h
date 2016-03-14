@@ -15,7 +15,7 @@ class Programme
     public:
         Programme(){};
         virtual ~Programme(){};
-        void create_class_from_rules(stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol);
+        bool create_class_from_rules(stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol);
         void print();
         bool execute();
         void optimize(){};

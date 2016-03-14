@@ -10,13 +10,14 @@
 #ifndef STATE_H_
 #define STATE_H_
 
-#include "Symbol.h"
 class Automaton;
+
+#include "Tokens.h"
 
 class State {
  public:
     State() { }
-    virtual bool transition(Automaton *automaton, Symbol * t) = 0;
+    virtual bool transition(Automaton *automaton, ValuableToken t) = 0;
     virtual int getStateNumber() = 0;
 };
 

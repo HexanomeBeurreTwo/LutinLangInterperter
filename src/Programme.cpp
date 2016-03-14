@@ -11,7 +11,7 @@
 
 #define VALUE_AS(x,type) *((type*)x.value)
 
-void Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol)
+bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol)
 {
     ValuableToken tokens[countSymbol];
     ValuableToken str;
@@ -63,12 +63,12 @@ void Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
             if(countSymbol == 3 && tokens[0].token == LV)
             // rule 11: LV -> LV sep id
             {
-                partie_declaration.add_declaration(new DeclarationVariable(VALUE_AS(tokens[2],string)));
+                return partie_declaration.add_declaration(new DeclarationVariable(VALUE_AS(tokens[2],string)));
             }
             else if(countSymbol == 1 && tokens[0].token == ID)
               // rule 12: LV -> id
             {
-                partie_declaration.add_declaration(new DeclarationVariable(VALUE_AS(tokens[0],string)));
+                return partie_declaration.add_declaration(new DeclarationVariable(VALUE_AS(tokens[0],string)));
             }
 
         break;
@@ -78,7 +78,7 @@ void Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         break;//on fait rien
 
     case D : // rule 15: D -> id equal val
-        partie_declaration.add_declaration(new DeclarationConst(VALUE_AS(tokens[0],string),VALUE_AS(tokens[2],double)));
+        return partie_declaration.add_declaration(new DeclarationConst(VALUE_AS(tokens[0],string),VALUE_AS(tokens[2],double)));
         break;
 
     case E :
@@ -131,8 +131,11 @@ void Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
 
         default: // pour le debug
             std::cerr << "Indifined rule !" << endl;
+            return false;
             break;
     }
+
+    return true;
 }
 
 void Programme::print()
