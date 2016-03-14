@@ -22,10 +22,10 @@ bool E1::transition(Automaton *automaton, ValuableToken s) {
       //automaton->reduce(0, s, new E18(),?);
       break;
     case VAR:
-      //automaton.shift(s, new E2());
+      //automaton->shift(s, new E2()); // fait implementer E2 d'abords
       break;
     case CONST:
-      //automaton.shift(s, new E5());
+      //automaton->shift(s, new E5()); // fait implementer E5 d'abords
       break;
 
     default: break; // Error !

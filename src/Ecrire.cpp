@@ -1,10 +1,12 @@
 #include "Ecrire.h"
 #include "DeclarationVariable.h"
 
+
 Ecrire::~Ecrire()
 {
     delete variable;
 }
+
 
 bool Ecrire::execute(Declrs & variables)
 {

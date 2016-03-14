@@ -15,6 +15,7 @@ class Declaration : public Symbol
     protected:
         string nom;
         double valeur;
+        bool deja_utilisee;
     private:
 };
 

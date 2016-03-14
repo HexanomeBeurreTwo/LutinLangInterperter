@@ -29,6 +29,7 @@ class Valeur: public Expression {
       void print();
    protected:
       double valeur;
+
 };
 
 class Variable: public Expression {

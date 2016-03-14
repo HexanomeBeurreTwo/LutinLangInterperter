@@ -22,7 +22,9 @@ bool E0::transition(Automaton *automaton, ValuableToken s) {
     case READ:
     case WRITE:
     case END_OF_FILE:
-      return automaton->reduce(0, s, 0, new E1());
+        ValuableToken t;
+        t.token = PD;
+      return automaton->reduce(0, t, 0, new E1());
       break;
     default: return false; // Error !
   }
