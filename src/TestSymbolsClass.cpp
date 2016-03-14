@@ -9,7 +9,6 @@ using namespace std;
 #include "PartieInstruction.h"
 #include "DeclarationConst.h"
 #include "DeclarationVariable.h"
-#include "EcrireInstruction.h"
 #include "Lire.h"
 #include "Ecrire.h"
 
@@ -26,22 +25,25 @@ void test1()
     vars["x"] = new DeclarationConst("x",4.5);
     vars["y"] = new DeclarationVariable("y");
 
-    vars["y"]->print();
-    vars["x"]->print();
+    cout << *vars["y"];
+    cout << *vars["x"];
 
 	Affectation affectation1(val2,y) ;
 	affectation1.execute(vars);
-	affectation1.print();
+	//affectation1.print();
+	cout << affectation1;
 
     e = new OperateurPlus(new OperateurDiv(val2,x), new Parentese(new OperateurMoins(y,new Valeur(1.1))));
 
     Affectation affectation2(e,y) ;
     affectation2.execute(vars);
-	affectation2.print();
+	//affectation2.print();
+	cout << affectation2;
 
 
     Lire* in = new Lire(new Variable("z"));
-    in -> print();
+    //in -> print();
+    cout << in ;
     in->execute(vars);
 
     /*Ecrire* out = new Ecrire(new Variable("y"));
@@ -78,7 +80,7 @@ int test2() {
         return 1;
     }
 
-    PD->print();
+    cout << *PD;
 
     PI->add_instruction(new Affectation(new Valeur(2),new Variable("y")));
     Expression* e = new OperateurPlus(new OperateurDiv(new Valeur(4),new Variable("x")), new Parentese(new OperateurMoins(new Variable("y"),new Valeur(1.1))));
@@ -88,7 +90,8 @@ int test2() {
     PI->add_instruction(new Ecrire(new Variable("y")));
     PI->add_instruction(new Ecrire(new Variable("z")));
 
-    PI->print();
+    //PI->print();
+    cout << *PI;
 
     succes = PI->execute(PD->get_variables());
 
@@ -105,7 +108,7 @@ int test2() {
 }
 
 
-int test3() {
+int main_y() {
     PartieDeclarative* PD = new PartieDeclarative();
     PartieInstruction* PI = new PartieInstruction();
     bool succes ;
@@ -121,7 +124,8 @@ int test3() {
         return 1;
     }
 
-    PD->print();
+    //PD->print();
+    cout << *PD;
 
 
     PI->add_instruction(new Lire(new Variable("rayon")));
@@ -130,7 +134,8 @@ int test3() {
     PI->add_instruction(new Affectation(e,new Variable("VolumeCylindre")));
     PI->add_instruction(new Ecrire(new Variable("VolumeCylindre")));
 
-    PI->print();
+  //  PI->print();
+    cout << *PI;
 
     succes = PI->execute(PD->get_variables());
 

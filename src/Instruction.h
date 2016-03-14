@@ -11,14 +11,16 @@
 #define INSTRUCTION_H
 
 #include "Symbol.h"
+#include "Tokens.h"
+
 
 class Instruction : public Symbol {
 
  public:
     Instruction(Tokens id) : Symbol(id){};
     virtual ~Instruction(){} ;
-    virtual void print() = 0;
-    virtual bool execute(Declrs & variables){return true;};
+    virtual void print(ostream& os) const = 0;
+    virtual bool execute(Declrs & variables) = 0;
 
 
 };

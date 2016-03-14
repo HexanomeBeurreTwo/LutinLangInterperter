@@ -30,9 +30,11 @@ bool Lire::execute(Declrs & variables)
 
 }
 
-void Lire::print()
+void Lire::print(ostream& os) const
 {
-	cout << "lire ";
+	/*cout << "lire ";
 	variable->print();
-	cout <<";";
+	cout <<";";*/
+	os  << "lire " << (*variable) << ";" ;
+
 }

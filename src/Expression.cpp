@@ -1,9 +1,9 @@
 #include "Expression.h"
-#include <cmath>
 #include<iostream>
 #include "Declaration.h"
 #include "DeclarationConst.h"
 #include "DeclarationVariable.h"
+#include "Symbol.h"
 
 using namespace std;
 
@@ -58,26 +58,33 @@ double OperateurMul::operation(double g, double d) {
    return g*d;
 }
 
-void Variable::print(){
-    cout <<""<<nom<<"";
+void Variable::print(ostream& os) const{
+    os <<""<<nom<<"";
 }
 
-void Valeur::print(){
-    cout <<""<<valeur<<"";
+void Valeur::print(ostream& os) const{
+    os <<""<<valeur<<"";
 }
 
-void Parentese::print(){
-    cout << "(" ;
+void Parentese::print(ostream& os) const{
+    /*cout << "(" ;
     expression->print();
-    cout << ")";
+    cout << ")";*/
+    os << "(" << (*expression) << ")" ;
+
 }
-void OperateurBinaire::print(){
-    gauche->print();
+void OperateurBinaire::print(ostream& os) const
+{
+    /*gauche->print();
     printOperator(this->ident);
-    droite->print();
+    droite->print();*/
+    os << (*gauche) ;
+    printOperator(os,this->ident);
+    os << (*droite);
 }
 
-void OperateurBinaire::printOperator(Tokens id_symb){
+void OperateurBinaire::printOperator(ostream& os,Tokens id_symb) const
+{
     string op = "OPP";
     switch(id_symb){
         case MINUS: op = " - "; break;
@@ -86,6 +93,6 @@ void OperateurBinaire::printOperator(Tokens id_symb){
         case PLUS:  op = " + "; break;
         default: break;
     }
-    cout << op;
+    os << op;
 }
 

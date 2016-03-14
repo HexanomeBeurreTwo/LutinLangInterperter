@@ -37,7 +37,7 @@ int main()
 }
 
 
-int main_X()
+int main_x()
 {
     string file;
     bool error;
@@ -52,7 +52,7 @@ int main_X()
     error = programme.execute();
     // traiter erreur excution selon error
     //sinon si l'option est -a faire
-    programme.print();
+    cout << programme ;
     //sion si l'optoin est -o faire
     programme.optimize();
 

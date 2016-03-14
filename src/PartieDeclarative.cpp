@@ -1,4 +1,6 @@
 #include "PartieDeclarative.h"
+#include "Declaration.h"
+#include "Symbol.h"
 #include <iostream>
 
 using namespace std;
@@ -21,12 +23,13 @@ bool PartieDeclarative::add_declaration(Declaration *inst)
      return this->variables;
  }
 
-void PartieDeclarative::print()
+void PartieDeclarative::print(ostream& os) const
 {
     //  // show content of variables
-  for (Declrs::iterator it=variables.begin(); it!=variables.end(); ++it)
+  for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
     //std::cout << it->first << " => " << it->second << '\n';
-    (it->second)->print();
+    //(it->second)->print();
+    os << *(it->second) ;
 
 }
 

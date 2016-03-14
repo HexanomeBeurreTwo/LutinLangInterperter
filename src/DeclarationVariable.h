@@ -9,7 +9,7 @@ class DeclarationVariable : public Declaration
     public:
         DeclarationVariable(string n):Declaration(VAR,n,0){};
         virtual ~DeclarationVariable(){};
-        void print();
+        void print(ostream& os) const;
         void affect(double val);
     protected:
 
