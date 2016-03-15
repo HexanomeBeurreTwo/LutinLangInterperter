@@ -28,17 +28,19 @@ class Lexer
         void leftTrim(string &inputString);
         ValuableToken getNext();
         bool consumeNext();
+        bool hasNext();
         bool analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword);
         bool analyseAll();
         ValuableToken getCurrentToken();
         vector<ValuableToken*> tokensList;
 
     private:
-    	string fileLines;
-    	ValuableToken lastTokenFetched;
-    	// TODO: replace with struct cursor
-    	int line;
-    	int column;
+        string fileLines;
+        ValuableToken lastTokenFetched;
+        int cursor;
+        // TODO: replace with struct cursor
+        int line;
+        int column;
 };
 
 #endif // LEXER_H

@@ -22,15 +22,23 @@ const regex number(number_str);
 const regex operators(operators_str);
 
 ValuableToken Lexer::getNext()	{
-	return *(tokensList.back());
+	lastTokenFetched = *(tokensList[cursor]);
+	return *(tokensList[cursor]);
 }
 
 bool Lexer::consumeNext()	{
-	// if column end -> update line && column = 0
-	// else column++
+	//If INVALID
+	if (hasNext() && tokensList[cursor+1]->token != INVALID)
+	{
+		cursor++;
+		return true;
+	}
 	return false;
 }
 
+bool Lexer::hasNext()	{
+	return (cursor+1) < tokensList.size();
+}
 
 void Lexer::leftTrim(string &inputString)	{
 	int charToEraseNum = 0;
@@ -68,7 +76,7 @@ bool Lexer::analyseAll()	{
 		tokensList.push_back(tokenFetched);
 		string foundKeyword;
 		analyseNext(inputToAnalyse, tokensList.back(), foundKeyword);
-
+		
 		// symbolsList.push_back(new Symbol(...))
 		int numOfCharToRemove = 0;
 		if (tokenFetched->token == INVALID)
@@ -76,13 +84,13 @@ bool Lexer::analyseAll()	{
 			//TODO: Add Error Message
 			cout << "Analysis did not ended well..." << endl;
 			return false;
-		} else if(tokenFetched->token == VAL)	{
-			int reverseConversion = *((int*)tokenFetched->value);
+		} else if((tokensList.back())->token == VAL)	{
+			int reverseConversion = *((int*)(tokensList.back())->value);
 			cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
 
 			numOfCharToRemove = to_string(reverseConversion).size();
 		} else	{
-			string reverseConversion = *((string*)tokenFetched->value);
+			string reverseConversion = *((string*)(tokensList.back())->value);
 			cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
 
 			numOfCharToRemove = reverseConversion.size();
@@ -105,8 +113,6 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 	if (regex_search(inputToAnalyse, results, keyword))	{
 		string strFetched = results[0].str();
 		tokenFetched->value = (void*) new string(strFetched);
-		// faudra pas oublier le delete dans le destucteur de tokenFetched probablement
-
 
 		string reverseConversion = *((string*)tokenFetched->value); //reverseConversion == keyboardFetched
 		char firstChar = reverseConversion[0];
@@ -199,8 +205,8 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 				cout << "It's an error!" << endl;
 				tokenFetched->token = INVALID;
 				return false;
-				break;
-		}
+				break;      
+		} 
 	}
 	else {
 		cout << "It's an error!" << endl;
@@ -219,6 +225,7 @@ Lexer::Lexer(string inputString) : fileLines(inputString)	{
 
 	vector<ValuableToken> tokensList;
 	lastTokenFetched.token = INVALID;
+	cursor = 0;
 	line = 0;
 	column = 0;
 }
@@ -231,12 +238,8 @@ Lexer::~Lexer()	{
 		ValuableToken *valTok = tokensList.back();
 		if(valTok->token == VAL)	{
 			delete(static_cast<int*>(valTok->value));
-			cout << "val deleted" <<endl;
 		}
 		else if(valTok->token != VAL)	{
-			// cout << vTok.token << endl;
-			// cout << *((string*)valTok->value) << endl;
-
 			delete(static_cast<string*>(valTok->value));
 		}
 
