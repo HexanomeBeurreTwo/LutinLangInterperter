@@ -9,7 +9,6 @@ using namespace std;
 #include "PartieInstruction.h"
 #include "DeclarationConst.h"
 #include "DeclarationVariable.h"
-#include "EcrireInstruction.h"
 #include "Lire.h"
 #include "Ecrire.h"
 

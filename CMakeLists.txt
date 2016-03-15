@@ -6,7 +6,7 @@ project(${project_name})
 FIND_PACKAGE(Boost COMPONENTS regex REQUIRED)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
-include_directories(./src/)
+include_directories(./src/ ./src/States)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
@@ -17,8 +17,11 @@ else()
 endif ()
 
 
-file(GLOB source_files "./src/*.cpp")
-file(GLOB header_files "./src/*.h")
+# file(GLOB_RECURSE source_files "./src/*")
+# file(GLOB_RECURSE header_files "./src/**/*.h")
+aux_source_directory(src sources)
+aux_source_directory(src/States stateSources)
 
-add_executable(${project_name} ${header_files} ${source_files})
+# add_executable(${project_name} ${source_files})
+add_executable(${project_name} ${sources} ${stateSources})
 TARGET_LINK_LIBRARIES(${project_name} ${Boost_LIBRARIES})
