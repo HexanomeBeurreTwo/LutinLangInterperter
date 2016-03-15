@@ -30,11 +30,11 @@ void Automaton::shift(ValuableToken s, State* nextState){
 	stateStack.push(nextState);
 }
 
-bool Automaton::reduce(int count, ValuableToken s, int coutSymbol, State* nextState ){
+bool Automaton::reduce(int count, ValuableToken s, int coutSymbol ){
 	for(int i=0; i<count; i++){
 		stateStack.pop();
 	}
-	stateStack.push(nextState);
+	stateStack.top()->transition(this,s);
 	return programme->create_class_from_rules(&symbolStack,s,coutSymbol);
 }
 

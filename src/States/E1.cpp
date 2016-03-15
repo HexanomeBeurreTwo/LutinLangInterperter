@@ -7,6 +7,7 @@
 //
 
 #include "../State.h"
+#include "../Automaton.h"
 #include "../Tokens.h"
 
 #include "E1.h"

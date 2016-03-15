@@ -17,7 +17,7 @@ class PartieInstruction : public Symbol
         PartieInstruction(): Symbol(PI){};
         virtual ~PartieInstruction();
         void add_instruction(Instruction *inst);
-        void print();
+        void print(ostream& os) const;
         bool execute(Declrs & variables);
 
     protected:

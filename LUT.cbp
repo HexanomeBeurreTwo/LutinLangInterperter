@@ -70,6 +70,7 @@
 		<Unit filename="src/States/E1.h" />
 		<Unit filename="src/States/E0.cpp" />
 		<Unit filename="src/States/E1.cpp" />
+		<Unit filename="src/TestSymbolsClass.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

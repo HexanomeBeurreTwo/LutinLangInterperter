@@ -9,7 +9,7 @@ class DeclarationConst : public Declaration
     public:
         DeclarationConst(string n,double v):Declaration(CONST,n,v){};
         virtual ~DeclarationConst(){};
-        void print();
+        void print(ostream& os) const;
     protected:
 
     private:

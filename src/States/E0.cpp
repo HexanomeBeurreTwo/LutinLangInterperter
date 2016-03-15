@@ -8,6 +8,7 @@
 
 #include "../State.h"
 #include "../Automaton.h"
+#include "../Tokens.h"
 
 #include "E0.h"
 #include "E1.h"
@@ -24,7 +25,7 @@ bool E0::transition(Automaton *automaton, ValuableToken s) {
     case END_OF_FILE:
         ValuableToken t;
         t.token = PD;
-      return automaton->reduce(0, t, 0, new E1());
+      return automaton->reduce(0, t, 0);
       break;
     default: return false; // Error !
   }

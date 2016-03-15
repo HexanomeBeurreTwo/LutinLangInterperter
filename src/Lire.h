@@ -10,7 +10,7 @@ class Lire : public Instruction
     public:
         Lire(Variable *var):Instruction(READ),variable(var){};
         virtual ~Lire();
-        void print();
+        void print(ostream& os) const;
         bool execute(Declrs & variables);
     protected:
         Variable* variable;

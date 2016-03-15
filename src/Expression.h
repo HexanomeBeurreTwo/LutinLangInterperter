@@ -15,7 +15,7 @@ class Expression  : public Symbol{
       Expression(Tokens id_symb):Symbol(id_symb){};
       //Expression():Instruction(E){};
       virtual ~Expression(){};
-      virtual void print() = 0;
+      virtual void print(ostream& os) const  = 0;
       virtual double Evaluation(const Declrs & variables) = 0;
 };
 
@@ -26,7 +26,7 @@ class Valeur: public Expression {
       Valeur(double val):Expression(VAL),valeur(val){};
       ~Valeur(){};
       double Evaluation(const Declrs & variables);
-      void print();
+      void print(ostream& os) const;
    protected:
       double valeur;
 
@@ -38,7 +38,7 @@ class Variable: public Expression {
       Variable(string n):Expression(VAR),nom(n){};
       ~Variable(){};
       double Evaluation(const Declrs & variables);
-      void print();
+      void print(ostream& os) const;
       string get_nom(){return nom;}
    protected:
       string nom;
@@ -48,7 +48,7 @@ class Parentese: public Expression {
    public:
       Parentese(Expression * expr):Expression(OPENBY),expression(expr){};
       ~Parentese(){delete expression;};
-      void print();
+      void print(ostream& os) const;
       virtual double Evaluation(const Declrs & variables) ;
    protected:
       Expression *expression;
@@ -61,10 +61,10 @@ class OperateurBinaire: public Expression { // MINUS MULT DIVIDE PLUS
       OperateurBinaire(Tokens id_symb,Expression * g, Expression * d):Expression(id_symb),gauche (g),droite (d){};
       ~OperateurBinaire();
       double Evaluation(const Declrs & variables);
-      void print();
+      void print(ostream& os) const;
    protected:
       virtual double operation(double g, double d) = 0;
-      void printOperator(Tokens id_symb);
+      void printOperator(ostream& os, Tokens id_symb) const;
       Expression * gauche;
       Expression * droite;
 };

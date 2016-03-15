@@ -1,5 +1,7 @@
 #include "Ecrire.h"
 #include "DeclarationVariable.h"
+#include "Expression.h"
+#include "Symbol.h"
 
 
 Ecrire::~Ecrire()
@@ -25,9 +27,10 @@ bool Ecrire::execute(Declrs & variables)
 
 }
 
-void Ecrire::print()
+void Ecrire::print(ostream& os) const
 {
-	cout << "ecrire ";
-	variable->print();
-	cout <<";";
+	//cout << "ecrire ";
+	//variable->print();
+	//cout <<";";
+	os << "ecirre " << *variable << ";" ;
 }

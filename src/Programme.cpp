@@ -7,6 +7,7 @@
 #include "Affectation.h"
 #include "Ecrire.h"
 #include "Lire.h"
+#include "Symbol.h"
 
 
 #define VALUE_AS(x,type) *((type*)x.value)
@@ -138,10 +139,11 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
     return true;
 }
 
-void Programme::print()
+void Programme::print(ostream& os)const
 {
-    partie_declaration.print();
-    partie_instruction.print();
+    /*partie_declaration.print(os);
+    partie_instruction.print(os); */
+    os << partie_declaration << partie_instruction ;
 }
 
 bool Programme::execute()

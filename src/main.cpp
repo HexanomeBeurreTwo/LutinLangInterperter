@@ -8,17 +8,17 @@
 #include <fstream>
 using namespace std;
 
-int main()
+
+string getFileContent(string pathfile)
 {
-    string fileInput = "";
 	string line = "";
-	// Read file
+	string fileInput = "";
 	ifstream myfile;
-	myfile.open("./bin/Debug/example.txt");
+	myfile.open(pathfile);
 	if (myfile)
 	{
 		while ( getline (myfile,line) )
-		{
+	 	{
 		  fileInput += line;
 		}
 		myfile.close();
@@ -26,8 +26,15 @@ int main()
 		cout << "Error reading the file" << endl;
 	}
 
+	return 	fileInput;
+}
+
+
+int main()
+{
+    	
 	// Create Lexer instance with it
-	Lexer lex = Lexer(fileInput);
+	Lexer lex = Lexer(getFileContent("./bin/example.txt"));
 
 	if(lex.analyseAll())	{
 		cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
@@ -37,13 +44,13 @@ int main()
 }
 
 
-int main_X()
+int main_x()
 {
-    string file;
+    string file = "./bin/example.txt";
     bool error;
     // traiter les option -e -o -p ... et récuperer le nom du fichier
 
-    Lexer lexer("file_contenent");
+    Lexer lexer(getFileContent(file));
     Programme programme;
     Automaton automate(&lexer,&programme);
     error = automate.read();
@@ -52,7 +59,7 @@ int main_X()
     error = programme.execute();
     // traiter erreur excution selon error
     //sinon si l'option est -a faire
-    programme.print();
+    cout << programme ;
     //sion si l'optoin est -o faire
     programme.optimize();
 

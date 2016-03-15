@@ -1,4 +1,6 @@
 #include "PartieInstruction.h"
+#include "Instruction.h"
+#include "Symbol.h"
 
 
 PartieInstruction::~PartieInstruction()
@@ -9,13 +11,15 @@ PartieInstruction::~PartieInstruction()
     }
 }
 
-void PartieInstruction::print()
+void PartieInstruction::print(ostream& os) const
 {
     // parcours de deque + \n + appel a print()
-    for (deque<Instruction*>::iterator it = instructions.begin(); it!=instructions.end(); ++it)
+    for (deque<Instruction*>::const_iterator it = instructions.begin(); it!=instructions.end(); ++it)
     {
-        (*it)->print();
-        cout << endl;
+        /*(*it)->print();
+        cout << endl; */
+        os << *(*it) << endl;
+
     }
 
 }

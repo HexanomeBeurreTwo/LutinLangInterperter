@@ -11,6 +11,8 @@
 #include "Declaration.h"
 #include "DeclarationConst.h"
 #include "DeclarationVariable.h"
+#include "Symbol.h"
+#include "Expression.h"
 
 using namespace std;
 
@@ -40,11 +42,11 @@ Affectation::~Affectation()
     delete variable;
 }
 
-void Affectation::print()
+void Affectation::print(ostream& os) const
 {
-	variable->print();
+	/*variable->print();
 	cout << " := ";
 	expression -> print();
-	cout << ";";
-
+	cout << ";";*/
+    os << (*variable) << " := " << (*expression) << ";" ;
 }

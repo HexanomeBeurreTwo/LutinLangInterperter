@@ -9,7 +9,7 @@ class Declaration : public Symbol
     public:
         Declaration(Tokens id,string n,double v):Symbol(id),nom(n),valeur(v){};
         virtual ~Declaration(){};
-        virtual void print()=0;
+        virtual void print(ostream& os) const=0;
         string get_nom(){return nom;}
         double get_valeur(){return valeur;}
     protected:
