@@ -10,13 +10,13 @@
 #define STATE_E2_H_
 
 #include "../State.h"
-#include "../Symbol.h"
+#include "../Tokens.h"
 #include "../Automaton.h"
 
 class E2 : public State {
  public:
     E2();
-    bool transition(Automaton *automaton, Symbol * t);
+    bool transition(Automaton *automaton, ValuableToken s);
     inline int getStateNumber(){return 2;}
 };
 

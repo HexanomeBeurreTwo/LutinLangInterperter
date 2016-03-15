@@ -6,18 +6,18 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E19.h"
+#include "E20.h"
 
 E19::E19() : State() { }
 
-bool E19::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
-    case XXX:
-      // Do();
-      break;
+bool E19::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
+    case END:
+      return automaton->shift(s, new E20());
+    default: return false; // Error !
   }
   return false;
 }

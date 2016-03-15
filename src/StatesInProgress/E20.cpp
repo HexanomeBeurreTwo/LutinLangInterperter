@@ -6,18 +6,22 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E20.h"
 
 E20::E20() : State() { }
 
-bool E20::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
-    case XXX:
-      // Do();
-      break;
+bool E20::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
+    case ID:
+    case READ:
+    case WRITE:
+    case ENDFILE:
+      ValuableToken t;
+      t.token = PI;
+      return automaton->reduce(3, t, 3);
+    default: return false; // Error !
   }
   return false;
 }

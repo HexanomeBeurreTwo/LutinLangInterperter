@@ -6,18 +6,25 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
-
 #include "E5.h"
+#include "E9.h"
+#include "E10.h"
+#include "E13.h"
 
 E5::E5() : State() { }
 
-bool E5::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E5::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case ID:
-      automaton.shift(*s, new E13());
+      return automaton->shift(s, new E13());
       break;
+    case LC:
+      return automaton->shift(s, new E10());
+      break;
+    case D:
+      return automaton->shift(s, new E9());
+      break;
+    default: return false; // Error !
   }
   return false;
 }

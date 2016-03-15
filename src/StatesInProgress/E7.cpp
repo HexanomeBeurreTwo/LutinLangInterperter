@@ -6,18 +6,16 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
-
 #include "E7.h"
-
+#include "E8.h"
 E7::E7() : State() { }
 
-bool E7::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E7::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case ID:
-      automaton.shift(*s, new E8());
+      return automaton->shift(s, new E8());
       break;
+    default: return false; // Error !
   }
   return false;
 }

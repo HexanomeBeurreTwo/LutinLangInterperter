@@ -6,23 +6,25 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E35.h"
 
 E35::E35() : State() { }
 
-bool E35::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E35::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case PLUS:
     case MINUS:
     case MULT:
     case DIVIDE:
     case CLOSEBY:
     case END:
-    	automaton.reduce(1, *s, new E35());
+      ValuableToken t;
+      t.token = E;
+    	return automaton->reduce(3, t, 3);
       break;
+    default: return false; // Error !
   }
   return false;
 }

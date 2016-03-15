@@ -10,13 +10,13 @@
 #define STATE_E11_H_
 
 #include "../State.h"
-#include "../Symbol.h"
+#include "../Tokens.h"
 #include "../Automaton.h"
 
 class E11 : public State {
  public:
     E11();
-    bool transition(Automaton *automaton, Symbol * t);
+    bool transition(Automaton *automaton, ValuableToken s);
     inline int getStateNumber(){return 11;}
 };
 

@@ -10,13 +10,13 @@
 #define STATE_E39_H_
 
 #include "../State.h"
-#include "../Symbol.h"
+#include "../Tokens.h"
 #include "../Automaton.h"
 
 class E39 : public State {
  public:
     E39();
-    bool transition(Automaton *automaton, Symbol * t);
+    bool transition(Automaton *automaton, ValuableToken s);
     inline int getStateNumber(){return 39;}
 };
 

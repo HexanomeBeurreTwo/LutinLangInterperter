@@ -6,30 +6,31 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E28.h"
+#include "E29.h"
+#include "E31.h"
+#include "E32.h"
+#include "E33.h"
 
 E28::E28() : State() { }
 
-bool E28::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E28::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case PLUS:
-    	automaton.shift(*s, new E29());
-      break;
+    	return automaton->shift(s, new E29());
     case MINUS:
-    	automaton.shift(*s, new E31());
-      break;
+    	return automaton->shift(s, new E31());
     case MULT:
-    	automaton.shift(*s, new E32());
-      break;
+    	return automaton->shift(s, new E32());
     case DIVIDE:
-    	automaton.shift(*s, new E33());
-      break;
+    	return automaton->shift(s, new E33());
     case END:
-    	automaton.reduce(2, *s, new E19());
-      break;
+      ValuableToken t;
+      t.token = LI;
+    	return automaton->reduce(2, t, 2);
+    default: return false; // Error !
   }
   return false;
 }

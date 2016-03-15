@@ -6,21 +6,20 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
-
 #include "E4.h"
+#include "E7.h"
 
 E4::E4() : State() { }
 
-bool E4::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E4::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case SEP:
-      automaton.shift(*s, new E7());
-      break;
+      return automaton->shift(s, new E7());
     case END:
-      automaton.shift(2, *s, new E16());
-      break;
+      valuableToken t;
+      t.token = LD;
+      return automaton->reduce(2, t, 2);
+    default: return false; // Error !
   }
   return false;
 }

@@ -1,4 +1,5 @@
 //
+//
 //  LutinLangInterperter
 //  E10.h
 //
@@ -6,21 +7,22 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
-
 #include "E10.h"
+#include "E11.h"
 
 E10::E10() : State() { }
 
-bool E10::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E10::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case SEP:
-      automaton.shift(*s, new E11());
+      return automaton->shift(s, new E11());
       break;
     case END:
-      automaton.reduce(2, *s, new E16());
+      ValuableToken t;
+      t.token = LD;
+      return automaton->reduce(2, t, 2);
       break;
+    default: return false; // Error !
   }
   return false;
 }

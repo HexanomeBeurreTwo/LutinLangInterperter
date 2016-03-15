@@ -6,18 +6,19 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E26.h"
 
 E26::E26() : State() { }
 
-bool E26::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E26::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case END:
-    automaton.reduce(2, *s, new E19());
-      break;
+	    ValuableToken t;
+	    t.token = LI;
+	    return automaton->reduce(2, t, 2);
+    default: return false; // Error !
   }
   return false;
 }

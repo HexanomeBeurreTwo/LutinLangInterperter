@@ -6,24 +6,27 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E31.h"
+#include "E24.h"
+#include "E34.h"
+#include "E37.h"
+#include "E40.h"
 
 E31::E31() : State() { }
 
-bool E31::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E31::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case OPENBY:
-    	automaton.shift(*s, new E37());
-      break;
+    	return automaton->shift(s, new E37());
     case ID:
-    	automaton.shift(*s, new E24());
-      break;
+    	return automaton->shift(s, new E24());
     case VAL:
-    	automaton.shift(*s, new E40());
-      break;
+    	return automaton->shift(s, new E40());
+    case E:
+      return automaton->shift(s, new E34());
+    default: return false; // Error !
   }
   return false;
 }

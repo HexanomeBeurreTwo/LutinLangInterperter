@@ -6,23 +6,25 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E17.h"
 
 E17::E17() : State() { }
 
-bool E17::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E17::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case ID:
     case VAR:
     case CONST:
     case READ:
     case WRITE:
     case ENDFILE:
-      automaton.reduce(3, *s, new E1());
+      ValuableToken t;
+      t.token = PD;
+      return automaton->reduce(3, t, 3);
       break;
+    default: return false; // Error !
   }
   return false;
 }

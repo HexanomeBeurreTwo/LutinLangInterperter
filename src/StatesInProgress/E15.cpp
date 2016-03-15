@@ -6,19 +6,19 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E15.h"
 
 E15::E15() : State() { }
 
-bool E15::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E15::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case SEP:
     case END:
-      automaton.reduce(3, *s, new E12());
+      return automaton->reduce(3, t, 3);
       break;
+    default: return false; // Error !
   }
   return false;
 }

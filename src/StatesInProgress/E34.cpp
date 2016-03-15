@@ -6,26 +6,28 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
-#include "../State.h"
-#include "../Symbol.h"
+
 
 #include "E34.h"
+#include "E32.h"
+#include "E33.h"
 
 E34::E34() : State() { }
 
-bool E34::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E34::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case MULT:
-    	automaton.shift(*s, new E32());
-      break;
+    	return automaton->shift(s, new E32());
     case DIVIDE:
-    	automaton.shift(*s, new E33());
-      break;
+    	return automaton->shift(s, new E33());
     case PLUS:
     case MINUS:
+    case CLOSEBY:
     case END:
-    	automaton.reduce(1,*s,new E34());
-  	  break;
+      ValuableToken t;
+      t.token = E;
+    	return automaton->reduce(3,t,3);
+    default: return false; // Error !
   }
   return false;
 }
