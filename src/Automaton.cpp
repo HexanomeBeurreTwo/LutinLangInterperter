@@ -1,42 +1,39 @@
 #include "Automaton.h"
-#include "E0.h"
+#include "States/E0.h"
 #include "State.h"
 using namespace std;
 
-Automaton::Automaton(void){
 
-}
-
-Automaton::~Automaton(void){
-
-}
-
-int Automaton::init(int nbParam, char * param[]){
+/*int Automaton::init(int nbParam, char * param[]){ // A faire dans le main
 	lexer = new Lexer();
 	int error = lexer.init(param[nbParam -1]);
 
 	return error;
-}
+}*/
 
-void Automaton::read(){
-	nextSymbol = lexer.getNext();
-	E0 initState = new E0();
+bool Automaton::read(){
+	nextSymbol = lexer->getNext();
+	if(nextSymbol.token == INVALID) return false;
+	E0* initState = new E0();
 	stateStack.push(initState);
-	while(nextSymbol != 'END_OF_FILE'){
-		stateStack.top().transition(this, nextSymbol);
-		nextSymbol = lexer.getNext();
+	while(nextSymbol.token != END_OF_FILE){
+		if( !stateStack.top()->transition(this, nextSymbol) ) return false;
+		nextSymbol = lexer->getNext();
+		if(nextSymbol.token == INVALID) return false;
 	}
+    return true;
 }
 
-void Automaton::shift(Symbol s, State nextState){
-	lexer.consume();
+void Automaton::shift(ValuableToken s, State* nextState){
+	lexer->consumeNext();
 	symbolStack.push(s);
 	stateStack.push(nextState);
 }
 
-void Automaton::reduce(int count, Symbol s){
-	for(int i=0; i<count, i++){
+bool Automaton::reduce(int count, ValuableToken s, int coutSymbol ){
+	for(int i=0; i<count; i++){
 		stateStack.pop();
 	}
-	stateStack.push(stateStack.top().transition(s));
+	stateStack.top()->transition(this,s);
+	return programme->create_class_from_rules(&symbolStack,s,coutSymbol);
 }

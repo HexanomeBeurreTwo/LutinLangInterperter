@@ -3,7 +3,7 @@
 
 Lire::~Lire()
 {
-    //delete variable;
+    delete variable;
 }
 
 bool Lire::execute(Declrs & variables)
@@ -30,9 +30,11 @@ bool Lire::execute(Declrs & variables)
 
 }
 
-void Lire::print()
+void Lire::print(ostream& os) const
 {
-	cout << "Read ";
+	/*cout << "lire ";
 	variable->print();
-	cout <<" ";
+	cout <<";";*/
+	os  << "lire " << (*variable) << ";" ;
+
 }

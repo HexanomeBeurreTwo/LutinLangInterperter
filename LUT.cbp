@@ -12,9 +12,13 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="src" />
 				</Compiler>
+				<Linker>
+					<Add library="lib/libboost_regex.a" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/LUT" prefix_auto="1" extension_auto="1" />
@@ -46,15 +50,27 @@
 		<Unit filename="src/Expression.cpp" />
 		<Unit filename="src/Expression.h" />
 		<Unit filename="src/Instruction.h" />
+		<Unit filename="src/Lexer.cpp" />
+		<Unit filename="src/Lexer.h" />
 		<Unit filename="src/Lire.cpp" />
 		<Unit filename="src/Lire.h" />
 		<Unit filename="src/PartieDeclarative.cpp" />
 		<Unit filename="src/PartieDeclarative.h" />
 		<Unit filename="src/PartieInstruction.cpp" />
 		<Unit filename="src/PartieInstruction.h" />
-		<Unit filename="src/Symbol.h" />  
+		<Unit filename="src/Programme.cpp" />
+		<Unit filename="src/Programme.h" />
+		<Unit filename="src/Symbol.h" />
 		<Unit filename="src/Tokens.h" />
 		<Unit filename="src/main.cpp" />
+		<Unit filename="src/Automaton.h" />
+		<Unit filename="src/Automaton.cpp" />
+		<Unit filename="src/State.h" />
+		<Unit filename="src/States/E0.h" />
+		<Unit filename="src/States/E1.h" />
+		<Unit filename="src/States/E0.cpp" />
+		<Unit filename="src/States/E1.cpp" />
+		<Unit filename="src/TestSymbolsClass.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

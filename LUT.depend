@@ -1,101 +1,179 @@
 # depslib dependency file v1.0
-1457557806 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\affectation.cpp
+1457990467 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\affectation.cpp
 	<iostream>
 	"Affectation.h"
 	"Declaration.h"
 	"DeclarationConst.h"
 	"DeclarationVariable.h"
+	"Symbol.h"
+	"Expression.h"
 
-1457552598 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\affectation.h
+1457962617 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\affectation.h
 	"Instruction.h"
 	"Symbol.h"
 	"Expression.h"
 
-1457558484 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\instruction.h
+1457989507 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\instruction.h
 	"Symbol.h"
+	"Tokens.h"
 
-1457547789 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\symbol.h
+1457964366 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\symbol.h
 	"Tokens.h"
 	<map>
 	<iostream>
 
-1457547634 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\tokens.h
+1457910167 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\tokens.h
 
-1457553075 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\expression.h
+1457962896 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\expression.h
 	<string>
 	"Instruction.h"
 
-1457547726 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declaration.h
+1457962714 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declaration.h
 	"Symbol.h"
 
-1457528095 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationconst.h
+1457962637 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationconst.h
 	"Declaration.h"
 
-1457525035 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationvariable.h
+1457962642 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationvariable.h
 	"Declaration.h"
 
-1457558832 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationconst.cpp
-	"DeclarationConst.h"
+1457917517 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\automaton.cpp
+	"Automaton.h"
+	"States/E0.h"
+	"State.h"
+
+1457917013 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\automaton.h
+	<stack>
+	"State.h"
+	"Tokens.h"
+	"Lexer.h"
+	"Programme.h"
+
+1457913848 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\state.h
+	"Tokens.h"
+
+1457908298 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lexer.h
 	<iostream>
+	<string>
+	"Tokens.h"
+	<boost/regex.hpp>
 
-1457525020 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationvariable.cpp
-	"DeclarationVariable.h"
+1457963491 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.h
 	<iostream>
-
-1457558415 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\ecrire.cpp
-	"Ecrire.h"
-	"DeclarationVariable.h"
-
-1457558211 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\ecrire.h
-	"Instruction.h"
-	"Expression.h"
-
-1457558806 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\expression.cpp
-	"Expression.h"
-	<cmath>
-	<iostream>
-	"Declaration.h"
-	"DeclarationConst.h"
-	"DeclarationVariable.h"
-
-1457558107 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lire.cpp
-	"Lire.h"
-	"DeclarationVariable.h"
-
-1457552686 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lire.h
-	"Instruction.h"
-	"Expression.h"
-
-1457558291 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\main.cpp
-	<iostream>
-	"Affectation.h"
+	<stack>
 	"Expression.h"
 	"PartieDeclarative.h"
 	"PartieInstruction.h"
-	"DeclarationConst.h"
-	"DeclarationVariable.h"
-	"EcrireInstruction.h"
-	"Lire.h"
-	"Ecrire.h"
+	"Tokens.h"
 
-1457545863 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\ecrireinstruction.h
-	"Expression.h"
-	"Instruction.h"
-
-1457557573 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partiedeclarative.cpp
-	"PartieDeclarative.h"
-	<iostream>
-
-1457559019 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partiedeclarative.h
+1457962485 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partiedeclarative.h
 	"Symbol.h"
 	"Declaration.h"
 
-1457556607 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partieinstruction.h
+1457962450 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partieinstruction.h
 	<iostream>
 	<deque>
 	"Symbol.h"
 	"Instruction.h"
 
-1457556591 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partieinstruction.cpp
+1457915105 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e0.h
+	"../State.h"
+	"../Tokens.h"
+	"../Automaton.h"
+
+1457962750 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationconst.cpp
+	"DeclarationConst.h"
+	<iostream>
+
+1457962759 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\declarationvariable.cpp
+	"DeclarationVariable.h"
+	<iostream>
+
+1457990579 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\ecrire.cpp
+	"Ecrire.h"
+	"DeclarationVariable.h"
+	"Expression.h"
+	"Symbol.h"
+
+1457989906 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\ecrire.h
+	"Instruction.h"
+	"Expression.h"
+	"Symbol.h"
+
+1457990641 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\expression.cpp
+	"Expression.h"
+	<iostream>
+	"Declaration.h"
+	"DeclarationConst.h"
+	"DeclarationVariable.h"
+	"Symbol.h"
+
+1457911779 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lexer.cpp
+	"Lexer.h"
+
+1457962936 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lire.cpp
+	"Lire.h"
+	"DeclarationVariable.h"
+
+1457962674 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\lire.h
+	"Instruction.h"
+	"Expression.h"
+
+1457990664 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partiedeclarative.cpp
+	"PartieDeclarative.h"
+	"Declaration.h"
+	"Symbol.h"
+	<iostream>
+
+1457990694 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\partieinstruction.cpp
 	"PartieInstruction.h"
+	"Instruction.h"
+	"Symbol.h"
+
+1457990735 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\programme.cpp
+	"Programme.h"
+	"DeclarationConst.h"
+	"DeclarationVariable.h"
+	"Expression.h"
+	"Affectation.h"
+	"Ecrire.h"
+	"Lire.h"
+	"Symbol.h"
+
+1457990321 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e0.cpp
+	"../State.h"
+	"../Automaton.h"
+	"../Tokens.h"
+	"E0.h"
+	"E1.h"
+
+1457915379 c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e1.h
+	"../State.h"
+	"../Symbol.h"
+	"../Automaton.h"
+
+1457990353 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\states\e1.cpp
+	"../State.h"
+	"../Automaton.h"
+	"../Tokens.h"
+	"E1.h"
+
+1457990981 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\testsymbolsclass.cpp
+	<iostream>
+	"Affectation.h"
+	"Expression.h"
+	"PartieDeclarative.h"
+	"PartieInstruction.h"
+	"DeclarationConst.h"
+	"DeclarationVariable.h"
+	"Lire.h"
+	"Ecrire.h"
+
+1457991033 source:c:\users\ayoub\documents\langgrammaire\projet\lutinlanginterperter\src\main.cpp
+	"Programme.h"
+	"Lexer.h"
+	"Automaton.h"
+	<iostream>
+	<string>
+	<fstream>
 

@@ -1,18 +1,19 @@
 #include "PartieDeclarative.h"
+#include "Declaration.h"
+#include "Symbol.h"
 #include <iostream>
 
 using namespace std;
 
 bool PartieDeclarative::add_declaration(Declaration *inst)
 {
-    string nom;
+    string nom = inst->get_nom();
     Declrs::const_iterator var = variables.find(nom);
-    if (var==variables.end())  // Erreur variable déja prise !
+    if (var==variables.end())  // variable non utilisé -> ok
     {
         variables[inst->get_nom()] = inst;
         return true;
     }else{
-        //if existe
         return false;
     }
 }
@@ -22,12 +23,13 @@ bool PartieDeclarative::add_declaration(Declaration *inst)
      return this->variables;
  }
 
-void PartieDeclarative::print()
+void PartieDeclarative::print(ostream& os) const
 {
     //  // show content of variables
-  for (Declrs::iterator it=variables.begin(); it!=variables.end(); ++it)
+  for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
     //std::cout << it->first << " => " << it->second << '\n';
-    (it->second)->print();
+    //(it->second)->print();
+    os << *(it->second) ;
 
 }
 
@@ -35,6 +37,10 @@ void PartieDeclarative::print()
 PartieDeclarative::~PartieDeclarative()
 {
      for (Declrs::iterator it=variables.begin(); it!=variables.end(); ++it)
-    //std::cout << it->first << " => " << it->second << '\n';
-    delete (it->second);
+     {
+        delete (it->second);
+     }
+
 }
+
+

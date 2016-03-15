@@ -7,26 +7,29 @@
 //
 
 #include "../State.h"
-#include "../Symbol.h"
+#include "../Automaton.h"
+#include "../Tokens.h"
 
 #include "E1.h"
 
 E1::E1() : State() { }
 
-bool E1::transition(Automaton *automaton, Symbol *s) {
-  switch(*s) {
+bool E1::transition(Automaton *automaton, ValuableToken s) {
+  switch(s.token) {
     case ID:
     case READ:
     case WRITE:
-    case ENDFILE:
-      automaton.reduce(0, *s, new E18());
+    case END_OF_FILE:
+      //automaton->reduce(0, s, new E18(),?);
       break;
     case VAR:
-      automaton.shift(*s, new E2());
+      //automaton->shift(s, new E2()); // fait implementer E2 d'abords
       break;
     case CONST:
-      automaton.shift(*s, new E5());
+      //automaton->shift(s, new E5()); // fait implementer E5 d'abords
       break;
+
+    default: break; // Error !
   }
   return false;
 }

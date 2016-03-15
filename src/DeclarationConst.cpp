@@ -3,7 +3,8 @@
 #include <iostream>
 using namespace std;
 
-void DeclarationConst::print()
+void DeclarationConst::print(ostream& os) const
 {
-    cout << "const " << nom << " = " << valeur <<";"<<endl;
+    //cout << "const " << nom << " = " << valeur <<";"<<endl;
+    os << "const " << nom << " = " << valeur <<";"<<endl;
 }

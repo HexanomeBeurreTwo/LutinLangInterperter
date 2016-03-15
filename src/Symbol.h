@@ -5,6 +5,7 @@
 
 #include <map>
 #include <iostream>
+
 using namespace std;
 
 class Declaration;
@@ -20,8 +21,17 @@ protected:
 public:
     Symbol(Tokens id) : ident(id) {}
     virtual ~Symbol(){} ;
-    virtual void print()=0;
+    virtual void print(ostream& os) const =0;
     operator int() const { return (int)ident; }
 
+    friend ostream& operator<< (ostream& os, const Symbol& symbol)
+    {
+        symbol.print(os);
+        return os ;
+    }
+
 };
+
+
+
 #endif // SYMBOL_H

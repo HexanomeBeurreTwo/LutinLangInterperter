@@ -23,21 +23,24 @@ using namespace std;
 class Lexer
 {
     public:
+        ~Lexer();
         Lexer(string filePath);
         void leftTrim(string &inputString);
-        Tokens getNext();
+        ValuableToken getNext();
         bool consumeNext();
-        bool analyseNext(string inputToAnalyse, Tokens &tokenFetched, string &foundKeyword);
-        bool analyseAll(vector<Tokens> &tokensList/*, vector<Symbol> symbolsList*/);
-        Tokens getCurrentToken();
+        bool hasNext();
+        bool analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword);
+        bool analyseAll();
+        ValuableToken getCurrentToken();
+        vector<ValuableToken*> tokensList;
 
     private:
-    	string fileLines;
-    	Tokens lastTokenFetched;
-    	vector<string> tokenList;
-    	// TODO: replace with struct cursor
-    	int line;
-    	int column;
+        string fileLines;
+        ValuableToken lastTokenFetched;
+        int cursor;
+        // TODO: replace with struct cursor
+        int line;
+        int column;
 };
 
 #endif // LEXER_H

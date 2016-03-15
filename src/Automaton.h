@@ -3,25 +3,29 @@
 
 #include <stack>
 #include "State.h"
-#include "Symbol.h"
+#include "Tokens.h"
 #include "Lexer.h"
+#include "Programme.h"
+
+
 class Automaton {
 	public :
 
-		Automaton();
-		~Automaton();
+		Automaton(Lexer *lex,Programme*prog):lexer(lex),programme(prog){};
+		~Automaton(){};
 
-		int init (int nbParam, char * param[]);
-		void read();
-		void shift(Symbol s, State nextState);
-		void reduce(int count, Symbol s);
+		//int init (int nbParam, char * param[]);
+		bool read();
+		void shift(ValuableToken s, State* nextState);
+		bool reduce(int count, ValuableToken s, int coutSymbol);
 
 	private :
-	
-		Symbol nextSymbol;
-		stack <Symbol> symbolStack;
-		stack <State> stateStack;
-		Lexer lexer;
+
+		ValuableToken nextSymbol;
+		stack <ValuableToken> symbolStack;
+		stack <State*> stateStack;
+		Lexer *lexer;
+		Programme* programme;
 };
 
 #endif

@@ -11,7 +11,7 @@ class PartieDeclarative : public Symbol
         PartieDeclarative(): Symbol(PD){};
         virtual ~PartieDeclarative();
         bool add_declaration(Declaration *inst);
-        void print() ;
+        void print(ostream& os) const ;
         Declrs& get_variables();
 
     protected:

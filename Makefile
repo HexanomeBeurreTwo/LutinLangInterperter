@@ -258,33 +258,6 @@ src/Ecrire.cpp.s:
 	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Ecrire.cpp.s
 .PHONY : src/Ecrire.cpp.s
 
-src/EcrireInstruction.o: src/EcrireInstruction.cpp.o
-
-.PHONY : src/EcrireInstruction.o
-
-# target to build an object file
-src/EcrireInstruction.cpp.o:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EcrireInstruction.cpp.o
-.PHONY : src/EcrireInstruction.cpp.o
-
-src/EcrireInstruction.i: src/EcrireInstruction.cpp.i
-
-.PHONY : src/EcrireInstruction.i
-
-# target to preprocess a source file
-src/EcrireInstruction.cpp.i:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EcrireInstruction.cpp.i
-.PHONY : src/EcrireInstruction.cpp.i
-
-src/EcrireInstruction.s: src/EcrireInstruction.cpp.s
-
-.PHONY : src/EcrireInstruction.s
-
-# target to generate assembly for a file
-src/EcrireInstruction.cpp.s:
-	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/EcrireInstruction.cpp.s
-.PHONY : src/EcrireInstruction.cpp.s
-
 src/Expression.o: src/Expression.cpp.o
 
 .PHONY : src/Expression.o
@@ -420,6 +393,114 @@ src/PartieInstruction.cpp.s:
 	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/PartieInstruction.cpp.s
 .PHONY : src/PartieInstruction.cpp.s
 
+src/Programme.o: src/Programme.cpp.o
+
+.PHONY : src/Programme.o
+
+# target to build an object file
+src/Programme.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Programme.cpp.o
+.PHONY : src/Programme.cpp.o
+
+src/Programme.i: src/Programme.cpp.i
+
+.PHONY : src/Programme.i
+
+# target to preprocess a source file
+src/Programme.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Programme.cpp.i
+.PHONY : src/Programme.cpp.i
+
+src/Programme.s: src/Programme.cpp.s
+
+.PHONY : src/Programme.s
+
+# target to generate assembly for a file
+src/Programme.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/Programme.cpp.s
+.PHONY : src/Programme.cpp.s
+
+src/States/E0.o: src/States/E0.cpp.o
+
+.PHONY : src/States/E0.o
+
+# target to build an object file
+src/States/E0.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/States/E0.cpp.o
+.PHONY : src/States/E0.cpp.o
+
+src/States/E0.i: src/States/E0.cpp.i
+
+.PHONY : src/States/E0.i
+
+# target to preprocess a source file
+src/States/E0.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/States/E0.cpp.i
+.PHONY : src/States/E0.cpp.i
+
+src/States/E0.s: src/States/E0.cpp.s
+
+.PHONY : src/States/E0.s
+
+# target to generate assembly for a file
+src/States/E0.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/States/E0.cpp.s
+.PHONY : src/States/E0.cpp.s
+
+src/States/E1.o: src/States/E1.cpp.o
+
+.PHONY : src/States/E1.o
+
+# target to build an object file
+src/States/E1.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/States/E1.cpp.o
+.PHONY : src/States/E1.cpp.o
+
+src/States/E1.i: src/States/E1.cpp.i
+
+.PHONY : src/States/E1.i
+
+# target to preprocess a source file
+src/States/E1.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/States/E1.cpp.i
+.PHONY : src/States/E1.cpp.i
+
+src/States/E1.s: src/States/E1.cpp.s
+
+.PHONY : src/States/E1.s
+
+# target to generate assembly for a file
+src/States/E1.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/States/E1.cpp.s
+.PHONY : src/States/E1.cpp.s
+
+src/TestSymbolsClass.o: src/TestSymbolsClass.cpp.o
+
+.PHONY : src/TestSymbolsClass.o
+
+# target to build an object file
+src/TestSymbolsClass.cpp.o:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/TestSymbolsClass.cpp.o
+.PHONY : src/TestSymbolsClass.cpp.o
+
+src/TestSymbolsClass.i: src/TestSymbolsClass.cpp.i
+
+.PHONY : src/TestSymbolsClass.i
+
+# target to preprocess a source file
+src/TestSymbolsClass.cpp.i:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/TestSymbolsClass.cpp.i
+.PHONY : src/TestSymbolsClass.cpp.i
+
+src/TestSymbolsClass.s: src/TestSymbolsClass.cpp.s
+
+.PHONY : src/TestSymbolsClass.s
+
+# target to generate assembly for a file
+src/TestSymbolsClass.cpp.s:
+	$(MAKE) -f CMakeFiles/lut.dir/build.make CMakeFiles/lut.dir/src/TestSymbolsClass.cpp.s
+.PHONY : src/TestSymbolsClass.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -471,9 +552,6 @@ help:
 	@echo "... src/Ecrire.o"
 	@echo "... src/Ecrire.i"
 	@echo "... src/Ecrire.s"
-	@echo "... src/EcrireInstruction.o"
-	@echo "... src/EcrireInstruction.i"
-	@echo "... src/EcrireInstruction.s"
 	@echo "... src/Expression.o"
 	@echo "... src/Expression.i"
 	@echo "... src/Expression.s"
@@ -489,6 +567,18 @@ help:
 	@echo "... src/PartieInstruction.o"
 	@echo "... src/PartieInstruction.i"
 	@echo "... src/PartieInstruction.s"
+	@echo "... src/Programme.o"
+	@echo "... src/Programme.i"
+	@echo "... src/Programme.s"
+	@echo "... src/States/E0.o"
+	@echo "... src/States/E0.i"
+	@echo "... src/States/E0.s"
+	@echo "... src/States/E1.o"
+	@echo "... src/States/E1.i"
+	@echo "... src/States/E1.s"
+	@echo "... src/TestSymbolsClass.o"
+	@echo "... src/TestSymbolsClass.i"
+	@echo "... src/TestSymbolsClass.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

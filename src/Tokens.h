@@ -45,6 +45,12 @@ typedef enum {
 	END_OF_FILE
 } Tokens;
 
+typedef struct {
+    Tokens token;
+    void* value;
+} ValuableToken;
+
+
 #endif  // TOKENS
 
 

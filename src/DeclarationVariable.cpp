@@ -8,7 +8,8 @@ void DeclarationVariable:: affect(double val)
     this->valeur = val;
 }
 
-void DeclarationVariable::print()
+void DeclarationVariable::print(ostream& os) const
 {
-    cout << "var " << nom <<";"<<endl;
+    //cout << "var " << nom <<";"<<endl;
+    os << "var " << nom <<";"<<endl;
 }
