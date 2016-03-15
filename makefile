@@ -25,7 +25,7 @@ OBJ_DIR=$(OBJ)/States
 BIN_DIR=bin 
 DLL=bin/boost_regex.dll
 PROG=bin/LUT
-LIB=lib/libboost_regex.a
+#LIB=lib/libboost_regex.a
 
 #Directive
 .PHONY: $(CLEAN) # decrit les regles SANS  dependances
@@ -37,7 +37,7 @@ all: $(OBJ_DIR) $(BIN_DIR) $(DLL) $(PROG)
 #Regles
 $(PROG): $(OBJECT)
 	$(ECHO) "             Edition des liens < $(PROG) >"
-	$(CC) -o $@ $(FLAGS)  $+ $(LIB)
+	$(CC) -o $@ $(FLAGS)  $+ $(LIB) -lboost_regex
 	$(ECHO) "<$@> Ok ..."
 
 
@@ -71,8 +71,8 @@ $(OBJ)/PartieInstruction.o: $(SRC)/Instruction.h $(SRC)/Symbol.h
 $(OBJ)/Programme.o: $(SRC)/Expression.h $(SRC)/PartieDeclarative.h $(SRC)/PartieInstruction.h $(SRC)/Tokens.h $(SRC)/DeclarationConst.h \
 $(SRC)/DeclarationVariable.h $(SRC)/Affectation.h $(SRC)/Ecrire.h $(SRC)/Lire.h $(SRC)/Symbol.h
 $(OBJ)/Automaton.o: $(SRC)/States/E0.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Lexer.h $(SRC)/Programme.h
-$(OBJ)/States/'E0.o': $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h $(SRC)/States/E1.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Automaton.h
-$(OBJ)/States/'E1.o': $(SRC)/State.h $(SRC)/Symbol.h $(SRC)/Automaton.h $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h
+$(OBJ)/States/E0.o: $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h $(SRC)/States/E1.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Automaton.h
+$(OBJ)/States/E1.o: $(SRC)/State.h $(SRC)/Symbol.h $(SRC)/Automaton.h $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h
 
 
 
