@@ -25,6 +25,7 @@ OBJ_DIR=$(OBJ)/States
 BIN_DIR=bin 
 DLL=bin/boost_regex.dll
 PROG=bin/LUT
+CRAP=*~ */*~ */*/*~
 #LIB=lib/libboost_regex.a
 
 #Directive
@@ -56,7 +57,7 @@ $(DLL):
 
 $(CLEAN):
 	$(ECHO) "             Nettoyage .."
-	rm -f $(OBJECT) $(PROG) corc 
+	rm -f $(OBJECT) $(PROG) $(CRAP) corc 
 
 $(OBJ)/main.o: $(SRC)/Programme.h $(SRC)/Lexer.h $(SRC)/Automaton.h
 $(OBJ)/Affectation.o: $(SRC)/Affectation.h $(SRC)/Declaration.h $(SRC)/DeclarationConst.h $(SRC)/DeclarationVariable.h $(SRC)/Symbol.h $(SRC)/Expression.h

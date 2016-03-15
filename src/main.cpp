@@ -30,7 +30,7 @@ string getFileContent(string pathfile)
 }
 
 
-int main()
+int main_x()
 {
     	
 	// Create Lexer instance with it
@@ -44,7 +44,7 @@ int main()
 }
 
 
-int main_x()
+int main()
 {
     string file = "./bin/example.txt";
     bool error;
