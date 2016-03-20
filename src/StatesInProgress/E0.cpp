@@ -31,6 +31,9 @@ bool E0::transition(Automaton *automaton, ValuableToken s) {
         t.token = PD;
 		return automaton->reduce(0, t, 0);
 		break;
+	case PD :
+		return automaton->shift(s, new E1()); 
+		break;
     default: return false; // Error !
   }
   return false;

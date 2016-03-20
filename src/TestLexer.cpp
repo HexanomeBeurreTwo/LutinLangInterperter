@@ -8,6 +8,21 @@
 #include <fstream>
 using namespace std;
 
+string* getFileContent(string pathfile);
+int main_x()
+{
+		string file = "./bin/example.lt";
+        // Create Lexer instance with it
+		string* cotentFile = getFileContent(file);
+		Lexer lex(*cotentFile);
+
+        if(lex.analyseAll())    {
+                cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
+        }
+
+        return 0;
+}
+
 
 ostream& operator<< (ostream& os, const ValuableToken& t){
         switch(t.token){
@@ -36,39 +51,36 @@ ostream& operator<< (ostream& os, const ValuableToken& t){
 }
 
 
-string getFileContent(string pathfile)
+string* getFileContent(string pathfile)
 {
-        string line = "";
-        string fileInput = "";
+        string line ;
+        string tmp;
+		string tmp1;
         ifstream myfile;
         myfile.open(pathfile);
         if (myfile)
         {
-                while ( getline (myfile,line) )
-                {
-                  fileInput += line;
-                }
-                myfile.close();
-        }       else    {
+			while ( getline (myfile,line) )
+			{
+			  cout << line << endl;
+			  tmp1 = tmp;
+			  tmp = tmp1 + line;
+			  //cout << tmp << endl;
+			}
+			myfile.close();
+        } else  {
                 cout << "Error reading the file" << endl;
         }
 
+		cout <<"Analyse du fichier " << endl
+			 <<"#####" << endl 
+			 <<   tmp << endl
+			 <<"#####" << endl;
+		
+		string* fileInput = new string(tmp);
         return  fileInput;
 }
 
-
-int main_x()
-{
-
-        // Create Lexer instance with it
-        Lexer lex = Lexer(getFileContent("./bin/example.txt"));
-
-        if(lex.analyseAll())    {
-                cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
-        }
-
-        return 0;
-}
 
 
 int main()    
@@ -77,7 +89,8 @@ int main()
     bool success;
     // traiter les option -e -o -p ... et r▒cuperer le nom du fichier
 
-    Lexer lexer(getFileContent(file));
+	string* contentFile = getFileContent(file);
+    Lexer lexer(*contentFile);
     lexer.analyseAll();
     Programme programme;
     Automaton automate(&lexer,&programme);

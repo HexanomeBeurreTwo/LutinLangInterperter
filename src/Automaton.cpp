@@ -32,7 +32,7 @@ bool Automaton::read(){
 			if( !stateStack.top()->transition(this, nextSymbol) ) 
 			{
 				cerr << "Pas de transition "<< nextSymbol
-					<< " possible sur l'etat" << stateStack.top()->getStateNumber() 
+					<< " possible sur l'etat " << stateStack.top()->getStateNumber() 
 					<< endl;
 				return false;
 			}
