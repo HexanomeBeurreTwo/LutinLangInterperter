@@ -1,0 +1,130 @@
+@startuml
+!include ../base.txt
+
+title State Diagram
+
+E0:P->.PD PI\r\nPD->.PD LD end\r\nPD->.
+E1:P->PD .PI\r\nPD->PD .LD end\r\nLD->.var LV\r\nLD->.const LC\r\nPI->.PI LI end\r\nPI->.
+E2:LD->var .LV\r\nLV->.LV sep id\r\nLV->.id
+E3:LV->id.
+E4:LD->var LV.\r\nLV->LV .sep id
+E5:LP->const .LC\r\nLC->.LC sep D\r\nLC->.D\r\nD->.id equal val
+E7:LV->LV sep .id
+E8:LV->LV sep id.
+E9:LC->D.
+E10:LP->const LC.\r\nLC->LC .sep D
+E11:LC->LC sep .D\r\nD->.id equal val
+E12:LC->LC sep D.
+E13:D->id .equal val
+E14:D->id equal .val
+E15:D->id equal val.
+E16:PD->PD LD .end
+E17:PD->PD LD end.
+E18:P->PD PI.\r\nPI->PI .LI end\r\nLI->.id affect E\r\nLI->.write E\r\nLI->.read id
+E19:PI->PI LI .end
+E20:PI->PI LI end.
+E21:LI->id .affect E
+E22:LI->id affect .E\r\nE->.E + E\r\nE->.E - E\r\nE->.E * E\r\nE->.E / E\r\nE->.( E )\r\nE->.id\r\nE->.val
+E23:LI->id affect E.\r\nE .+ E\r\nE->E .- E\r\nE->E .* E\r\nE->E ./ E
+E24:E->id.
+E25:LI->read .id
+E26:LI->read id.
+E27:LI->write .E\r\nE->.E + E\r\nE->.E - E\r\nE->.E * E\r\nE->.E / E\r\nE->.( E )\r\nE->.id\r\nE->.val
+E28:LI->id write E.\r\nE .+ E\r\nE->E .- E\r\nE->E .* E\r\nE->E ./ E
+E29:E->E +. E\r\nE->.E + E\r\nE->.E - E\r\nE->.E * E\r\nE->.E / E\r\nE->.( E )\r\nE->.id\r\nE->.val
+E31:E->E -. E\r\nE->.E + E\r\nE->.E - E\r\nE->.E * E\r\nE->.E / E\r\nE->.( E )\r\nE->.id\r\nE->.val
+E32:E->E *. E\r\nE->.E + E\r\nE->.E - E\r\nE->.E * E\r\nE->.E / E\r\nE->.( E )\r\nE->.id\r\nE->.val
+E33:E->E /. E\r\nE->.E + E\r\nE->.E - E\r\nE->.E * E\r\nE->.E / E\r\nE->.( E )\r\nE->.id\r\nE->.val
+E30:E->E + E.\r\nE .+ E\r\nE->E .- E\r\nE->E .* E\r\nE->E ./ E
+E34:E->E - E.\r\nE .+ E\r\nE->E .- E\r\nE->E .* E\r\nE->E ./ E
+E35:E->E * E.\r\nE .+ E\r\nE->E .- E\r\nE->E .* E\r\nE->E ./ E
+E36:E->E / E.\r\nE .+ E\r\nE->E .- E\r\nE->E .* E\r\nE->E ./ E
+E37:E->( .E )\r\nE->.E + E\r\nE->.E - E\r\nE->.E * E\r\nE->.E / E\r\nE->.( E )\r\nE->.id\r\nE->.val
+E38:E->( E .)\r\nE->E .+ E\r\nE->E .- E\r\nE->E .* E\r\nE->E ./ E
+E39:E->( E ).
+E40:E->val.
+
+E0 --|> E1 : PD
+E1 --|> E2 : var
+E1 --|> E16 : LD
+E1 --|> E5 : const
+E1 --|> E18 : PI
+E2 --|> E3 : id
+E2 --|> E4 : LV
+E4 --|> E7 : sep
+E5 --|> E9 : D
+E5 --|> E10 : LC
+E5 --|> E13 : id
+E7 --|> E8 : id
+E10 --|> E11 : sep
+E11 --|> E12 : D
+E11 --|> E13 : id
+E13 --|> E14 : equal
+E14 --|> E15 : val
+E16 --|> E17 : end
+E18 --|> E19 : LI
+E18 --|> E21 : id
+E18 --|> E25 : read
+E18 --|> E27 : write
+E19 --|> E20 : end
+E21 --|> E22 : affect
+E22 --|> E23 : E
+E22 --|> E24 : id
+E22 --|> E37 : (
+E22 --|> E40 : val
+E23 --|> E29 : +
+E23 --|> E31 : -
+E23 --|> E32 : *
+E23 --|> E33 : /
+E25 --|> E26 : id
+E27 --|> E28 : E
+E27 --|> E24 : id
+E27 --|> E37 : (
+E27 --|> E40 : val
+E28 --|> E29 : +
+E28 --|> E31 : -
+E28 --|> E32 : *
+E28 --|> E33 : /
+E29 --|> E24 : id
+E29 --|> E30 : E
+E29 --|> E37 : (
+E29 --|> E40 : val
+E31 --|> E24 : id
+E31 --|> E34 : E
+E31 --|> E37 : (
+E31 --|> E40 : val
+E32 --|> E24 : id
+E32 --|> E35 : E
+E32 --|> E37 : (
+E32 --|> E40 : val
+E33 --|> E24 : id
+E33 --|> E36 : E
+E33 --|> E37 : (
+E33 --|> E40 : val
+E30 --|> E29 : +
+E30 --|> E31 : -
+E30 --|> E32 : *
+E30 --|> E33 : /
+E34 --|> E29 : +
+E34 --|> E31 : -
+E34 --|> E32 : *
+E34 --|> E33 : /
+E35 --|> E29 : +
+E35 --|> E31 : -
+E35 --|> E32 : *
+E35 --|> E33 : /
+E36 --|> E29 : +
+E36 --|> E31 : -
+E36 --|> E32 : *
+E36 --|> E33 : /
+E37 --|> E38 : E
+E37 --|> E24 : id
+E37 --|> E40 : val
+E37 --|> E37 : (
+E38 --|> E39 : )
+E38 --|> E29 : +
+E38 --|> E31 : -
+E38 --|> E32 : *
+E38 --|> E33 : /
+
+@enduml
