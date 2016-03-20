@@ -51,7 +51,7 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 	  ("execute,e", "Execute program")
 	  ("optimize,o", "Optimize / Transform program")
 	  ("analyse,a", "Diagnostic static errors")
-	  ("input,i", po::value<std::string>()->required(), "programme lutin, argument par défaut");
+	  ("input,i", po::value<std::string>()->required(), "Lutin program, default argument filename");
 
     po::positional_options_description p;
     p.add("input", -1);
@@ -65,13 +65,13 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 		/** --help option 
 		*/ 
 		if ( vm.count("help")  ) { 
-			std::cout << "Basic Command Line Parameter App" << std::endl 
+			std::cout << "Lutin Interpreter App" << std::endl 
 			          << desc << std::endl; 
 			return SUCCESS; 
 		}
 
 		if (argc == 1) { 
-			std::cout << "Basic Command Line Parameter App" << std::endl 
+			std::cout << "Lutin Interpreter App" << std::endl 
 			          << desc << std::endl; 
 			return ERROR_IN_COMMAND_LINE; 
 		}
