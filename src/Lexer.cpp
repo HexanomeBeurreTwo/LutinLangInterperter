@@ -70,12 +70,12 @@ void Lexer::leftTrim(string &inputString)	{
 
 bool Lexer::analyseAll()	{
 	string inputToAnalyse = fileLines;
-	cout << "Analysis begin..." << endl;
+	// cout << "Analysis begin..." << endl;
 
 	do
 	{
 		leftTrim(inputToAnalyse);
-		cout << "[" << inputToAnalyse << "] @" << line+1 << "," << column+1 << endl;
+		// cout << "[" << inputToAnalyse << "] @" << line+1 << "," << column+1 << endl;
 
 		ValuableToken *tokenFetched = new ValuableToken();
 		tokensList.push_back(tokenFetched);
@@ -87,16 +87,16 @@ bool Lexer::analyseAll()	{
 		if (tokenFetched->token == INVALID)
 		{
 			//TODO: Add Error Message
-			cout << "Analysis did not ended well..." << endl;
+			// cout << "Analysis did not ended well..." << endl;
 			return false;
 		} else if((tokensList.back())->token == VAL)	{
 			int reverseConversion = *((int*)(tokensList.back())->value);
-			cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
+			// cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
 
 			numOfCharToRemove = to_string(reverseConversion).size();
 		} else	{
 			string reverseConversion = *((string*)(tokensList.back())->value);
-			cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
+			// cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
 
 			numOfCharToRemove = reverseConversion.size();
 		}
@@ -109,7 +109,7 @@ bool Lexer::analyseAll()	{
 	ValuableToken *eof = new ValuableToken();
 	eof->token = END_OF_FILE;
 	tokensList.push_back(eof);
-	cout << "Analysis ended..." << endl;
+	// cout << "Analysis ended..." << endl;
 	return true;
 }
 
@@ -123,23 +123,23 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 		char firstChar = reverseConversion[0];
 		switch(firstChar)	{
 			case 'c':
-				cout << "It's a const!" << endl;
+				// cout << "It's a const!" << endl;
 				tokenFetched->token = CONST;
 				break;
 			case 'v':
-				cout << "It's a var!" << endl;
+				// cout << "It's a var!" << endl;
 				tokenFetched->token = VAR;
 				break;
 			case 'e':
-				cout << "It's a ecrire!" << endl;
+				// cout << "It's a ecrire!" << endl;
 				tokenFetched->token = WRITE;
 				break;
 			case 'l':
-				cout << "It's a lire!" << endl;
+				// cout << "It's a lire!" << endl;
 				tokenFetched->token = READ;
 				break;
 			default:
-				cout << "It's an error!" << endl;
+				// cout << "It's an error!" << endl;
 				tokenFetched->token = INVALID;
 				return false;
 				break;
@@ -149,14 +149,14 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 		string strFetched = results[0].str();
 		tokenFetched->value = (void*) new string(strFetched);
 
-		cout << "It's an identifier : " << *((string*)tokenFetched->value) << "!" << endl;
+		// cout << "It's an identifier : " << *((string*)tokenFetched->value) << "!" << endl;
 		tokenFetched->token = ID;
 	}
 	else if (regex_search(inputToAnalyse, results, number))	{
 		int numberFetched = stoi(results[0].str());
 
 		tokenFetched->value = (void*) new int(numberFetched);
-		cout << "It's a number : " << *((int*)tokenFetched->value) << "!" << endl;
+		// cout << "It's a number : " << *((int*)tokenFetched->value) << "!" << endl;
 		tokenFetched->token = VAL;
 	}
 	else if (regex_search(inputToAnalyse, results, operators))	{
@@ -167,54 +167,54 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 		char firstChar = reverseConversion[0];
 		switch(firstChar)	{
 			case '+':
-				cout << "It's a plus!" << endl;
+				// cout << "It's a plus!" << endl;
 				tokenFetched->token = PLUS;
 				break;
 			case '-':
-				cout << "It's a minus!" << endl;
+				// cout << "It's a minus!" << endl;
 				tokenFetched->token = MINUS;
 				break;
 			case '*':
-				cout << "It's a multiply!" << endl;
+				// cout << "It's a multiply!" << endl;
 				tokenFetched->token = MULT;
 				break;
 			case '/':
-				cout << "It's a divide!" << endl;
+				// cout << "It's a divide!" << endl;
 				tokenFetched->token = DIVIDE;
 				break;
 			case '(':
-				cout << "It's a open parenthesis!" << endl;
+				// cout << "It's a open parenthesis!" << endl;
 				tokenFetched->token = OPENBY;
 				break;
 			case ')':
-				cout << "It's a close parenthesis!" << endl;
+				// cout << "It's a close parenthesis!" << endl;
 				tokenFetched->token = CLOSEBY;
 				break;
 			case ';':
-				cout << "It's an end line!" << endl;
+				// cout << "It's an end line!" << endl;
 				tokenFetched->token = END;
 				break;
 			case '=':
-				cout << "It's an equal!" << endl;
+				// cout << "It's an equal!" << endl;
 				tokenFetched->token = EQUAL;
 				break;
 			case ',':
-				cout << "It's a separator!" << endl;
+				// cout << "It's a separator!" << endl;
 				tokenFetched->token = SEP;
 				break;
 			case ':':
-				cout << "It's an affectation!" << endl;
+				// cout << "It's an affectation!" << endl;
 				tokenFetched->token = AFFECT;
 				break;
 			default:
-				cout << "It's an error!" << endl;
+				// cout << "It's an error!" << endl;
 				tokenFetched->token = INVALID;
 				return false;
 				break;      
 		} 
 	}
 	else {
-		cout << "It's an error!" << endl;
+		// cout << "It's an error!" << endl;
 		tokenFetched->value = NULL;
 		tokenFetched->token = INVALID;
 		return false;
@@ -234,7 +234,7 @@ Lexer::Lexer(string inputString) : fileLines(inputString)	{
 }
 
 Lexer::~Lexer()	{
-	cout << "Destructor..." << endl;
+	// cout << "Destructor..." << endl;
 	int size = tokensList.size();
 	int cpt = 0;
 	while(cpt < size)	{
@@ -251,5 +251,5 @@ Lexer::~Lexer()	{
 		cpt++;
 		tokensList.pop_back();
 	}
-	cout << cpt << " Valuable tokens deleted" << endl;
+	// cout << cpt << " Valuable tokens deleted" << endl;
 }
