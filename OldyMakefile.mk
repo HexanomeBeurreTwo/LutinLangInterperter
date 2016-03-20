@@ -2,6 +2,7 @@
 CC=g++
 SRC=src
 OBJ=obj
+MAIN=TestLexer
 INT=$(SRC)/Affectation.h \
 $(SRC)/DeclarationConst.h \
 $(SRC)/DeclarationVariable.h \
@@ -15,7 +16,7 @@ $(SRC)/Programme.h \
 $(SRC)/Automaton.h \
 $(SRC)/States/E0.h \
 $(SRC)/States/E1.h 
-SOURCE= $(INT:.h=.cpp) $(SRC)/main.cpp
+SOURCE= $(INT:.h=.cpp) $(SRC)/$(MAIN).cpp
 HEADER= $(INT) $(SRC)/Instruction.h $(SRC)/Symbol.h $(SRC)/Tokens.h $(SRC)/State.h $(SRC)/Declaration.h
 OBJECT=$(patsubst $(SRC)/%.cpp,$(OBJ)/%.o,$(SOURCE)) 
 FLAGS=-Wall -fexceptions -std=c++11 -Isrc
@@ -59,7 +60,7 @@ $(CLEAN):
 	$(ECHO) "             Nettoyage .."
 	rm -f $(OBJECT) $(PROG) $(CREP) corc 
 
-$(OBJ)/main.o: $(SRC)/Programme.h $(SRC)/Lexer.h $(SRC)/Automaton.h
+$(OBJ)/$(MAIN).o: $(SRC)/Programme.h $(SRC)/Lexer.h $(SRC)/Automaton.h
 $(OBJ)/Affectation.o: $(SRC)/Affectation.h $(SRC)/Declaration.h $(SRC)/DeclarationConst.h $(SRC)/DeclarationVariable.h $(SRC)/Symbol.h $(SRC)/Expression.h
 $(OBJ)/DeclarationConst.o: 
 $(OBJ)/DeclarationVariable.o: $(SRC)/Declaration.h

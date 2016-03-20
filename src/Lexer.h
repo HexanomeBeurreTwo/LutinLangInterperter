@@ -19,7 +19,6 @@ using namespace std;
 
 // #include "Symbol.h"
 
-
 class Lexer
 {
     public:

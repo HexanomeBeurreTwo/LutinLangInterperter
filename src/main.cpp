@@ -28,7 +28,7 @@ string getFileContent(string pathfile)
 	}
 
 	return 	fileInput;
-}
+} 
 
 int main_x()
 {
