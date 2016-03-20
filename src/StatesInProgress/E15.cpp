@@ -9,6 +9,7 @@
 
 
 #include "E15.h"
+#include "Tokens.h"
 
 E15::E15() : State() { }
 
@@ -16,6 +17,8 @@ bool E15::transition(Automaton *automaton, ValuableToken s) {
   switch(s.token) {
     case SEP:
     case END:
+	  ValuableToken t;
+	  t.token = D;
       return automaton->reduce(3, t, 3);
       break;
     default: return false; // Error !

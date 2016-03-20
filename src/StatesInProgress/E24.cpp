@@ -22,7 +22,7 @@ bool E24::transition(Automaton *automaton, ValuableToken s) {
     case END:
       ValuableToken t;
       t.token = E;
-      automaton->reduce(1, t, 1)
+      automaton->reduce(1, t, 1);
     default: return false; // Error !
   }
   return false;

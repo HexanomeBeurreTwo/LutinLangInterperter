@@ -25,7 +25,7 @@ bool E23::transition(Automaton *automaton, ValuableToken s) {
     case MULT:
     	return automaton->shift(s, new E32());
     case DIVIDE:
-    	return automaton->shift(s, new E373));
+    	return automaton->shift(s, new E33());
     case END:
       ValuableToken t;
       t.token = LI;

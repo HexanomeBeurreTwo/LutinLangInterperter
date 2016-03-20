@@ -17,7 +17,7 @@ bool E20::transition(Automaton *automaton, ValuableToken s) {
     case ID:
     case READ:
     case WRITE:
-    case ENDFILE:
+    case END_OF_FILE:
       ValuableToken t;
       t.token = PI;
       return automaton->reduce(3, t, 3);

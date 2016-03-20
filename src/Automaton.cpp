@@ -20,7 +20,7 @@ bool Automaton::read(){
         //if(nextSymbol.token == INVALID) return false;
         //E0* initState = new E0();
         //stateStack.push(initState);
-        while(nextSymbol.token != END_OF_FILE &&
+        while(nextSymbol.token != END_OF_FILE && 
 			  nextSymbol.token != INVALID
 		){
                 cout << nextSymbol  << endl;
@@ -32,10 +32,11 @@ bool Automaton::read(){
     return true;
 }
 
-void Automaton::shift(ValuableToken s, State* nextState){
-        lexer->consumeNext();
+bool Automaton::shift(ValuableToken s, State* nextState){
+        bool res = lexer->consumeNext();
         symbolStack.push(s);
         stateStack.push(nextState);
+		return res;
 }
 
 bool Automaton::reduce(int count, ValuableToken s, int coutSymbol ){

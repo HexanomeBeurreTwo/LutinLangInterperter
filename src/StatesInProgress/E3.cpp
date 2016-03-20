@@ -7,6 +7,7 @@
 //
 
 #include "E3.h"
+#include "../Tokens.h"
 
 E3::E3() : State() { }
 
@@ -14,7 +15,7 @@ bool E3::transition(Automaton *automaton, ValuableToken s) {
   switch(s.token) {
     case SEP:
     case END:
-      valuableToken t;
+      ValuableToken t;
       t.token = LV;
       return automaton->reduce(1, t, 1);
     default: return false; // Error !

@@ -8,6 +8,7 @@
 
 #include "E4.h"
 #include "E7.h"
+#include "../Tokens.h"
 
 E4::E4() : State() { }
 
@@ -16,7 +17,7 @@ bool E4::transition(Automaton *automaton, ValuableToken s) {
     case SEP:
       return automaton->shift(s, new E7());
     case END:
-      valuableToken t;
+      ValuableToken t;
       t.token = LD;
       return automaton->reduce(2, t, 2);
     default: return false; // Error !

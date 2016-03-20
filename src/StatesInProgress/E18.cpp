@@ -24,8 +24,11 @@ bool E18::transition(Automaton *automaton, ValuableToken s) {
       return automaton->shift(s, new E25());
     case WRITE:
       return automaton->shift(s, new E27());
-    case ENDFILE:
-      return ////////////////////////////////////////////////////// on est arrivé à la fin du programme
+    case END_OF_FILE:
+	  ValuableToken t;
+	  t.token = P;
+      //////////////////////////////// on est arrivé à la fin du programme
+	  return automaton->reduce(5, t, 2); // 5 pas sur
    	case LI:
    	  return automaton->shift(s, new E19());
     default: return false; // Error !
