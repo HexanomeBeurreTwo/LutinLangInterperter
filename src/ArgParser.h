@@ -14,8 +14,6 @@
 using namespace std;
 #include <string>
 
-#include <boost/program_options.hpp>
-
 // #include "Symbol.h"
 
 
@@ -23,13 +21,22 @@ class ArgParser
 {
     public:
         ~ArgParser();
-        ArgParser(string filePath);
+        ArgParser(int argc, char const *argv[]);
+        int discoverFlags(const int argc, char const *argv[]);
+        bool getPrintFlag();
+        bool getExecutionFlag();
+        bool getStaticAnalysisFlag();
+        bool getOptimizeFlag();
+        bool getError();
+        string getFilePath();
 
     private:
-        bool displayFlag;
+        bool printFlag;
         bool executionFlag;
         bool staticAnalysisFlag;
-        bool transformationFlag;
+        bool optimizeFlag;
+        bool error;
+        string filePath;
 };
 
 #endif // ARG_PARSER_H

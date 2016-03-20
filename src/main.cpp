@@ -1,4 +1,5 @@
 #include "Programme.h"
+#include "ArgParser.h"
 #include "Lexer.h"
 #include "Automaton.h"
 
@@ -29,7 +30,6 @@ string getFileContent(string pathfile)
 	return 	fileInput;
 }
 
-
 int main_x()
 {
     	
@@ -43,25 +43,56 @@ int main_x()
 	return 0;
 }
 
-
-int main()
+int main(int argc, char const *argv[])
 {
-    string file = "./bin/example.txt";
-    bool error;
+    string file;
+    int error = 0;
     // traiter les option -e -o -p ... et récuperer le nom du fichier
+    ArgParser* argParser = new ArgParser(argc, argv);
 
+    if (argParser->getError())
+    {
+    	return 1;
+    }
+
+    file = argParser->getFilePath();
     Lexer lexer(getFileContent(file));
+
     Programme programme;
     Automaton automate(&lexer,&programme);
-    error = automate.read();
-    // traiter erreur lexical et syntaxique selon de error
-    // si l'option est -e faire
-    error = programme.execute();
-    // traiter erreur excution selon error
-    //sinon si l'option est -a faire
-    cout << programme ;
-    //sion si l'optoin est -o faire
-    programme.optimize();
+
+    // error = automate.read();
+
+    /*	-p argument: Print code	*/
+    if (argParser->getPrintFlag())
+    {
+    	//Make necessary to print the code
+    	cout << "Hey" << endl;
+   		cout << programme ;
+    }
+
+    /*	-e argument: Execution	*/
+    if (argParser->getExecutionFlag())
+    {
+    	//Make necessary to execute program
+    	cout << "Hey" << endl;
+	    error = programme.execute();
+    }
+
+    /*	-a argument: Static analysis	*/
+    if (argParser->getStaticAnalysisFlag())
+    {
+    	//Make necessary to do a static analysis
+    	cout << "Hey" << endl;
+    }
+
+    /*	-o argument: Optimization	*/
+    if (argParser->getOptimizeFlag())
+    {
+    	//Make necessary to transform / optimize code
+    	cout << "Hey" << endl;
+    	programme.optimize();
+    }
 
     return error;
 }
