@@ -71,26 +71,33 @@ int main_x()
 }
 
 
-int main()   
+int main()    
 {
     string file = "./bin/example.lt";
-    bool error;
+    bool success;
     // traiter les option -e -o -p ... et r▒cuperer le nom du fichier
 
     Lexer lexer(getFileContent(file));
     lexer.analyseAll();
-        //cout << lexer.getCurrentToken().token << endl;
     Programme programme;
     Automaton automate(&lexer,&programme);
-    error = automate.read();
+    success = automate.read();
+	if(!success)
+	{
+		cerr << "erreur Syntaxique : construction automate " << endl;
+	}
     // traiter erreur lexical et syntaxique selon de error
     // si l'option est -e faire
-    //error = programme.execute();
+    success = programme.execute();
+	if(!success)
+	{
+		cerr << "erreur Symentique : execution programme " << endl;
+	}
     // traiter erreur excution selon error
     //sinon si l'option est -a faire
     cout << programme ;
     //sion si l'optoin est -o faire
     //programme.optimize();
 
-    return error;
+    return success;
 }

@@ -27,7 +27,7 @@ ValuableToken Lexer::getCurrentToken()	{
 
 ValuableToken Lexer::getNext()	{
 	lastTokenFetched = *(tokensList[cursor]);
-	consumeNext();// à enlever apres avoir fini les tests
+	//consumeNext();// à enlever apres avoir fini les tests
 	return lastTokenFetched;
 }
 

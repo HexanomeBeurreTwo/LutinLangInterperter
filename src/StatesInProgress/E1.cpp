@@ -11,10 +11,10 @@
 #include "../Tokens.h"
 
 #include "E1.h"
-// #include "E2.h"
-// #include "E5.h"
-// #include "E16.h"
-// #include "E18.h"
+#include "E2.h"
+#include "E5.h"
+#include "E16.h"
+#include "E18.h"
 
 E1::E1() : State() { }
 
@@ -28,13 +28,13 @@ bool E1::transition(Automaton *automaton, ValuableToken s) {
       t.token = PI;
       return automaton->reduce(0, t, 0);
     case VAR:
-      // return automaton->shift(s, new E2()); // fait implementer E2 d'abords
+		return automaton->shift(s, new E2()); 
     case CONST:
-      // return automaton->shift(s, new E5()); // fait implementer E5 d'abords
+		return automaton->shift(s, new E5()); 
     case PI:
-      // return automaton->shift(s, new E18());
+		return automaton->shift(s, new E18());
     case LD:
-      // return automaton->shift(s, new E16());
+		return automaton->shift(s, new E16());
     default: break; // Error !
   }
   return false;

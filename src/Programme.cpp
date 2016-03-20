@@ -148,5 +148,6 @@ void Programme::print(ostream& os)const
 
 bool Programme::execute()
 {
+	cout << "dans Programme::execute()" << endl;
     return partie_instruction.execute(partie_declaration.get_variables());
 }
