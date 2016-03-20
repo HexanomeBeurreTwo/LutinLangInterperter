@@ -67,7 +67,6 @@ int main(int argc, char const *argv[])
     if (argParser->getPrintFlag())
     {
     	//Make necessary to print the code
-    	cout << "Hey" << endl;
    		cout << programme ;
     }
 
@@ -75,7 +74,6 @@ int main(int argc, char const *argv[])
     if (argParser->getExecutionFlag())
     {
     	//Make necessary to execute program
-    	cout << "Hey" << endl;
 	    error = programme.execute();
     }
 
@@ -83,14 +81,12 @@ int main(int argc, char const *argv[])
     if (argParser->getStaticAnalysisFlag())
     {
     	//Make necessary to do a static analysis
-    	cout << "Hey" << endl;
     }
 
     /*	-o argument: Optimization	*/
     if (argParser->getOptimizeFlag())
     {
     	//Make necessary to transform / optimize code
-    	cout << "Hey" << endl;
     	programme.optimize();
     }
 
