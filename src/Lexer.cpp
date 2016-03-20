@@ -21,14 +21,19 @@ const regex identifier(identifier_str);
 const regex number(number_str);
 const regex operators(operators_str);
 
+ValuableToken Lexer::getCurrentToken()	{
+	return lastTokenFetched;
+}
+
 ValuableToken Lexer::getNext()	{
 	lastTokenFetched = *(tokensList[cursor]);
-	return *(tokensList[cursor]);
+	//consumeNext();// à enlever apres avoir fini les tests
+	return lastTokenFetched;
 }
 
 bool Lexer::consumeNext()	{
 	//If INVALID
-	if (hasNext() && tokensList[cursor+1]->token != INVALID)
+	if ( hasNext() ) //&& tokensList[cursor+1]->token != INVALID)
 	{
 		cursor++;
 		return true;
@@ -37,7 +42,7 @@ bool Lexer::consumeNext()	{
 }
 
 bool Lexer::hasNext()	{
-	return (cursor+1) < tokensList.size();
+	return (cursor +1) < tokensList.size();
 }
 
 void Lexer::leftTrim(string &inputString)	{
@@ -217,9 +222,7 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 	return true;
 }
 
-ValuableToken Lexer::getCurrentToken()	{
-	return lastTokenFetched;
-}
+
 
 Lexer::Lexer(string inputString) : fileLines(inputString)	{
 

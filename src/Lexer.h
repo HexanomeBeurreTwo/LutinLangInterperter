@@ -37,7 +37,7 @@ class Lexer
     private:
         string fileLines;
         ValuableToken lastTokenFetched;
-        int cursor;
+        unsigned int cursor;
         // TODO: replace with struct cursor
         int line;
         int column;

@@ -14,7 +14,7 @@ $(SRC)/PartieInstruction.h \
 $(SRC)/Programme.h \
 $(SRC)/Automaton.h \
 $(SRC)/States/E0.h \
-$(SRC)/States/E1.h
+$(SRC)/States/E1.h 
 SOURCE= $(INT:.h=.cpp) $(SRC)/main.cpp
 HEADER= $(INT) $(SRC)/Instruction.h $(SRC)/Symbol.h $(SRC)/Tokens.h $(SRC)/State.h $(SRC)/Declaration.h
 OBJECT=$(patsubst $(SRC)/%.cpp,$(OBJ)/%.o,$(SOURCE)) 
@@ -25,7 +25,7 @@ OBJ_DIR=$(OBJ)/States
 BIN_DIR=bin 
 DLL=bin/boost_regex.dll
 PROG=bin/LUT
-CRAP=*~ */*~ */*/*~
+CREP=*~ */*~ */*/*~
 #LIB=lib/libboost_regex.a
 
 #Directive
@@ -38,7 +38,7 @@ all: $(OBJ_DIR) $(BIN_DIR) $(DLL) $(PROG)
 #Regles
 $(PROG): $(OBJECT)
 	$(ECHO) "             Edition des liens < $(PROG) >"
-	$(CC) -o $@ $(FLAGS)  $+ $(LIB) -lboost_regex
+	$(CC) -o $@ $(FLAGS)  $+ $(LIB) -L./lib -lboost_regex
 	$(ECHO) "<$@> Ok ..."
 
 
@@ -57,7 +57,7 @@ $(DLL):
 
 $(CLEAN):
 	$(ECHO) "             Nettoyage .."
-	rm -f $(OBJECT) $(PROG) $(CRAP) corc 
+	rm -f $(OBJECT) $(PROG) $(CREP) corc 
 
 $(OBJ)/main.o: $(SRC)/Programme.h $(SRC)/Lexer.h $(SRC)/Automaton.h
 $(OBJ)/Affectation.o: $(SRC)/Affectation.h $(SRC)/Declaration.h $(SRC)/DeclarationConst.h $(SRC)/DeclarationVariable.h $(SRC)/Symbol.h $(SRC)/Expression.h
