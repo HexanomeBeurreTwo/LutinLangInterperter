@@ -24,9 +24,11 @@ bool Ecrire::execute(Declrs & variables)
     else{ // Error Variable non déclarée
         return false;
     }*/
-	double valeur = expression -> Evaluation(variables);
-	cout << valeur <<endl;
-	return true;
+	bool error;
+	double value;
+	error = expression -> Evaluation(&value,variables);
+	if(error) cout << value <<endl;
+	return error;
 }
 
 void Ecrire::print(ostream& os) const

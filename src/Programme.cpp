@@ -12,6 +12,7 @@
 
 #define VALUE_AS(x,type) *((type*)x.value)
 
+
 bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol)
 {
     ValuableToken tokens[countSymbol];
