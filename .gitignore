@@ -3,3 +3,4 @@ CMakeFiles/*
 Makefile
 makefile
 cmake_install.cmake
+bin/lut
