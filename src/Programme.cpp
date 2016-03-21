@@ -26,13 +26,13 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         tokens[i] = str;
     }
 	
-	cout << "###### reduce rule "<< symbol <<" -> ";
+	cout << "~~~~~~~~~REDUCE~~~~~~~~"<< endl << symbol <<" ==> ";
     for(int i=0;i< countSymbol;i++)
     {
         str = tokens[i] ;
 		cout << str;
     }
-	cout << "\n#######fin stack_symbol " << endl;
+	cout << "\n~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	
 	symbolStack->push(symbol);
 	
@@ -97,7 +97,13 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         break;
 
     case E :
-            if(countSymbol == 3 )
+			if(countSymbol == 3 && tokens[0].token == OPENBY)
+            // rule 20: E -> ( E )
+            {
+                e1 = expressions.front();expressions.pop_front();
+                expressions.push_back(new Parentese(e1));
+            }
+            else if(countSymbol == 3 )
             {
                 e1 = expressions.front();expressions.pop_front();
                 e2 = expressions.front();expressions.pop_front();
@@ -121,12 +127,6 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
                 {
                     expressions.push_back(new OperateurMul(e1,e2));
                 }
-            }
-            else if(countSymbol == 3 && tokens[0].token == OPENBY)
-            // rule 20: E -> ( E )
-            {
-                e1 = expressions.front();expressions.pop_front();
-                expressions.push_back(new Parentese(e1));
             }
             else if(countSymbol == 1)
             {
@@ -160,8 +160,9 @@ void Programme::print(ostream& os)const
     os << partie_declaration << partie_instruction ;
 }
 
+
+
 bool Programme::execute()
 {
-	cout << "dans Programme::execute()" << endl;
     return partie_instruction.execute(partie_declaration.get_variables());
 }

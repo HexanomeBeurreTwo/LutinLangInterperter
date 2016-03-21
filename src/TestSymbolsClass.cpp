@@ -117,6 +117,7 @@ int main() {
     succes = succes && PD->add_declaration(new DeclarationVariable("rayon"));
     succes = succes && PD->add_declaration(new DeclarationVariable("hauteur"));
     succes = succes && PD->add_declaration(new DeclarationVariable("VolumeCylindre"));
+	succes = succes && PD->add_declaration(new DeclarationVariable("a"));
 
     if(!succes)
     {
@@ -124,7 +125,7 @@ int main() {
         return 1;
     }
 
-    //PD->print();
+  
     cout << *PD;
 
 
@@ -132,14 +133,20 @@ int main() {
     PI->add_instruction(new Lire(new Variable("hauteur")));
     Expression* e = new OperateurMul(new Variable("hauteur"),new OperateurMul(new Variable("pi"),new OperateurMul(new Variable("rayon"),new Variable("rayon"))));
     PI->add_instruction(new Affectation(e,new Variable("VolumeCylindre")));
-    PI->add_instruction(new Ecrire(new Variable("VolumeCylindre")));
-	PI->add_instruction(new Ecrire(new OperateurPlus(new OperateurDiv(new Valeur(4),new Variable("VolumeCylindre")), new Parentese(new OperateurMoins(new Variable("rayon"),new Valeur(1.1))))));
-  //  PI->print();
+    //PI->add_instruction(new Ecrire(new Variable("VolumeCylindre")));
+	//PI->add_instruction(new Ecrire(new OperateurPlus(new OperateurDiv(new Valeur(4),new Variable("VolumeCylindre")), new Parentese(new OperateurMoins(new Variable("rayon"),new Valeur(1.1))))));
+  
+	//"a := (c+d)*3-5;";
+	Expression* e1 = new OperateurMoins(new OperateurMul(new Parentese(new OperateurPlus(new Variable("pi"),new Variable("pi"))),new Valeur(3)),new Valeur(5));
+	//PI->add_instruction(new Ecrire(e1));
+	PI->add_instruction(new Affectation(e1,new Variable("a")));
+	PI->add_instruction(new Ecrire(new Variable("a")));
+  
     cout << *PI;
 
     succes = PI->execute(PD->get_variables());
 
-    if(!succes)
+    if(!succes) 
     {
         cout << "Erreur d'execution" << endl;
         return 1;

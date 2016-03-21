@@ -25,6 +25,7 @@ class Programme
         deque<Expression*> expressions; // une file d'expression ordonnée selon date creation
         PartieInstruction partie_instruction;
         PartieDeclarative partie_declaration;
+		
 
     friend ostream& operator<< (ostream& os, const Programme& programme)
     {

@@ -68,14 +68,15 @@ int main()
 			tmp += "const c = 44;";
 			tmp += "const d = 6;";
 			tmp += "const s=8,t=2;";
+			tmp += "a := 1;";
 			tmp += "a := (c+d)*3-5;";
-			//tmp += "ecrire a;";
-			//tmp += "lire b;";
-			//tmp += "ecrire a*b;";
-			//tmp += "e := b+d;";
-			//tmp += "ecrire e;";	
-	//tmp = "var a,b;";
-    Lexer lexer(tmp);
+			tmp += "ecrire a;";
+			tmp += "lire b;";
+			tmp += "ecrire a*b;";
+			tmp += "e := b+d;";
+			tmp += "ecrire e;";	
+	
+    Lexer lexer(tmp);  
     lexer.analyseAll();
     Programme programme;
     Automaton automate(&lexer,&programme);
@@ -87,10 +88,14 @@ int main()
 	}
     // traiter erreur excution selon error
     //sinon si l'option est -a faire
+	cout << "~~~~~~~AFFICHAGE~~~~~~~"<< endl;
     cout << programme ;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	// traiter erreur lexical et syntaxique selon de error
     // si l'option est -e faire
+	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
     success = programme.execute();
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	if(!success)
 	{
 		cerr << "erreur Symentique : execution programme " << endl;
