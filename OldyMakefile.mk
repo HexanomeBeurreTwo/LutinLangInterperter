@@ -3,7 +3,7 @@ CC=g++
 SRC=src
 OBJ=obj
 MAIN=TestLexer
-STATES=StatesInProgress
+STATES=States
 STATECLASS=$(wildcard  $(SRC)/$(STATES)/*.h)
 INT=$(SRC)/Affectation.h \
 $(SRC)/DeclarationConst.h \

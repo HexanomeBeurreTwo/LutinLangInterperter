@@ -7,9 +7,6 @@
 
 
 
-
-
-
 class Expression  : public Symbol{
    public:
       Expression(Tokens id_symb):Symbol(id_symb){};
@@ -17,6 +14,7 @@ class Expression  : public Symbol{
       virtual ~Expression(){};
       virtual void print(ostream& os) const  = 0;
       virtual double Evaluation(const Declrs & variables) = 0;
+	  // faut refaire cette fonction
 };
 
 class Valeur: public Expression {

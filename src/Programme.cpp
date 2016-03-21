@@ -24,6 +24,17 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         symbolStack->pop();
         tokens[i] = str;
     }
+	
+	cout << "###### reduce rule "<< symbol <<" -> ";
+    for(int i=0;i< countSymbol;i++)
+    {
+        str = tokens[i] ;
+		cout << str;
+    }
+	cout << "\n#######fin stack_symbol " << endl;
+	
+	symbolStack->push(symbol);
+	
     switch(symbol.token){ /** on fait rien dans certaines regles, car c'est déjà fait dans d'autres regles **/
     case P : // rule 1: P -> PD PI
         break;//on fait rien
@@ -49,9 +60,11 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
                 partie_instruction.add_instruction(new Affectation(e1,new Variable(VALUE_AS(tokens[0],string))));
             }
             else if(countSymbol == 2 && tokens[0].token == WRITE )
-            // rule 9: LI -> write id
+            // rule 9: LI -> write E
             {
-                partie_instruction.add_instruction(new Ecrire(new Variable(VALUE_AS(tokens[1],string))));
+                //partie_instruction.add_instruction(new Ecrire(new Variable(VALUE_AS(tokens[1],string))));
+				e1 = expressions.front();expressions.pop_front();
+				partie_instruction.add_instruction(new Ecrire(e1));
             }
             else if(countSymbol == 2 && tokens[0].token == READ)
             // rule 10: LI -> read id

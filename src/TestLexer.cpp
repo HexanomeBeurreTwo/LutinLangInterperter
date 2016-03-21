@@ -64,14 +64,17 @@ int main()
 
 	//string* contentFile = getFileContent(file);
 	string  tmp = "var a,b;";
+			tmp += "var e;";
 			tmp += "const c = 44;";
 			tmp += "const d = 6;";
-			tmp += "var e;";
+			tmp += "const s=8,t=2;";
 			tmp += "a := (c+d)*3-5;";
-			tmp += "lire b;";
-			tmp += "ecrire a*b;";
-			tmp += "e := b+d;";
-			tmp += "ecrire e;";				
+			//tmp += "ecrire a;";
+			//tmp += "lire b;";
+			//tmp += "ecrire a*b;";
+			//tmp += "e := b+d;";
+			//tmp += "ecrire e;";	
+	//tmp = "var a,b;";
     Lexer lexer(tmp);
     lexer.analyseAll();
     Programme programme;
@@ -80,17 +83,19 @@ int main()
 	if(!success)
 	{
 		cerr << "erreur Syntaxique : construction automate " << endl;
+		return 1;
 	}
-    // traiter erreur lexical et syntaxique selon de error
+    // traiter erreur excution selon error
+    //sinon si l'option est -a faire
+    cout << programme ;
+	// traiter erreur lexical et syntaxique selon de error
     // si l'option est -e faire
     success = programme.execute();
 	if(!success)
 	{
 		cerr << "erreur Symentique : execution programme " << endl;
+		return 1;
 	}
-    // traiter erreur excution selon error
-    //sinon si l'option est -a faire
-    cout << programme ;
     //sion si l'optoin est -o faire
     //programme.optimize();
 
