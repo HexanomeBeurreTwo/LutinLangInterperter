@@ -9,19 +9,19 @@
 using namespace std;
 
 string* getFileContent(string pathfile);
-int main_x()
-{
-		string file = "./bin/example.lt";
-        // Create Lexer instance with it
-		string* cotentFile = getFileContent(file);
-		Lexer lex(*cotentFile);
+// int main_x()
+// {
+// 		string file = "./bin/example.lt";
+//         // Create Lexer instance with it
+// 		string* cotentFile = getFileContent(file);
+// 		Lexer lex(*cotentFile);
 
-        if(lex.analyseAll())    {
-                cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
-        }
+//         if(lex.analyseAll())    {
+//                 cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
+//         }
 
-        return 0;
-}
+//         return 0;
+// }
 
 
 

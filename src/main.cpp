@@ -10,7 +10,7 @@
 using namespace std;
 
 
-string getFileContent(string pathfile)
+string getFileContent_x(string pathfile)
 {
 	string line = "";
 	string fileInput = "";
@@ -27,14 +27,14 @@ string getFileContent(string pathfile)
 		cout << "Error reading the file" << endl;
 	}
 
-	return 	fileInput;
+	return fileInput;
 } 
 
 int main_x()
 {
     	
 	// Create Lexer instance with it
-	Lexer lex = Lexer(getFileContent("./bin/example.txt"));
+	Lexer lex = Lexer(getFileContent_x("./bin/example.txt"));
 
 	if(lex.analyseAll())	{
 		cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
@@ -43,7 +43,7 @@ int main_x()
 	return 0;
 }
 
-int main(int argc, char const *argv[])
+int main_y(int argc, char const *argv[])
 {
     string file;
     int error = 0;
@@ -56,7 +56,7 @@ int main(int argc, char const *argv[])
     }
 
     file = argParser->getFilePath();
-    Lexer lexer(getFileContent(file));
+    Lexer lexer(getFileContent_x(file));
 
     Programme programme;
     Automaton automate(&lexer,&programme);
