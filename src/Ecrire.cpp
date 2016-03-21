@@ -7,7 +7,9 @@
 //Instruction(WRITE),expression(exp){};
 
 
-Ecrire::~Ecrire(){}
+Ecrire::~Ecrire(){
+	delete expression;
+}
 
 
 bool Ecrire::execute(Declrs & variables)

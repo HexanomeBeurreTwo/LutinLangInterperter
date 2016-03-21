@@ -14,7 +14,7 @@ class Expression  : public Symbol{
       virtual ~Expression(){};
       virtual void print(ostream& os) const  = 0;
       virtual bool Evaluation(double* res,const Declrs & variables) = 0;
-	  // faut refaire cette fonction
+	  
 };
 
 class Valeur: public Expression {

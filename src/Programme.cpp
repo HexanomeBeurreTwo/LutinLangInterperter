@@ -26,12 +26,13 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         tokens[i] = str;
     }
 	
-	cout << "~~~~~~~~~REDUCE~~~~~~~~"<< endl << symbol <<" ==> ";
+	cout << "~~~~~~~~~REDUCE~~~~~~~~"<< endl << symbol <<"  ==> " << endl;
     for(int i=0;i< countSymbol;i++)
     {
         str = tokens[i] ;
 		cout << str;
     }
+	if(countSymbol ==0 ) cout << "---ε--" << endl;
 	cout << "\n~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	
 	symbolStack->push(symbol);
@@ -166,3 +167,16 @@ bool Programme::execute()
 {
     return partie_instruction.execute(partie_declaration.get_variables());
 }
+
+
+Programme::~Programme()
+{
+	Expression *e;
+	while (!expressions.empty())
+	{
+		e = expressions.front();
+		expressions.pop_front();
+		delete e;
+	}
+}
+

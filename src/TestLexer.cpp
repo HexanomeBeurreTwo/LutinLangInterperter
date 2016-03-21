@@ -8,7 +8,7 @@
 #include <fstream>
 using namespace std;
 
-string* getFileContent(string pathfile);
+string getFileContent(string pathfile);
 // int main_x()
 // {
 // 		string file = "./bin/example.lt";
@@ -26,7 +26,7 @@ string* getFileContent(string pathfile);
 
 
 
-string* getFileContent(string pathfile)
+string getFileContent(string pathfile)
 {
         string line ;
         string tmp;
@@ -50,17 +50,17 @@ string* getFileContent(string pathfile)
 			 <<   tmp << endl
 			 <<"#####" << endl;
 		
-		string* fileInput = new string(tmp);
-        return  fileInput;
+		//string* fileInput = new string(tmp);
+        return  tmp;
 }
 
 
 
 int main()    
 {
-    string file = "./bin/example.lt";
+    string file("./bin/example.lt");
     bool success;
-    // traiter les option -e -o -p ... et r▒cuperer le nom du fichier
+    // traiter les option -e -o -p ... et recuperer le nom du fichier
 
 	//string* contentFile = getFileContent(file);
 	string  tmp = "var a,b;";
@@ -75,6 +75,8 @@ int main()
 			tmp += "ecrire a*b;";
 			tmp += "e := b+d;";
 			tmp += "ecrire e;";	
+	
+	//tmp = "sdf var F";
 	
     Lexer lexer(tmp);  
     lexer.analyseAll();
