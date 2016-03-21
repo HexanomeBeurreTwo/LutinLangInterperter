@@ -24,38 +24,12 @@ int main_x()
 }
 
 
-ostream& operator<< (ostream& os, const ValuableToken& t){
-        switch(t.token){
-                case VAR : os << "---VAR--" << endl; break;
-                case CONST : os << "---CONST--" << endl; break;
-                case AFFECT : os << "---AFFECT--" << endl; break;
-                case EQUAL : os << "---EQUAL--" << endl; break;
-                case SEP : os << "---SEP--" << endl; break;
-                case WRITE : os << "---WRITE--" << endl; break;
-                case READ : os << "---READ--" << endl; break;
-                case END : os << "---END--" << endl; break;
-                case ID : os << "---ID--" << endl; break;
-                case VAL : os << "---VAL--" << endl; break;
-                case MINUS : os << "---MINUS--" << endl; break;
-                case OPENBY : os << "---OPENBY--" << endl; break;
-                case CLOSEBY : os << "---CLOSEBY--" << endl; break;
-                case MULT : os << "---MULT--" << endl; break;
-                case DIVIDE : os << "---DIVIDE--" << endl; break;
-                case PLUS : os << "---PLUS--" << endl; break;
-                case INVALID : os << "---INVALID--" << endl; break;
-                case END_OF_FILE : os << "---END_OF_FILE--" << endl; break;
-
-                default : os << "Indefined !" << endl;
-        }
-        return os;
-}
 
 
 string* getFileContent(string pathfile)
 {
         string line ;
         string tmp;
-		string tmp1;
         ifstream myfile;
         myfile.open(pathfile);
         if (myfile)
@@ -63,8 +37,7 @@ string* getFileContent(string pathfile)
 			while ( getline (myfile,line) )
 			{
 			  cout << line << endl;
-			  tmp1 = tmp;
-			  tmp = tmp1 + line;
+			  tmp +=  line;
 			  //cout << tmp << endl;
 			}
 			myfile.close();
@@ -89,8 +62,17 @@ int main()
     bool success;
     // traiter les option -e -o -p ... et r▒cuperer le nom du fichier
 
-	string* contentFile = getFileContent(file);
-    Lexer lexer(*contentFile);
+	//string* contentFile = getFileContent(file);
+	string  tmp = "var a,b;";
+			tmp += "const c = 44;";
+			tmp += "const d = 6;";
+			tmp += "var e;";
+			tmp += "a := (c+d)*3-5;";
+			tmp += "lire b;";
+			tmp += "ecrire a*b;";
+			tmp += "e := b+d;";
+			tmp += "ecrire e;";				
+    Lexer lexer(tmp);
     lexer.analyseAll();
     Programme programme;
     Automaton automate(&lexer,&programme);

@@ -11,6 +11,7 @@
 #include "E27.h"
 #include "E37.h"
 #include "E40.h"
+#include "E24.h"
 #include "E28.h"
 
 E27::E27() : State() { }
@@ -23,6 +24,8 @@ bool E27::transition(Automaton *automaton, ValuableToken s) {
     	return automaton->shift(s, new E40());
     case E:
       return automaton->shift(s, new E28());
+	case ID:
+	  return automaton->shift(s,new E24());
     default: return false; // Error !
   }
   return false;

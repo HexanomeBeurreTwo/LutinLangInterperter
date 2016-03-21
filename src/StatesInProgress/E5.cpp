@@ -24,7 +24,8 @@ bool E5::transition(Automaton *automaton, ValuableToken s) {
     case D:
       return automaton->shift(s, new E9());
       break;
-    default: return false; // Error !
+    default: 
+		return false; // Error !
   }
   return false;
 }

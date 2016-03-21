@@ -16,9 +16,10 @@ $(SRC)/PartieDeclarative.h \
 $(SRC)/PartieInstruction.h \
 $(SRC)/Programme.h \
 $(SRC)/Automaton.h \
+$(SRC)/Tokens.h \
 $(STATECLASS)
 SOURCE= $(INT:.h=.cpp) $(SRC)/$(MAIN).cpp
-HEADER= $(INT) $(SRC)/Instruction.h $(SRC)/Symbol.h $(SRC)/Tokens.h $(SRC)/State.h $(SRC)/Declaration.h
+HEADER= $(INT) $(SRC)/Instruction.h $(SRC)/Symbol.h $(SRC)/State.h $(SRC)/Declaration.h
 OBJECT=$(patsubst $(SRC)/%.cpp,$(OBJ)/%.o,$(SOURCE)) 
 FLAGS=-Wall -fexceptions -std=c++11 -Isrc
 CLEAN=clean

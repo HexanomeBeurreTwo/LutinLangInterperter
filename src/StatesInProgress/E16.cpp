@@ -15,7 +15,7 @@ E16::E16() : State() { }
 bool E16::transition(Automaton *automaton, ValuableToken s) {
   switch(s.token) {
     case END:
-      automaton->shift(s, new E17());
+      return automaton->shift(s, new E17());
       break;
     default: return false; // Error !
   }
