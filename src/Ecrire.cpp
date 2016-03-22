@@ -38,7 +38,7 @@ void Ecrire::print(ostream& os) const
 	//cout << "ecrire ";
 	//variable->print();
 	//cout <<";";
-	os << "ecirre " << *expression << ";" ;
+	os << "ecrire " << *expression << ";" ;
 }
 
 

@@ -61,13 +61,12 @@ int main()
     // traiter les option -e -o -p ... et recuperer le nom du fichier
 
 	//string* contentFile = getFileContent(file);
-	string  tmp =  "var a,b;";
-			tmp += "lire b;";
+	string  tmp =  "var a,e;";
 			tmp += "const c = 44.1;";
-			tmp += "a := (c+d)*3-5;";
+			tmp += "a := (c+c)*3-5;";
 			tmp += "ecrire a;";
-			tmp += "ecrire a*b;";
-			tmp += "e := b+d;";
+			tmp += "ecrire a*c;";
+			tmp += "e := c+a;";
 			tmp += "ecrire e;";	
 	
 	//tmp = "sdf var F";
