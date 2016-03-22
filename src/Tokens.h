@@ -1,4 +1,4 @@
-
+ 
 //
 //  LutinLangInterperter
 //  Tokens.h
@@ -10,6 +10,9 @@
 
 #ifndef TOKENS
 #define TOKENS
+
+#include <iostream>
+using namespace std;
 
 typedef enum {
 	//Terminal Symbols
@@ -39,7 +42,6 @@ typedef enum {
 	PI,
 	LI,
 	E,
-
 	//Other
 	INVALID,
 	END_OF_FILE
@@ -50,6 +52,13 @@ typedef struct {
     void* value;
 } ValuableToken;
 
+typedef struct {
+    int line;
+    int column;
+} cursor;
+
+ostream& operator<< (ostream& os, const ValuableToken& t);
+bool is_terminal_token(const ValuableToken& t);
 
 #endif  // TOKENS
 

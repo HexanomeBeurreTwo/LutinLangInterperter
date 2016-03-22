@@ -19,7 +19,6 @@ using namespace std;
 
 // #include "Symbol.h"
 
-
 class Lexer
 {
     public:
@@ -29,7 +28,7 @@ class Lexer
         ValuableToken getNext();
         bool consumeNext();
         bool hasNext();
-        bool analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword);
+        bool analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword, int &size);
         bool analyseAll();
         ValuableToken getCurrentToken();
         vector<ValuableToken*> tokensList;
@@ -37,8 +36,9 @@ class Lexer
     private:
         string fileLines;
         ValuableToken lastTokenFetched;
-        int cursor;
+        unsigned int cursor;
         // TODO: replace with struct cursor
+        // vector<cursor> cursorList;
         int line;
         int column;
 };

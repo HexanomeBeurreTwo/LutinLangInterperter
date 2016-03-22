@@ -8,11 +8,11 @@ E1:P->PD .PI\r\nPD->PD .LD end\r\nLD->.var LV\r\nLD->.const LC\r\nPI->.PI LI end
 E2:LD->var .LV\r\nLV->.LV sep id\r\nLV->.id
 E3:LV->id.
 E4:LD->var LV.\r\nLV->LV .sep id
-E5:LP->const .LC\r\nLC->.LC sep D\r\nLC->.D\r\nD->.id equal val
+E5:LD->const .LC\r\nLC->.LC sep D\r\nLC->.D\r\nD->.id equal val
 E7:LV->LV sep .id
 E8:LV->LV sep id.
 E9:LC->D.
-E10:LP->const LC.\r\nLC->LC .sep D
+E10:LD->const LC.\r\nLC->LC .sep D
 E11:LC->LC sep .D\r\nD->.id equal val
 E12:LC->LC sep D.
 E13:D->id .equal val

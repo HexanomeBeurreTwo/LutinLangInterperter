@@ -10,7 +10,7 @@
 #define STATE_E1_H_
 
 #include "../State.h"
-#include "../Symbol.h"
+#include "../Tokens.h"
 #include "../Automaton.h"
 
 class E1 : public State {

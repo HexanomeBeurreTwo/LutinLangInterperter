@@ -25,8 +25,11 @@ bool Affectation::execute(Declrs & variables)
     {
         if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(variables[nom]))
         {
-            v->affect(this->expression->Evaluation(variables));
-            return true;
+			bool error;
+			double value;
+			error = this->expression->Evaluation(&value,variables);
+            if (error) v->affect(value);
+            return error;
         }
         return false; // Error : affectaion de const !
     }

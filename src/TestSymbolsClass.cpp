@@ -13,7 +13,7 @@ using namespace std;
 #include "Ecrire.h"
 
 
-void test1()
+int main_ut()
 {
     Expression *e;
     Variable* x = new Variable("x");
@@ -29,14 +29,14 @@ void test1()
     cout << *vars["x"];
 
 	Affectation affectation1(val2,y) ;
-	affectation1.execute(vars);
+	//affectation1.execute(vars);
 	//affectation1.print();
 	cout << affectation1;
 
     e = new OperateurPlus(new OperateurDiv(val2,x), new Parentese(new OperateurMoins(y,new Valeur(1.1))));
 
     Affectation affectation2(e,y) ;
-    affectation2.execute(vars);
+    //affectation2.execute(vars);
 	//affectation2.print();
 	cout << affectation2;
 
@@ -44,7 +44,7 @@ void test1()
     Lire* in = new Lire(new Variable("z"));
     //in -> print();
     cout << in ;
-    in->execute(vars);
+    //in->execute(vars);
 
     /*Ecrire* out = new Ecrire(new Variable("y"));
     out->print();
@@ -54,18 +54,18 @@ void test1()
     //out->print();
     //out->execute(vars);
 
-    delete e;
+    //delete e;
     //delete in;
-    delete x;
-    delete y;
+    //delete x;
+    //delete y;
     //delete out;
-    delete val2;
+    //delete val2;
 
-
+	return 1;
 }
 
 
-int test2() {
+int main_y() {
     PartieDeclarative* PD = new PartieDeclarative();
     PartieInstruction* PI = new PartieInstruction();
     bool succes ;
@@ -108,7 +108,7 @@ int test2() {
 }
 
 
-int main_y() {
+int main_c() {
     PartieDeclarative* PD = new PartieDeclarative();
     PartieInstruction* PI = new PartieInstruction();
     bool succes ;
@@ -117,6 +117,7 @@ int main_y() {
     succes = succes && PD->add_declaration(new DeclarationVariable("rayon"));
     succes = succes && PD->add_declaration(new DeclarationVariable("hauteur"));
     succes = succes && PD->add_declaration(new DeclarationVariable("VolumeCylindre"));
+	succes = succes && PD->add_declaration(new DeclarationVariable("a"));
 
     if(!succes)
     {
@@ -124,7 +125,7 @@ int main_y() {
         return 1;
     }
 
-    //PD->print();
+  
     cout << *PD;
 
 
@@ -132,14 +133,20 @@ int main_y() {
     PI->add_instruction(new Lire(new Variable("hauteur")));
     Expression* e = new OperateurMul(new Variable("hauteur"),new OperateurMul(new Variable("pi"),new OperateurMul(new Variable("rayon"),new Variable("rayon"))));
     PI->add_instruction(new Affectation(e,new Variable("VolumeCylindre")));
-    PI->add_instruction(new Ecrire(new Variable("VolumeCylindre")));
-
-  //  PI->print();
+    //PI->add_instruction(new Ecrire(new Variable("VolumeCylindre")));
+	//PI->add_instruction(new Ecrire(new OperateurPlus(new OperateurDiv(new Valeur(4),new Variable("VolumeCylindre")), new Parentese(new OperateurMoins(new Variable("rayon"),new Valeur(1.1))))));
+  
+	//"a := (c+d)*3-5;";
+	Expression* e1 = new OperateurMoins(new OperateurMul(new Parentese(new OperateurPlus(new Variable("pi"),new Variable("pi"))),new Valeur(3)),new Valeur(5));
+	//PI->add_instruction(new Ecrire(e1));
+	PI->add_instruction(new Affectation(e1,new Variable("a")));
+	PI->add_instruction(new Ecrire(new Variable("a")));
+  
     cout << *PI;
 
     succes = PI->execute(PD->get_variables());
 
-    if(!succes)
+    if(!succes) 
     {
         cout << "Erreur d'execution" << endl;
         return 1;

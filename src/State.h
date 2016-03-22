@@ -13,12 +13,16 @@
 class Automaton;
 
 #include "Tokens.h"
+#include <iostream>
+using namespace std;
 
 class State {
  public:
     State() { }
     virtual bool transition(Automaton *automaton, ValuableToken t) = 0;
-    virtual int getStateNumber() = 0;
+    virtual int getStateNumber() =0 ;
+	
+	
 };
 
 

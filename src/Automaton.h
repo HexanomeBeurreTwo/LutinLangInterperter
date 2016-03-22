@@ -1,6 +1,6 @@
 #ifndef AUTOMATON_H
 #define AUTOMATON_H
-
+  
 #include <stack>
 #include "State.h"
 #include "Tokens.h"
@@ -16,8 +16,8 @@ class Automaton {
 
 		//int init (int nbParam, char * param[]);
 		bool read();
-		void shift(ValuableToken s, State* nextState);
-		bool reduce(int count, ValuableToken s, int coutSymbol);
+		bool shift(ValuableToken& s, State* nextState);
+		bool reduce(int count, ValuableToken& s, int coutSymbol);
 
 	private :
 
