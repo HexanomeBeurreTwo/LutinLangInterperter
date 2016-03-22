@@ -15,8 +15,8 @@ bool E9::transition(Automaton *automaton, ValuableToken s) {
     case SEP:
     case END:
       ValuableToken t;
-      t.token = LD;
-      return automaton->reduce(2, t, 1);
+      t.token = LC;
+      return automaton->reduce(1, t, 1);
       break;
     default: return false; // Error !
   }

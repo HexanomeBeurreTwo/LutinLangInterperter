@@ -28,7 +28,7 @@ class Lexer
         ValuableToken getNext();
         bool consumeNext();
         bool hasNext();
-        bool analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword);
+        bool analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword, int &size);
         bool analyseAll();
         ValuableToken getCurrentToken();
         vector<ValuableToken*> tokensList;

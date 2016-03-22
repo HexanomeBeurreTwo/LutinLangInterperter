@@ -5,11 +5,6 @@
 
 #include "Instruction.h"
 
-
-
-
-
-
 class Expression  : public Symbol{
    public:
       Expression(Tokens id_symb):Symbol(id_symb){};

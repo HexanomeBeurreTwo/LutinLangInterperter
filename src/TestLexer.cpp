@@ -64,10 +64,10 @@ int main()
 
 	//string* contentFile = getFileContent(file);
 	string  tmp = "var a,b;";
-			tmp += "const c = 44;";
+			tmp += "const c = 44.1;";
 			tmp += "const d = 6;";
 			tmp += "var e;";
-			tmp += "a := (c+d)*3-5;";
+			tmp += "a := 5/(3);";
 			tmp += "lire b;";
 			tmp += "ecrire a*b;";
 			tmp += "e := b+d;";
