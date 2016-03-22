@@ -76,10 +76,10 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 			return ERROR_IN_COMMAND_LINE; 
 		}
 
-        if (vm.count("e")) executionFlag = true;
-        if (vm.count("a")) staticAnalysisFlag = true;
-        if (vm.count("o")) optimizeFlag = true;
-        if (vm.count("p")) printFlag = true;
+        if (vm.count("execute")){ executionFlag = true; cout << "HEY********" << endl;}
+        if (vm.count("analyse")) staticAnalysisFlag = true;
+        if (vm.count("optimize")) optimizeFlag = true;
+        if (vm.count("print")) printFlag = true;
 
 		if (vm.count("input")) {
 			sourceFile = vm["input"].as<std::string>();
