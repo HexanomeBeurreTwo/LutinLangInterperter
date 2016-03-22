@@ -183,15 +183,12 @@ Programme::~Programme()
 
  bool Programme::optimize(Programme* programme)
  {
-	 PartieInstruction partie_instruction_opz ;
 	 bool res;
 	 
-	 res =  partie_instruction.optimize(&partie_instruction_opz,partie_declaration.get_variables());
+	 res =  partie_instruction.optimize(&programme->partie_instruction,partie_declaration.get_variables());
 	 if(res) 
 	 {
-		 programme->partie_declaration.clear();
-		 cout << partie_instruction_opz ;
-		 //programme->partie_instruction = partie_instruction_opz;
+		programme->partie_declaration.clear();
 	 }
 	 return res;
  }

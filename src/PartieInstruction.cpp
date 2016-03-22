@@ -55,10 +55,9 @@ bool PartieInstruction::optimize(PartieInstruction *partie_instruction_opz,const
 			cerr << "PartieInstruction::optimize revoie false" << endl;
             return false;
         } else {
-			cerr << "optimisation réussie pour "<< (*inst) << endl;
-			//partie_instruction_opz -> add_instruction(inst);
-			
-			 
+			cerr <<"\t"<< *(*it) << " ==> "<< (*inst) <<  endl;
+			partie_instruction_opz -> add_instruction(inst);
+			//cout << *partie_instruction_opz;
 		}
     }
     return true;
@@ -66,11 +65,3 @@ bool PartieInstruction::optimize(PartieInstruction *partie_instruction_opz,const
 }
 
 
-PartieInstruction::PartieInstruction(const PartieInstruction& other): Symbol(PI)
-{
-	for (deque<Instruction*>::const_iterator it = other.instructions.begin(); it!=other.instructions.end(); ++it)
-    {
-		instructions.push_front(*it);
-    }
-	
-}
