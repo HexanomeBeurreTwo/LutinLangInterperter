@@ -188,7 +188,7 @@ Programme::~Programme()
 	 res =  partie_instruction.optimize(&programme->partie_instruction,partie_declaration.get_variables());
 	 if(res) 
 	 {
-		programme->partie_declaration.clear();
+		programme->partie_declaration.clone_vars(partie_declaration);
 	 }
 	 return res;
  }
