@@ -4,8 +4,8 @@
 
 
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
 using namespace std;
 
 string getFileContent(string pathfile);
@@ -22,8 +22,6 @@ string getFileContent(string pathfile);
 
 //         return 0;
 // }
-
-
 
 
 string getFileContent(string pathfile)
@@ -77,7 +75,7 @@ int main()
 			tmp += "ecrire e;";	
 	
 	//tmp = "sdf var F";
-	
+	//tmp = getFileContent(file);
     Lexer lexer(tmp);  
     lexer.analyseAll();
     Programme programme;
@@ -88,13 +86,11 @@ int main()
 		cerr << "erreur Syntaxique : construction automate " << endl;
 		return 1;
 	}
-    // traiter erreur excution selon error
-    //sinon si l'option est -a faire
+	
 	cout << "~~~~~~~AFFICHAGE~~~~~~~"<< endl;
     cout << programme ;
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
-	// traiter erreur lexical et syntaxique selon de error
-    // si l'option est -e faire
+	
 	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
     success = programme.execute();
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
@@ -103,7 +99,6 @@ int main()
 		cerr << "erreur Symentique : execution programme " << endl;
 		return 1;
 	}
-    //sion si l'optoin est -o faire
     //programme.optimize();
 
     return success;
