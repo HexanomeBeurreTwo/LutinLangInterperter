@@ -86,11 +86,24 @@ Grammar Rules
 -------
 
  + 1: `P -> PD PI`
- + 2: `D -> PD LD end | ε`
- + 3: `LD -> var LV | const LC`
- + 3: `PI -> PI LI end | ε`
- + 3: `LI -> id affect E | write E | read id`
- + 3: `LV -> LV sep id | id`
- + 3: `LC -> LC sep D | D`
- + 3: `D -> id equal val`
- + 3: `E -> E + E | E - E | E / E | E * E | ( E ) | id | val`
+ + 2: `PD -> PD LD end`
+ + 3: `PD -> ε`
+ + 4: `LD -> var LV`
+ + 5: `LD -> const LC`
+ + 6: `PI -> PI LI end`
+ + 7: `PI -> ε`
+ + 8: `LI -> id affect E`
+ + 9: `LI -> write E`
+ + 10: `LI -> read id`
+ + 11: `LV -> LV sep id`
+ + 12: `LV -> id`
+ + 13: `LC -> LC sep D`
+ + 14: `LC -> D`
+ + 15: `D -> id equal val`
+ + 16: `E -> E + E`
+ + 17: `E -> E - E`
+ + 18: `E -> E / E`
+ + 19: `E -> E * E`
+ + 20: `E -> ( E )`
+ + 21: `E -> id`
+ + 22: `E -> val`

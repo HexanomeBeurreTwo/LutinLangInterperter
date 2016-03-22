@@ -1,5 +1,6 @@
-var a,b; 
-const c = 4.4;
+var a;
+var b; 
+const c = 4;
 const d = 6;
 var e;
 a := (c+d)*3-5;

@@ -1,8 +1,8 @@
+
 #include "Programme.h"
 #include "ArgParser.h"
 #include "Lexer.h"
 #include "Automaton.h"
-
 
 #include <iostream>
 #include <string>
@@ -26,13 +26,12 @@ string getFileContent_x(string pathfile)
 	}	else	{
 		cout << "Error reading the file" << endl;
 	}
-
+    cout << fileInput << endl;
 	return fileInput;
 } 
 
 int main_x()
 {
-    	
 	// Create Lexer instance with it
 	Lexer lex = Lexer(getFileContent_x("./bin/example.txt"));
 
@@ -43,7 +42,7 @@ int main_x()
 	return 0;
 }
 
-int main_y(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
     string file;
     int error = 0;

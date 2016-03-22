@@ -93,5 +93,3 @@ bool Automaton::reduce(int count, ValuableToken& s, int coutSymbol ){
 		}
 		return res;
 }
-
-

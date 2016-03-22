@@ -1,7 +1,7 @@
  
 //
 //  LutinLangInterperter
-//  Symbol.h
+//  Tokens.h
 //
 //  Created by H4115 on 08/03/2016.
 //  Copyright (c) 2016 H4115. All rights reserved.
@@ -51,6 +51,11 @@ typedef struct {
     Tokens token;
     void* value;
 } ValuableToken;
+
+typedef struct {
+    int line;
+    int column;
+} cursor;
 
 ostream& operator<< (ostream& os, const ValuableToken& t);
 bool is_terminal_token(const ValuableToken& t);

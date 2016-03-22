@@ -8,6 +8,7 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 
 include_directories(./src/ ./src/States)
 
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 if (WIN32)
