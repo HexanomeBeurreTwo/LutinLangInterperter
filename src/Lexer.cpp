@@ -94,10 +94,10 @@ bool Lexer::analyseAll()	{
 		//Cursor update
 		column += numOfCharToRemove;
 
-		// Cursor currentCursor;
-		// currentCursor.line = line;
-		// currentCursor.column = column;
-		// cursorList.push_back(currentCursor);
+		Cursor currentCursor;
+		currentCursor.line = line;
+		currentCursor.column = column;
+		cursorList.push_back(currentCursor);
 	} while (inputToAnalyse.length() > 0);
 
 	ValuableToken *eof = new ValuableToken();
