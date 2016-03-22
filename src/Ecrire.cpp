@@ -41,7 +41,7 @@ void Ecrire::print(ostream& os) const
 	os << "ecrire " << *expression << ";" ;
 }
 
-bool Ecrire::optimize(Instruction** inst,const Declrs & variables) 
+bool Ecrire::optimize(Instruction** inst,Declrs & variables) 
 {
 	bool error;
 	double value;

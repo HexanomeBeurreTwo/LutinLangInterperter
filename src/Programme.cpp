@@ -185,10 +185,12 @@ Programme::~Programme()
  {
 	 bool res;
 	 
-	 res =  partie_instruction.optimize(&programme->partie_instruction,partie_declaration.get_variables());
+	 programme->partie_declaration.clone_vars(partie_declaration);
+	 
+	 res =  partie_instruction.optimize(&programme->partie_instruction,programme->partie_declaration.get_variables());
 	 if(res) 
 	 {
-		programme->partie_declaration.clone_vars(partie_declaration);
+		programme->partie_declaration.optimize();
 	 }
 	 return res;
  }

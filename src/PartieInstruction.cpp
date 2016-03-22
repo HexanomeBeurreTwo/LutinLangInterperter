@@ -44,7 +44,7 @@ bool PartieInstruction::execute(Declrs & variables)
 }
 
 
-bool PartieInstruction::optimize(PartieInstruction *partie_instruction_opz,const Declrs & variables)
+bool PartieInstruction::optimize(PartieInstruction *partie_instruction_opz, Declrs & variables)
 {
 	for (deque<Instruction*>::iterator it = instructions.begin(); it!=instructions.end(); ++it)
     {

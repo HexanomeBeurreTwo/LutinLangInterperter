@@ -40,7 +40,7 @@ void Lire::print(ostream& os) const
 }
 
 
-bool Lire::optimize(Instruction** inst,const Declrs & variables)
+bool Lire::optimize(Instruction** inst,Declrs & variables)
 {
 		Variable* var = new Variable(variable->get_nom());
 		*inst = new Lire(var);

@@ -1,6 +1,7 @@
 #include "PartieDeclarative.h"
 #include "Declaration.h"
 #include "DeclarationVariable.h"
+#include "DeclarationConst.h"
 #include "Symbol.h"
 #include <iostream>
 
@@ -51,7 +52,25 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
         if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(it->second))
         {
 			variables[v->get_nom()] = (new DeclarationVariable(v->get_nom()));
+			
+		} else if(DeclarationConst* v = dynamic_cast<DeclarationConst*>(it->second))
+		{	
+			variables[v->get_nom()] = (new DeclarationConst(v->get_nom(),v->get_valeur()));
 		}
+		
+    } 
+	
+ }
+ 
+ void PartieDeclarative::optimize()
+ {
+	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
+    {
+        if(DeclarationConst* v = dynamic_cast<DeclarationConst*>(it->second))
+        {
+			variables.erase(v->get_nom());
+		}
+		
     } 
 	
  }

@@ -21,7 +21,7 @@ class Instruction : public Symbol {
     virtual ~Instruction(){} ;
     virtual void print(ostream& os) const = 0;
     virtual bool execute(Declrs & variables) = 0;
-    virtual bool optimize(Instruction** inst,const Declrs & variables) = 0;
+    virtual bool optimize(Instruction** inst,Declrs & variables) = 0;
 
 
 };

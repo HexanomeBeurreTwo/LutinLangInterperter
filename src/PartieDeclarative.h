@@ -14,6 +14,7 @@ class PartieDeclarative : public Symbol
         void print(ostream& os) const ;
         Declrs& get_variables();
         void clone_vars(const PartieDeclarative& src);
+		void optimize();
 
     protected:
         Declrs variables;

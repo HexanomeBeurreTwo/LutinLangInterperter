@@ -26,7 +26,7 @@ class Affectation : public Instruction {
     virtual ~Affectation();
     void print(ostream& os) const;
     bool execute(Declrs & variables);
-    bool optimize(Instruction** inst,const Declrs & variables) ;
+    bool optimize(Instruction** inst,Declrs & variables) ;
 
  private :
     Expression *expression;

@@ -92,23 +92,33 @@ int main_io()
 	
 	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
     success = programme.execute();
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	if(!success)
 	{
 		cerr << "erreur Symentique : execution programme " << endl;
 		return 1;
 	}
-    
-    Programme pr2;
-    success =  programme.optimize(&pr2);
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	
+	cout << "~~~~~~~OPTIMISATION~~~~~"<< endl;
+    Programme prog_opz;
+    success =  programme.optimize(&prog_opz);
     if(!success)
 	{
 		cerr << "erreur optimisation  " << endl;
 		return 1;
 	} else{
-		cerr << "optimisation reussie  " << endl;
-		cout << pr2 ;
+		cout << prog_opz ;
 	}
-
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	
+	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
+    success = prog_opz.execute();
+	if(!success)
+	{
+		cerr << "erreur Symentique : execution programme " << endl;
+		return 1;
+	}
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	
     return success;
 }
