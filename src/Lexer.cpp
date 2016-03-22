@@ -70,6 +70,7 @@ void Lexer::leftTrim(string &inputString)	{
 
 bool Lexer::analyseAll()	{
 	string inputToAnalyse = fileLines;
+	int numOfCharToRemove;
 	// cout << "Analysis begin..." << endl;
 
 	do
@@ -80,26 +81,13 @@ bool Lexer::analyseAll()	{
 		ValuableToken *tokenFetched = new ValuableToken();
 		tokensList.push_back(tokenFetched);
 		string foundKeyword;
-		analyseNext(inputToAnalyse, tokensList.back(), foundKeyword);
+		numOfCharToRemove = 0;
+		analyseNext(inputToAnalyse, tokensList.back(), foundKeyword, numOfCharToRemove);
 		
 		// symbolsList.push_back(new Symbol(...))
-		int numOfCharToRemove = 0;
-		if (tokenFetched->token == INVALID)
-		{
-			//TODO: Add Error Message
-			// cout << "Analysis did not ended well..." << endl;
-			return false;
-		} else if((tokensList.back())->token == VAL)	{
-			int reverseConversion = *((int*)(tokensList.back())->value);
-			// cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
+		
+		if (tokenFetched->token == INVALID)	{	return false;	}
 
-			numOfCharToRemove = to_string(reverseConversion).size();
-		} else	{
-			string reverseConversion = *((string*)(tokensList.back())->value);
-			// cout << "With reverse conversion we find the following value: ---" << reverseConversion << "---" <<endl;
-
-			numOfCharToRemove = reverseConversion.size();
-		}
 		// Remove word from input
 		inputToAnalyse.erase(0, numOfCharToRemove);
 
@@ -113,10 +101,11 @@ bool Lexer::analyseAll()	{
 	return true;
 }
 
-bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword)	{
+bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword, int &size)	{
 	boost::match_results<string::const_iterator> results;
 	if (regex_search(inputToAnalyse, results, keyword))	{
 		string strFetched = results[0].str();
+		size = (results[0].str()).size();
 		tokenFetched->value = (void*) new string(strFetched);
 
 		string reverseConversion = *((string*)tokenFetched->value); //reverseConversion == keyboardFetched
@@ -147,20 +136,25 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 	}
 	else if (regex_search(inputToAnalyse, results, identifier))	{
 		string strFetched = results[0].str();
+		size = (results[0].str()).size();
 		tokenFetched->value = (void*) new string(strFetched);
 
 		// cout << "It's an identifier : " << *((string*)tokenFetched->value) << "!" << endl;
 		tokenFetched->token = ID;
 	}
 	else if (regex_search(inputToAnalyse, results, number))	{
-		int numberFetched = stoi(results[0].str());
+		// int numberFetched = stoi(results[0].str());
+		double numberFetched = stod(results[0].str());
+		size = (results[0].str()).size();
 
-		tokenFetched->value = (void*) new int(numberFetched);
+		// tokenFetched->value = (void*) new int(numberFetched);
+		tokenFetched->value = (void*) new double(numberFetched);
 		// cout << "It's a number : " << *((int*)tokenFetched->value) << "!" << endl;
 		tokenFetched->token = VAL;
 	}
 	else if (regex_search(inputToAnalyse, results, operators))	{
 		string strFetched = results[0].str();
+		size = (results[0].str()).size();
 		tokenFetched->value = (void*) new string(strFetched);
 
 		string reverseConversion = *((string*)tokenFetched->value); //reverseConversion == keyboardFetched
@@ -215,6 +209,7 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 	}
 	else {
 		// cout << "It's an error!" << endl;
+		size = 0;
 		tokenFetched->value = NULL;
 		tokenFetched->token = INVALID;
 		return false;

@@ -16,12 +16,20 @@ lire x ;
 ecrire x;
 ```
 
+Prerequisites
+------------
+
+Make sure you have installed all these prerequisites on your development machine.
+* CMake - [Download & Install Cmake](https://cmake.org/install/) or use brew.
+* Boost C++ Libraries - [Download & Install Boost Libraries](http://www.boost.org/users/download/) or use brew.
+
 Installation
 ------------
 
 ```
 git clone git@github.com:HexanomeBeurreTwo/LutinLangInterperter.git
 cd LutinLangInterperter
+cmake .
 make
 make test # test your code
 ```
