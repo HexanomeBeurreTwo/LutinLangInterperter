@@ -108,7 +108,7 @@ int main_y() {
 }
 
 
-int main() {
+int main_c() {
     PartieDeclarative* PD = new PartieDeclarative();
     PartieInstruction* PI = new PartieInstruction();
     bool succes ;

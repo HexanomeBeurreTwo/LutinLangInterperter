@@ -27,6 +27,7 @@ string getFileContent_x(string pathfile)
 		cout << "Error reading the file" << endl;
 	}
 
+    cout << fileInput << endl;
 	return fileInput;
 } 
 
@@ -43,7 +44,7 @@ int main_x()
 	return 0;
 }
 
-int main_y(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
     string file;
     int error = 0;

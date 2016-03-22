@@ -56,21 +56,22 @@ string getFileContent(string pathfile)
 
 
 
-int main()    
+int main_o()    
 {
     string file("./bin/example.lt");
     bool success;
     // traiter les option -e -o -p ... et recuperer le nom du fichier
 
+    cout << "Test" << endl;
 	//string* contentFile = getFileContent(file);
 	string  tmp =  "var a,b;";
-			tmp += "lire b;";
 			tmp += "const c = 44.1;";
-			tmp += "a := (c+d)*3-5;";
+			tmp += "lire b;";
+			tmp += "a := (c)*3-5;";
 			tmp += "ecrire a;";
 			tmp += "ecrire a*b;";
-			tmp += "e := b+d;";
-			tmp += "ecrire e;";	
+			tmp += "a := b;";
+			tmp += "ecrire a;";	
 	
 	//tmp = "sdf var F";
 	

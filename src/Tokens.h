@@ -52,6 +52,11 @@ typedef struct {
     void* value;
 } ValuableToken;
 
+typedef struct {
+    int line;
+    int column;
+} cursor;
+
 ostream& operator<< (ostream& os, const ValuableToken& t);
 bool is_terminal_token(const ValuableToken& t);
 
