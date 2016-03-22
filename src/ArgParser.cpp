@@ -13,12 +13,12 @@
 using namespace std;
 using namespace boost::filesystem;
 
-namespace 
-{ 
-  const size_t ERROR_IN_COMMAND_LINE = 1; 
-  const size_t SUCCESS = 0; 
-  const size_t ERROR_UNHANDLED_EXCEPTION = 2; 
- 
+namespace
+{
+  const size_t ERROR_IN_COMMAND_LINE = 1;
+  const size_t SUCCESS = 0;
+  const size_t ERROR_UNHANDLED_EXCEPTION = 2;
+
 } // namespace
 
 ArgParser::ArgParser(int argc, char const *argv[]){
@@ -37,15 +37,15 @@ ArgParser::ArgParser(int argc, char const *argv[]){
 }
 
 int ArgParser::discoverFlags(const int argc, char const *argv[])	{
-	try 
-  	{ 
-	/** Define and parse the program options 
-	 */ 
+	try
+  	{
+	/** Define and parse the program options
+	 */
 
   	string sourceFile;
 	namespace po = boost::program_options;
-	po::options_description desc("Allowed options"); 
-	desc.add_options() 
+	po::options_description desc("Allowed options");
+	desc.add_options()
 	  ("help,h", "Print help messages")
 	  ("print,p", "Print code")
 	  ("execute,e", "Execute program")
@@ -56,30 +56,30 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
     po::positional_options_description p;
     p.add("input", -1);
 
-	po::variables_map vm; 
-	try 
-	{ 
+	po::variables_map vm;
+	try
+	{
 		po::store(po::command_line_parser(argc, argv).options(desc).positional(p).run(), vm);
 		po::notify(vm);
 
-		/** --help option 
-		*/ 
-		if ( vm.count("help")  ) { 
-			std::cout << "Lutin Interpreter App" << std::endl 
-			          << desc << std::endl; 
-			return SUCCESS; 
+		/** --help option
+		*/
+		if ( vm.count("help")  ) {
+			std::cout << "Lutin Interpreter App" << std::endl
+			          << desc << std::endl;
+			return SUCCESS;
 		}
 
-		if (argc == 1) { 
-			std::cout << "Lutin Interpreter App" << std::endl 
-			          << desc << std::endl; 
-			return ERROR_IN_COMMAND_LINE; 
+		if (argc == 1) {
+			std::cout << "Lutin Interpreter App" << std::endl
+			          << desc << std::endl;
+			return ERROR_IN_COMMAND_LINE;
 		}
 
-        if (vm.count("e")) executionFlag = true;
-        if (vm.count("a")) staticAnalysisFlag = true;
-        if (vm.count("o")) optimizeFlag = true;
-        if (vm.count("p")) printFlag = true;
+        if (vm.count("execute")) executionFlag = true;
+        if (vm.count("analyse")) staticAnalysisFlag = true;
+        if (vm.count("optimize")) optimizeFlag = true;
+        if (vm.count("print")) printFlag = true;
 
 		if (vm.count("input")) {
 			sourceFile = vm["input"].as<std::string>();
@@ -102,24 +102,24 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 			return ERROR_IN_COMMAND_LINE;
 		}
 
-		po::notify(vm); // throws on error, so do after help in case 
-		              // there are any problems 
-	} 
-	catch(po::error& e) 
-	{ 
-	  std::cerr << "ERROR: " << e.what() << std::endl << std::endl; 
-	  std::cerr << desc << std::endl; 
-	  return ERROR_IN_COMMAND_LINE; 
-	} 
+		po::notify(vm); // throws on error, so do after help in case
+		              // there are any problems
+	}
+	catch(po::error& e)
+	{
+	  std::cerr << "ERROR: " << e.what() << std::endl << std::endl;
+	  std::cerr << desc << std::endl;
+	  return ERROR_IN_COMMAND_LINE;
+	}
 
-	// application code here // 
+	// application code here //
 
-	} 
-	catch(std::exception& e) 
-	{ 
-	std::cerr << "Unhandled Exception reached the top of main: " 
-	          << e.what() << ", application will now exit" << std::endl; 
-	return ERROR_UNHANDLED_EXCEPTION; 
+	}
+	catch(std::exception& e)
+	{
+	std::cerr << "Unhandled Exception reached the top of main: "
+	          << e.what() << ", application will now exit" << std::endl;
+	return ERROR_UNHANDLED_EXCEPTION;
 
 	}
 
