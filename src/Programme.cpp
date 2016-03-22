@@ -12,6 +12,7 @@
 
 #define VALUE_AS(x,type) *((type*)x.value)
 
+
 bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol)
 {
     ValuableToken tokens[countSymbol];
@@ -24,6 +25,18 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         symbolStack->pop();
         tokens[i] = str;
     }
+	
+	cout << "~~~~~~~~~REDUCE~~~~~~~~"<< endl << symbol <<"  ==> " << endl;
+    for(int i=0;i< countSymbol;i++)
+    {
+        str = tokens[i] ;
+		cout << str;
+    }
+	if(countSymbol ==0 ) cout << "---ε--" << endl;
+	cout << "\n~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	
+	symbolStack->push(symbol);
+	
     switch(symbol.token){ /** on fait rien dans certaines regles, car c'est déjà fait dans d'autres regles **/
     case P : // rule 1: P -> PD PI
         break;//on fait rien
@@ -49,9 +62,11 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
                 partie_instruction.add_instruction(new Affectation(e1,new Variable(VALUE_AS(tokens[0],string))));
             }
             else if(countSymbol == 2 && tokens[0].token == WRITE )
-            // rule 9: LI -> write id
+            // rule 9: LI -> write E
             {
-                partie_instruction.add_instruction(new Ecrire(new Variable(VALUE_AS(tokens[1],string))));
+                //partie_instruction.add_instruction(new Ecrire(new Variable(VALUE_AS(tokens[1],string))));
+				e1 = expressions.front();expressions.pop_front();
+				partie_instruction.add_instruction(new Ecrire(e1));
             }
             else if(countSymbol == 2 && tokens[0].token == READ)
             // rule 10: LI -> read id
@@ -83,7 +98,13 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         break;
 
     case E :
-            if(countSymbol == 3 )
+			if(countSymbol == 3 && tokens[0].token == OPENBY)
+            // rule 20: E -> ( E )
+            {
+                e1 = expressions.front();expressions.pop_front();
+                expressions.push_back(new Parentese(e1));
+            }
+            else if(countSymbol == 3 )
             {
                 e1 = expressions.front();expressions.pop_front();
                 e2 = expressions.front();expressions.pop_front();
@@ -107,12 +128,6 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
                 {
                     expressions.push_back(new OperateurMul(e1,e2));
                 }
-            }
-            else if(countSymbol == 3 && tokens[0].token == OPENBY)
-            // rule 20: E -> ( E )
-            {
-                e1 = expressions.front();expressions.pop_front();
-                expressions.push_back(new Parentese(e1));
             }
             else if(countSymbol == 1)
             {
@@ -146,8 +161,22 @@ void Programme::print(ostream& os)const
     os << partie_declaration << partie_instruction ;
 }
 
+
+
 bool Programme::execute()
 {
-	cout << "dans Programme::execute()" << endl;
     return partie_instruction.execute(partie_declaration.get_variables());
 }
+
+
+Programme::~Programme()
+{
+	Expression *e;
+	while (!expressions.empty())
+	{
+		e = expressions.front();
+		expressions.pop_front();
+		delete e;
+	}
+}
+

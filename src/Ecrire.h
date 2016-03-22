@@ -9,12 +9,12 @@
 class Ecrire : public Instruction
 {
     public:
-        Ecrire(Variable* var):Instruction(WRITE),variable(var){};
+        Ecrire(Expression* exp):Instruction(WRITE),expression(exp){}
         virtual ~Ecrire();
         void print(ostream& os) const;
         bool execute(Declrs & variables);
     protected:
-        Variable* variable;
+        Expression* expression;
     private:
 };
 

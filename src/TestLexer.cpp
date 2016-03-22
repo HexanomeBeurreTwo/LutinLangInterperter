@@ -8,7 +8,7 @@
 #include <fstream>
 using namespace std;
 
-string* getFileContent(string pathfile);
+string getFileContent(string pathfile);
 // int main_x()
 // {
 // 		string file = "./bin/example.lt";
@@ -26,7 +26,7 @@ string* getFileContent(string pathfile);
 
 
 
-string* getFileContent(string pathfile)
+string getFileContent(string pathfile)
 {
         string line ;
         string tmp;
@@ -50,29 +50,31 @@ string* getFileContent(string pathfile)
 			 <<   tmp << endl
 			 <<"#####" << endl;
 		
-		string* fileInput = new string(tmp);
-        return  fileInput;
+		//string* fileInput = new string(tmp);
+        return  tmp;
 }
 
 
 
 int main()    
 {
-    string file = "./bin/example.lt";
+    string file("./bin/example.lt");
     bool success;
-    // traiter les option -e -o -p ... et r▒cuperer le nom du fichier
+    // traiter les option -e -o -p ... et recuperer le nom du fichier
 
 	//string* contentFile = getFileContent(file);
-	string  tmp = "var a,b;";
-			tmp += "const c = 44.1;";
-			tmp += "const d = 6;";
-			tmp += "var e;";
-			tmp += "a := 5/(3);";
+	string  tmp =  "var a,b;";
 			tmp += "lire b;";
+			tmp += "const c = 44.1;";
+			tmp += "a := (c+d)*3-5;";
+			tmp += "ecrire a;";
 			tmp += "ecrire a*b;";
 			tmp += "e := b+d;";
-			tmp += "ecrire e;";				
-    Lexer lexer(tmp);
+			tmp += "ecrire e;";	
+	
+	//tmp = "sdf var F";
+	
+    Lexer lexer(tmp);  
     lexer.analyseAll();
     Programme programme;
     Automaton automate(&lexer,&programme);
@@ -80,17 +82,23 @@ int main()
 	if(!success)
 	{
 		cerr << "erreur Syntaxique : construction automate " << endl;
-	}
-    // traiter erreur lexical et syntaxique selon de error
-    // si l'option est -e faire
-    success = programme.execute();
-	if(!success)
-	{
-		cerr << "erreur Symentique : execution programme " << endl;
+		return 1;
 	}
     // traiter erreur excution selon error
     //sinon si l'option est -a faire
+	cout << "~~~~~~~AFFICHAGE~~~~~~~"<< endl;
     cout << programme ;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	// traiter erreur lexical et syntaxique selon de error
+    // si l'option est -e faire
+	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
+    success = programme.execute();
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	if(!success)
+	{
+		cerr << "erreur Symentique : execution programme " << endl;
+		return 1;
+	}
     //sion si l'optoin est -o faire
     //programme.optimize();
 

@@ -2,7 +2,6 @@
 #define _EXPR_H
 
 #include <string>
-
 #include "Instruction.h"
 
 class Expression  : public Symbol{
@@ -11,7 +10,8 @@ class Expression  : public Symbol{
       //Expression():Instruction(E){};
       virtual ~Expression(){};
       virtual void print(ostream& os) const  = 0;
-      virtual double Evaluation(const Declrs & variables) = 0;
+      virtual bool Evaluation(double* res,const Declrs & variables) = 0;
+	  
 };
 
 class Valeur: public Expression {
@@ -20,7 +20,7 @@ class Valeur: public Expression {
       Valeur(int val):Expression(VAL),valeur(val){};
       Valeur(double val):Expression(VAL),valeur(val){};
       ~Valeur(){};
-      double Evaluation(const Declrs & variables);
+      bool Evaluation(double* res,const Declrs & variables);
       void print(ostream& os) const;
    protected:
       double valeur;
@@ -32,7 +32,7 @@ class Variable: public Expression {
    public:
       Variable(string n):Expression(VAR),nom(n){};
       ~Variable(){};
-      double Evaluation(const Declrs & variables);
+      bool Evaluation(double* res,const Declrs & variables);
       void print(ostream& os) const;
       string get_nom(){return nom;}
    protected:
@@ -44,7 +44,7 @@ class Parentese: public Expression {
       Parentese(Expression * expr):Expression(OPENBY),expression(expr){};
       ~Parentese(){delete expression;};
       void print(ostream& os) const;
-      virtual double Evaluation(const Declrs & variables) ;
+      bool Evaluation(double* res,const Declrs & variables);
    protected:
       Expression *expression;
 };
@@ -55,7 +55,7 @@ class OperateurBinaire: public Expression { // MINUS MULT DIVIDE PLUS
    public:
       OperateurBinaire(Tokens id_symb,Expression * g, Expression * d):Expression(id_symb),gauche (g),droite (d){};
       ~OperateurBinaire();
-      double Evaluation(const Declrs & variables);
+      bool Evaluation(double *res,const Declrs & variables);
       void print(ostream& os) const;
    protected:
       virtual double operation(double g, double d) = 0;

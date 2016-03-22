@@ -14,7 +14,7 @@ class Programme
 {
     public:
         Programme(){};
-        virtual ~Programme(){};
+        virtual ~Programme();
         bool create_class_from_rules(stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol);
         void print(ostream& os) const ;
         bool execute();
@@ -25,6 +25,7 @@ class Programme
         deque<Expression*> expressions; // une file d'expression ordonnée selon date creation
         PartieInstruction partie_instruction;
         PartieDeclarative partie_declaration;
+		
 
     friend ostream& operator<< (ostream& os, const Programme& programme)
     {

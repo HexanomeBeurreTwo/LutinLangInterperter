@@ -41,9 +41,6 @@ ostream& operator<< (ostream& os, const ValuableToken& t){
 
 
 //Cette fonction est utilisé dans shift
-//c'est sale mais j'ai pas envie de modifier les 40 etats !
-//(i.e:il suffit juste de rajouter un bool comme paramettre de shift
-// qui vas dire si on consomme ou pas)
 bool is_terminal_token(const ValuableToken& t)
 {
 	bool res ;

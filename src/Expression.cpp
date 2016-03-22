@@ -8,17 +8,19 @@
 using namespace std;
 
 
-double Valeur::Evaluation(const Declrs & variables) {
-   return this->valeur;
+bool Valeur::Evaluation(double *res,const Declrs & variables) {
+   *res = this->valeur;
+   return true;
 }
 
 
-double Variable::Evaluation(const Declrs & variables) {
+bool Variable::Evaluation(double *res,const Declrs & variables) {
    Declrs::const_iterator var = variables.find(nom);
    if (var!=variables.end()) {
-      return (var->second)->get_valeur();
+      *res = (var->second)->get_valeur();
+	  return true;
    } else {
-      return .0;
+      return false;
    }
 }
 
@@ -27,15 +29,19 @@ OperateurBinaire::~OperateurBinaire() {
    delete droite;
 }
 
-double OperateurBinaire::Evaluation(const Declrs & variables) {
+bool OperateurBinaire::Evaluation(double *res,const Declrs & variables) {
    double valg,vald;
-   valg = gauche->Evaluation(variables);
-   vald = droite->Evaluation(variables);
-   return operation(valg,vald);
+   if( !gauche->Evaluation(&valg,variables) ||
+	   !droite->Evaluation(&vald,variables) )
+   {
+		return false;
+   }
+   *res = operation(valg,vald);
+   return true;
 }
 
-double Parentese::Evaluation(const Declrs & variables) {
-   return expression->Evaluation(variables);
+bool Parentese::Evaluation(double *res,const Declrs & variables) {
+   return expression->Evaluation(res,variables);
 }
 
 

@@ -65,13 +65,14 @@ bool Automaton::shift(ValuableToken& s, State* nextState){
 		if(is_terminal_token(s)) 
 		{
 			res = lexer->consumeNext();
-			cout << "Consommation de " << s 
-				 << "le suivant est " << lexer->getNext();
+			cout << "Consommation de " << s ;
+				// << "le suivant est " << lexer->getNext();
+			symbolStack.push(s);
 		}
-        symbolStack.push(s);
+        //symbolStack.push(s);
         stateStack.push(nextState);
-		cout << "Shift vers l'etat " << nextState->getStateNumber()  
-			 << " Avec " << s << endl;
+		cout << "Shift vers l'etat [ " << nextState->getStateNumber()  
+			 << " ] Avec " << s << endl;
 		if(!res)
 		{
 			cerr << "impossible de consommer le Token: " << s << endl; 
@@ -83,9 +84,9 @@ bool Automaton::reduce(int count, ValuableToken& s, int coutSymbol ){
         for(int i=0; i<count; i++){
                 stateStack.pop();
         }
-		cout << "Reduce vers l'etat " << stateStack.top()->getStateNumber()  << endl;
+		cout << "Reduce vers l'etat [ " << stateStack.top()->getStateNumber()  <<" ]" << endl;
         stateStack.top()->transition(this,s);
-        bool res = true ;//programme->create_class_from_rules(&symbolStack,s,coutSymbol);
+        bool res = programme->create_class_from_rules(&symbolStack,s,coutSymbol);
 		if(!res)
 		{
 			cerr << "impossible de reduire la rélge " << s << " -> .."<<endl; 
