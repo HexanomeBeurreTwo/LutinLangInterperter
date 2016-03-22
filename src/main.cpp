@@ -87,7 +87,15 @@ int main_y(int argc, char const *argv[])
     if (argParser->getOptimizeFlag())
     {
     	//Make necessary to transform / optimize code
-    	programme.optimize();
+		Programme pr2;
+		error =  programme.optimize(&pr2);
+		if(!error)
+		{
+			cerr << "erreur optimisation  " << endl;
+			return 1;
+		}
+
+		cout << pr2 ;
     }
 
     return error;

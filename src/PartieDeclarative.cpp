@@ -43,4 +43,9 @@ PartieDeclarative::~PartieDeclarative()
 
 }
 
+ void PartieDeclarative::clear()
+ {
+	 
+	 
+ }
 

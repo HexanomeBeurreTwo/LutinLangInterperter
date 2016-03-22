@@ -53,3 +53,21 @@ void Affectation::print(ostream& os) const
 	cout << ";";*/
     os << (*variable) << " := " << (*expression) << ";" ;
 }
+
+
+bool Affectation::optimize(Instruction** inst,const Declrs & variables) 
+{
+	bool error;
+	double value;
+	error = expression -> Evaluation(&value,variables);
+	if(!error) 
+	{
+		return false;
+	}else
+	{
+		Variable* var = new Variable(variable->get_nom());
+		Valeur* valeur = new Valeur(value);
+		*inst = new Affectation(valeur,var);
+		return true;
+	}
+}

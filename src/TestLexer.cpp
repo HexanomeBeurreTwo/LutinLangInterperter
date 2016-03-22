@@ -63,6 +63,7 @@ int main()
 	//string* contentFile = getFileContent(file);
 	string  tmp =  "var a,e;";
 			tmp += "const c = 44.1;";
+			tmp += "lire e;";
 			tmp += "a := (c+c)*3-5;";
 			tmp += "ecrire a;";
 			tmp += "ecrire a*c;";
@@ -94,7 +95,17 @@ int main()
 		cerr << "erreur Symentique : execution programme " << endl;
 		return 1;
 	}
-    //programme.optimize();
+    
+    Programme pr2;
+    success =  programme.optimize(&pr2);
+    if(!success)
+	{
+		cerr << "erreur optimisation  " << endl;
+		return 1;
+	} else{
+		cerr << "optimisation reussie  " << endl;
+		cout << pr2 ;
+	}
 
     return success;
 }

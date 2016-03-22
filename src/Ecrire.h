@@ -13,6 +13,7 @@ class Ecrire : public Instruction
         virtual ~Ecrire();
         void print(ostream& os) const;
         bool execute(Declrs & variables);
+        bool optimize(Instruction** inst,const Declrs & variables) ;
     protected:
         Expression* expression;
     private:
