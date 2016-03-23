@@ -1,3 +1,4 @@
+#include "Debug.h"
 #include "Automaton.h"
 #include "States/E0.h"
 #include "State.h"
@@ -19,8 +20,7 @@ bool Automaton::read(){
 	ValuableToken tmp;
 	State *tmpSt;
 	nextSymbol = lexer->getNext();
-	cout << "in Automaton::read()" << endl;
-	cout << nextSymbol << endl;
+	DEBUG_STDOUT ( nextSymbol << endl ) ;
 	if(nextSymbol.token == INVALID)
 	{
 		cerr << "Premier token INVALID " << endl;
@@ -31,7 +31,7 @@ bool Automaton::read(){
 	while(!end && 
 		  nextSymbol.token != INVALID
 	){
-			cout << nextSymbol  << endl;
+			DEBUG_STDOUT ( nextSymbol  << endl ) ;
 			tmpSt = stateStack.top();
 			if( !tmpSt->transition(this, nextSymbol) ) 
 			{
@@ -43,7 +43,7 @@ bool Automaton::read(){
 			if(nextSymbol.token == END_OF_FILE) {
 				end = true;
 				bool res = stateStack.top()->getStateNumber() == Accepte_STATE;
-				if(res) cout << "Automate ok!" << endl;
+				if(res) DEBUG_STDOUT( "Automate ok!" << endl );
 				return res;
 			}
 			tmp = nextSymbol;
@@ -54,7 +54,7 @@ bool Automaton::read(){
 				return false;
 			} 
 	}
-	cout << nextSymbol  << endl;
+	DEBUG_STDOUT ( nextSymbol  << endl);
     return false;
 }
 
@@ -65,14 +65,14 @@ bool Automaton::shift(ValuableToken& s, State* nextState){
 		if(is_terminal_token(s)) 
 		{
 			res = lexer->consumeNext();
-			cout << "Consommation de " << s ;
+			DEBUG_STDOUT ( "Consommation de " << s );
 				// << "le suivant est " << lexer->getNext();
 			symbolStack.push(s);
 		}
         //symbolStack.push(s);
         stateStack.push(nextState);
-		cout << "Shift vers l'etat [ " << nextState->getStateNumber()  
-			 << " ] Avec " << s << endl;
+		DEBUG_STDOUT ( "Shift vers l'etat [ " << nextState->getStateNumber()  
+			 << " ] Avec " << s << endl );
 		if(!res)
 		{
 			cerr << "impossible de consommer le Token: " << s << endl; 
@@ -84,7 +84,7 @@ bool Automaton::reduce(int count, ValuableToken& s, int coutSymbol ){
         for(int i=0; i<count; i++){
                 stateStack.pop();
         }
-		cout << "Reduce vers l'etat [ " << stateStack.top()->getStateNumber()  <<" ]" << endl;
+		DEBUG_STDOUT ("Reduce vers l'etat [ " << stateStack.top()->getStateNumber()  <<" ]" << endl );
         stateStack.top()->transition(this,s);
         bool res = programme->create_class_from_rules(&symbolStack,s,coutSymbol);
 		if(!res)

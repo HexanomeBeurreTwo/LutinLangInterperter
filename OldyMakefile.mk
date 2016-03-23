@@ -19,7 +19,7 @@ $(SRC)/Automaton.h \
 $(SRC)/Tokens.h \
 $(STATECLASS)
 SOURCE= $(INT:.h=.cpp) $(SRC)/$(MAIN).cpp
-HEADER= $(INT) $(SRC)/Instruction.h $(SRC)/Symbol.h $(SRC)/State.h $(SRC)/Declaration.h
+HEADER= $(INT) $(SRC)/Instruction.h $(SRC)/Symbol.h $(SRC)/State.h $(SRC)/Declaration.h   $(SRC)/Debug.h
 OBJECT=$(patsubst $(SRC)/%.cpp,$(OBJ)/%.o,$(SOURCE)) 
 FLAGS=-Wall -fexceptions -std=c++11 -Isrc
 CLEAN=clean
@@ -52,9 +52,6 @@ $(OBJ)/%.o: $(SRC)/%.cpp
 	$(CC) -c $< $(FLAGS) -o $@ 
 	$(ECHO) "<$<> OK .."
 	
-#$(OBJ)/$(STATES)/%.o : $(SRC)/$(STATES)/%.o
-#	$(CC) -c $< $(FLAGS) -o $@ 
-#	$(ECHO) "<$<> OK .."
 
 
 $(DEBUGMAKE):
@@ -87,8 +84,8 @@ $(OBJ)/Lire.o: $(SRC)/Instruction.h $(SRC)/Expression.h
 $(OBJ)/PartieDeclarative.o: $(SRC)/Declaration.h $(SRC)/Symbol.h
 $(OBJ)/PartieInstruction.o: $(SRC)/Instruction.h $(SRC)/Symbol.h
 $(OBJ)/Programme.o: $(SRC)/Expression.h $(SRC)/PartieDeclarative.h $(SRC)/PartieInstruction.h $(SRC)/Tokens.h $(SRC)/DeclarationConst.h \
-$(SRC)/DeclarationVariable.h $(SRC)/Affectation.h $(SRC)/Ecrire.h $(SRC)/Lire.h $(SRC)/Symbol.h
-$(OBJ)/Automaton.o: $(SRC)/$(STATES)/E0.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Lexer.h $(SRC)/Programme.h
+$(SRC)/DeclarationVariable.h $(SRC)/Affectation.h $(SRC)/Ecrire.h $(SRC)/Lire.h $(SRC)/Symbol.h $(SRC)/Debug.h
+$(OBJ)/Automaton.o: $(SRC)/$(STATES)/E0.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Lexer.h $(SRC)/Programme.h $(SRC)/Debug.h
 $(OBJ)/$(STATES)/E0.o: $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h $(SRC)/$(STATES)/E1.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Automaton.h
 $(OBJ)/$(STATES)/E1.o: $(SRC)/State.h $(SRC)/Symbol.h $(SRC)/Automaton.h $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h
 

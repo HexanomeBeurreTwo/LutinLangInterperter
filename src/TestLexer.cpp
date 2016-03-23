@@ -54,13 +54,13 @@ string getFileContent(string pathfile)
 
 
 
-int main_io()    
+int main()    
 {
     string file("./bin/example.lt");
+	
     bool success;
     // traiter les option -e -o -p ... et recuperer le nom du fichier
 
-    cout << "Test" << endl;
 	//string* contentFile = getFileContent(file);
 	string  tmp =  "var a,e,b;";
 			tmp += "const c = 44.1;";
@@ -78,6 +78,12 @@ int main_io()
 	
 	//tmp = "sdf var F";
 	//tmp = getFileContent(file);
+	
+	
+	cout << "~~~~~INPUT FILE~~~~~~~~" << endl
+		 << 	   tmp 		  << endl
+		 << "~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
     Lexer lexer(tmp);  
     lexer.analyseAll();
     Programme programme;

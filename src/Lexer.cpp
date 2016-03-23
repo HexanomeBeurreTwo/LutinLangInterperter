@@ -232,7 +232,6 @@ Lexer::Lexer(string inputString) : fileLines(inputString)	{
 	cursor = 0;
 	line = 0;
 	column = 0;
-	cout << "Contenu du fichier : " << inputString << endl;
 }
 
 Lexer::~Lexer()	{
