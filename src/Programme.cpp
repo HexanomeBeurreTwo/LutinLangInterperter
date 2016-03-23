@@ -1,5 +1,4 @@
-
-
+#include "Debug.h"
 #include "Programme.h"
 #include "DeclarationConst.h"
 #include "DeclarationVariable.h"
@@ -26,14 +25,14 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         tokens[i] = str;
     }
 	
-	cout << "~~~~~~~~~REDUCE~~~~~~~~"<< endl << symbol <<"  ==> " << endl;
+	DEBUG_STDOUT("~~~~~~~~~REDUCE~~~~~~~~"<< endl << symbol <<"  ==> " << endl);
     for(int i=0;i< countSymbol;i++)
     {
         str = tokens[i] ;
-		cout << str;
+		DEBUG_STDOUT(str);
     }
-	if(countSymbol ==0 ) cout << "---ε--" << endl;
-	cout << "\n~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	if(countSymbol ==0 ) DEBUG_STDOUT("---ε--" << endl);
+	DEBUG_STDOUT("\n~~~~~~~~~~~~~~~~~~~~~~~" << endl);
 	
 	symbolStack->push(symbol);
 	
@@ -190,7 +189,7 @@ Programme::~Programme()
 	 res =  partie_instruction.optimize(&programme->partie_instruction,programme->partie_declaration.get_variables());
 	 if(res) 
 	 {
-		programme->partie_declaration.optimize();
+		//programme->partie_declaration.optimize(); // on a dit qu'on enlève pas les const
 	 }
 	 return res;
  }

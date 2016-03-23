@@ -55,7 +55,7 @@ void Affectation::print(ostream& os) const
 }
 
 
-bool Affectation::optimize(Instruction** inst,Declrs & variables) 
+/*bool optimize_back(Instruction** inst,Declrs & variables) 
 {
 	bool error;
 	double value;
@@ -77,4 +77,35 @@ bool Affectation::optimize(Instruction** inst,Declrs & variables)
 		}
 		return true;
 	}
+}*/
+
+
+bool Affectation::optimize(Instruction** inst,Declrs & variables) 
+{
+	bool error;
+	double value;
+	Expression* expr_to_affect;
+	
+	string nom = variable->get_nom();	
+	Expression* expOpz = expression -> get_ptimized_expr(variables);
+	
+	error = expOpz -> Evaluation(&value,variables);
+	
+	if(!error) 
+	{
+		expr_to_affect = expOpz;
+		
+	}else{ //typedef map<string,Declaration*> Declrs;
+		expr_to_affect = new Valeur(value);
+		if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(variables[nom]))
+        {
+			v->affect(value);
+		}	
+	}
+	
+	Variable* var = new Variable(nom);
+	*inst = new Affectation(expr_to_affect,var);
+	
+	return true;
+	
 }

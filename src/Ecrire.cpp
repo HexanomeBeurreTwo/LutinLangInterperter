@@ -41,7 +41,7 @@ void Ecrire::print(ostream& os) const
 	os << "ecrire " << *expression << ";" ;
 }
 
-bool Ecrire::optimize(Instruction** inst,Declrs & variables) 
+/*bool Ecrire::optimize_back(Instruction** inst,Declrs & variables) 
 {
 	bool error;
 	double value;
@@ -55,6 +55,31 @@ bool Ecrire::optimize(Instruction** inst,Declrs & variables)
 		*inst = new Ecrire(vl);
 		return true;
 	}
+}*/
+
+bool Ecrire::optimize(Instruction** inst,Declrs & variables) 
+{
+	bool error;
+	double value;
+	Expression* expr_to_write;
+	
+	Expression* expOpz = expression -> get_ptimized_expr(variables);
+	
+	error = expOpz -> Evaluation(&value,variables);
+	
+	if(!error) 
+	{
+		expr_to_write = expOpz;
+		
+	}else{ //typedef map<string,Declaration*> Declrs;
+		expr_to_write = new Valeur(value);
+		
+	}
+	
+	*inst = new Ecrire(expr_to_write);
+	return true;
 }
+
+
 
 
