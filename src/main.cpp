@@ -21,6 +21,7 @@ string getFileContent_x(string pathfile)
 		while ( getline (myfile,line) )
 	 	{
 		  fileInput += line;
+          // fileInput +='\n';
 		}
 		myfile.close();
 	}	else	{
@@ -57,10 +58,12 @@ int main(int argc, char const *argv[])
     file = argParser->getFilePath();
     Lexer lexer(getFileContent_x(file));
 
+    lexer.analyseAll();
+
     Programme programme;
     Automaton automate(&lexer,&programme);
 
-    // error = automate.read();
+    error = automate.read();
 
     /*	-p argument: Print code	*/
     if (argParser->getPrintFlag())
@@ -87,6 +90,7 @@ int main(int argc, char const *argv[])
     {
     	//Make necessary to transform / optimize code
     	programme.optimize();
+
     }
 
     return error;
