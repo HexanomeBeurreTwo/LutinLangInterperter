@@ -7,6 +7,7 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
+#include "Debug.h"
 #include "Lexer.h"
 using boost::regex;
 
@@ -29,6 +30,14 @@ ValuableToken Lexer::getNext()	{
 	lastTokenFetched = *(tokensList[cursor]);
 	//consumeNext();// à enlever apres avoir fini les tests
 	return lastTokenFetched;
+}
+
+Cursor Lexer::getCursor(unsigned int tokenIdx)	{
+	return cursorList[tokenIdx];
+}
+
+Cursor Lexer::getCursor()	{
+	return getCursor(cursor);
 }
 
 bool Lexer::consumeNext()	{
@@ -76,6 +85,10 @@ bool Lexer::analyseAll()	{
 	do
 	{
 		leftTrim(inputToAnalyse);
+
+		cursorList.push_back(Cursor(line, column));
+
+		DEBUG_STDOUT("******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl);
 		// cout << "[" << inputToAnalyse << "] @" << line+1 << "," << column+1 << endl;
 
 		ValuableToken *tokenFetched = new ValuableToken();
@@ -87,6 +100,7 @@ bool Lexer::analyseAll()	{
 		// symbolsList.push_back(new Symbol(...))
 		
 		if (tokenFetched->token == INVALID)	{	return false;	}
+		if (tokenFetched->token == END)	{	line++;	column = 0;	}
 
 		// Remove word from input
 		inputToAnalyse.erase(0, numOfCharToRemove);
@@ -94,11 +108,11 @@ bool Lexer::analyseAll()	{
 		//Cursor update
 		column += numOfCharToRemove;
 
-		// Cursor currentCursor;
-		// currentCursor.line = line;
-		// currentCursor.column = column;
-		// cursorList.push_back(currentCursor);
 	} while (inputToAnalyse.length() > 0);
+
+	cursorList.push_back(Cursor(line, column));
+
+	DEBUG_STDOUT( "******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl);
 
 	ValuableToken *eof = new ValuableToken();
 	eof->token = END_OF_FILE;
@@ -230,9 +244,9 @@ Lexer::Lexer(string inputString) : fileLines(inputString)	{
 	vector<ValuableToken> tokensList;
 	lastTokenFetched.token = INVALID;
 	cursor = 0;
-	line = 0;
+	line = 1;
 	column = 0;
-	cout << "Contenu du fichier : " << inputString << endl;
+	DEBUG_STDOUT("Contenu du fichier : " << inputString << endl);
 }
 
 Lexer::~Lexer()	{

@@ -1,4 +1,4 @@
-
+#include "Debug.h"
 #include "Programme.h"
 #include "ArgParser.h"
 #include "Lexer.h"
@@ -21,12 +21,13 @@ string getFileContent_x(string pathfile)
 		while ( getline (myfile,line) )
 	 	{
 		  fileInput += line;
+          // fileInput +='\n';
 		}
 		myfile.close();
 	}	else	{
-		cout << "Error reading the file" << endl;
+		cerr << "Error reading the file" << endl;
 	}
-    cout << fileInput << endl;
+    DEBUG_STDOUT(fileInput << endl);
 	return fileInput;
 } 
 
@@ -36,7 +37,7 @@ int main_x()
 	Lexer lex = Lexer(getFileContent_x("./bin/example.txt"));
 
 	if(lex.analyseAll())	{
-		cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
+		DEBUG_STDOUT("Success! " << lex.tokensList.size() << " tokens found." << endl;)
 	}
 
 	return 0;
@@ -57,16 +58,27 @@ int main(int argc, char const *argv[])
     file = argParser->getFilePath();
     Lexer lexer(getFileContent_x(file));
 
+    lexer.analyseAll();
+
     Programme programme;
     Automaton automate(&lexer,&programme);
 
-    // error = automate.read();
+    error = automate.read();
 
-    /*	-p argument: Print code	*/
-    if (argParser->getPrintFlag())
+    /*  -o argument: Optimization   */
+    if (argParser->getOptimizeFlag())
     {
-    	//Make necessary to print the code
-   		cout << programme ;
+        //Make necessary to transform / optimize code
+        Programme pr2;
+        error =  programme.optimize(&pr2);
+        if(!error)
+        {
+            cerr << "erreur optimisation  " << endl;
+            return 1;
+        }
+
+        if (argParser->getPrintFlag())  cout << pr2;
+
     }
 
     /*	-e argument: Execution	*/
@@ -82,11 +94,11 @@ int main(int argc, char const *argv[])
     	//Make necessary to do a static analysis
     }
 
-    /*	-o argument: Optimization	*/
-    if (argParser->getOptimizeFlag())
+    /*  -p argument: Print code */
+    if (argParser->getPrintFlag() && !argParser->getOptimizeFlag())
     {
-    	//Make necessary to transform / optimize code
-    	programme.optimize();
+        //Make necessary to print the code
+        cout << programme ;
     }
 
     return error;

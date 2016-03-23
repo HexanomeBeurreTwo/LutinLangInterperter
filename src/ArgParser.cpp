@@ -6,6 +6,7 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
+#include "Debug.h"
 #include "ArgParser.h"
 #include <boost/program_options.hpp>
 #include <boost/filesystem.hpp>
@@ -15,10 +16,9 @@ using namespace boost::filesystem;
 
 namespace
 {
-  const size_t ERROR_IN_COMMAND_LINE = 1;
   const size_t SUCCESS = 0;
+  const size_t ERROR_IN_COMMAND_LINE = 1;
   const size_t ERROR_UNHANDLED_EXCEPTION = 2;
-
 } // namespace
 
 ArgParser::ArgParser(int argc, char const *argv[]){
@@ -70,12 +70,6 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 			return SUCCESS;
 		}
 
-		if (argc == 1) {
-			std::cout << "Lutin Interpreter App" << std::endl
-			          << desc << std::endl;
-			return ERROR_IN_COMMAND_LINE;
-		}
-
         if (vm.count("execute")) executionFlag = true;
         if (vm.count("analyse")) staticAnalysisFlag = true;
         if (vm.count("optimize")) optimizeFlag = true;
@@ -107,9 +101,21 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 	}
 	catch(po::error& e)
 	{
-	  std::cerr << "ERROR: " << e.what() << std::endl << std::endl;
-	  std::cerr << desc << std::endl;
-	  return ERROR_IN_COMMAND_LINE;
+		if (argc == 1) {
+			cout << "Erreur, veuillez specifier des arguments\n  Utilisation" << endl;
+			cout << "\t../lut [-p] [-a] [-e] [-o] source.lt" << endl
+					<< "\t\t[-p] affiche le code source reconnu" << endl
+					<< "\t\t[-a] analyse le programme de maniere statique" << endl
+					<< "\t\t[-e] execute interactivement le programme" << endl
+					<< "\t\t[-o] optimise les expressions et instructions" << endl;
+			          // << desc << std::endl;
+			return ERROR_IN_COMMAND_LINE;
+		}
+		else	{
+			std::cerr << "ERROR: " << e.what() << std::endl << std::endl;
+			std::cerr << desc << std::endl;
+			return ERROR_IN_COMMAND_LINE;
+		}
 	}
 
 	// application code here //
