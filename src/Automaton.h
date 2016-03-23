@@ -1,6 +1,6 @@
 #ifndef AUTOMATON_H
 #define AUTOMATON_H
-  
+
 #include <stack>
 #include "State.h"
 #include "Tokens.h"

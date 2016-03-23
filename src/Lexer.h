@@ -26,6 +26,8 @@ class Lexer
         Lexer(string filePath);
         void leftTrim(string &inputString);
         ValuableToken getNext();
+        Cursor getCursor(unsigned int tokenIdx);
+        Cursor getCursor();
         bool consumeNext();
         bool hasNext();
         bool analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, string &foundKeyword, int &size);
@@ -38,7 +40,7 @@ class Lexer
         ValuableToken lastTokenFetched;
         unsigned int cursor;
         // TODO: replace with struct cursor
-        // vector<cursor> cursorList;
+        vector<Cursor> cursorList;
         int line;
         int column;
 };

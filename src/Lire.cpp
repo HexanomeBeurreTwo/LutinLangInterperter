@@ -38,3 +38,11 @@ void Lire::print(ostream& os) const
 	os  << "lire " << (*variable) << ";" ;
 
 }
+
+
+bool Lire::optimize(Instruction** inst,Declrs & variables)
+{
+		Variable* var = new Variable(variable->get_nom());
+		*inst = new Lire(var);
+		return true;
+}

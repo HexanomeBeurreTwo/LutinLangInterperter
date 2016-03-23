@@ -19,6 +19,7 @@ class PartieInstruction : public Symbol
         void add_instruction(Instruction *inst);
         void print(ostream& os) const;
         bool execute(Declrs & variables);
+        bool optimize(PartieInstruction *partie_instruction_opz, Declrs & variables);
 
     protected:
         deque<Instruction*> instructions; // une file d'instruction
