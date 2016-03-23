@@ -1,3 +1,4 @@
+#include "Debug.h"
 #include "Programme.h"
 #include "Lexer.h"
 #include "Automaton.h"
@@ -34,19 +35,19 @@ string getFileContent(string pathfile)
         {
 			while ( getline (myfile,line) )
 			{
-			  cout << line << endl;
+			  DEBUG_STDOUT(line << endl);
 			  tmp +=  line;
 			  //cout << tmp << endl;
 			}
 			myfile.close();
         } else  {
-                cout << "Error reading the file" << endl;
+                cerr << "Error reading the file" << endl;
         }
 
-		cout <<"Analyse du fichier " << endl
+		DEBUG_STDOUT("Analyse du fichier " << endl
 			 <<"#####" << endl 
 			 <<   tmp << endl
-			 <<"#####" << endl;
+			 <<"#####" << endl);
 		
 		//string* fileInput = new string(tmp);
         return  tmp;
@@ -60,7 +61,7 @@ int main_o()
     bool success;
     // traiter les option -e -o -p ... et recuperer le nom du fichier
 
-    cout << "Test" << endl;
+    DEBUG_STDOUT( "Test" << endl);
 	//string* contentFile = getFileContent(file);
 	string  tmp =  "var a,b;";
 			tmp += "const c = 44.1;";
@@ -84,13 +85,13 @@ int main_o()
 		return 1;
 	}
 	
-	cout << "~~~~~~~AFFICHAGE~~~~~~~"<< endl;
-    cout << programme ;
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	DEBUG_STDOUT("~~~~~~~AFFICHAGE~~~~~~~"<< endl);
+    DEBUG_STDOUT(programme );
+	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
 	
-	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
+	DEBUG_STDOUT("~~~~~~~EXECUTION~~~~~~~"<< endl);
     success = programme.execute();
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
 	if(!success)
 	{
 		cerr << "erreur Symentique : execution programme " << endl;

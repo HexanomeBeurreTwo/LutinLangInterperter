@@ -1,4 +1,4 @@
-
+#include "Debug.h"
 #include "Programme.h"
 #include "ArgParser.h"
 #include "Lexer.h"
@@ -25,9 +25,9 @@ string getFileContent_x(string pathfile)
 		}
 		myfile.close();
 	}	else	{
-		cout << "Error reading the file" << endl;
+		cerr << "Error reading the file" << endl;
 	}
-    cout << fileInput << endl;
+    DEBUG_STDOUT(fileInput << endl);
 	return fileInput;
 } 
 
@@ -37,7 +37,7 @@ int main_x()
 	Lexer lex = Lexer(getFileContent_x("./bin/example.txt"));
 
 	if(lex.analyseAll())	{
-		cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
+		DEBUG_STDOUT("Success! " << lex.tokensList.size() << " tokens found." << endl;)
 	}
 
 	return 0;

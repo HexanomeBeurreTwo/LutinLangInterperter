@@ -7,6 +7,7 @@
 //  Copyright (c) 2016 H4115. All rights reserved.
 //
 
+#include "Debug.h"
 #include "Lexer.h"
 using boost::regex;
 
@@ -87,7 +88,7 @@ bool Lexer::analyseAll()	{
 
 		cursorList.push_back(Cursor(line, column));
 
-		cout << "******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl;
+		DEBUG_STDOUT("******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl);
 		// cout << "[" << inputToAnalyse << "] @" << line+1 << "," << column+1 << endl;
 
 		ValuableToken *tokenFetched = new ValuableToken();
@@ -111,7 +112,7 @@ bool Lexer::analyseAll()	{
 
 	cursorList.push_back(Cursor(line, column));
 
-	cout << "******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl;
+	DEBUG_STDOUT( "******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl);
 
 	ValuableToken *eof = new ValuableToken();
 	eof->token = END_OF_FILE;
@@ -245,7 +246,7 @@ Lexer::Lexer(string inputString) : fileLines(inputString)	{
 	cursor = 0;
 	line = 1;
 	column = 0;
-	cout << "Contenu du fichier : " << inputString << endl;
+	DEBUG_STDOUT("Contenu du fichier : " << inputString << endl);
 }
 
 Lexer::~Lexer()	{
