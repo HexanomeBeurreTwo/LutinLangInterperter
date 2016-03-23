@@ -1,0 +1,4 @@
+var a;
+lire a;
+const b=10;
+ecrire (a);
