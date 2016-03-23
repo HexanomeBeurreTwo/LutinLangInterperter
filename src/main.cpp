@@ -65,11 +65,20 @@ int main(int argc, char const *argv[])
 
     error = automate.read();
 
-    /*	-p argument: Print code	*/
-    if (argParser->getPrintFlag())
+    /*  -o argument: Optimization   */
+    if (argParser->getOptimizeFlag())
     {
-    	//Make necessary to print the code
-   		cout << programme ;
+        //Make necessary to transform / optimize code
+        Programme pr2;
+        error =  programme.optimize(&pr2);
+        if(!error)
+        {
+            cerr << "erreur optimisation  " << endl;
+            return 1;
+        }
+
+        if (argParser->getPrintFlag())  cout << pr2;
+
     }
 
     /*	-e argument: Execution	*/
@@ -85,12 +94,11 @@ int main(int argc, char const *argv[])
     	//Make necessary to do a static analysis
     }
 
-    /*	-o argument: Optimization	*/
-    if (argParser->getOptimizeFlag())
+    /*  -p argument: Print code */
+    if (argParser->getPrintFlag() && !argParser->getOptimizeFlag())
     {
-    	//Make necessary to transform / optimize code
-    	programme.optimize();
-
+        //Make necessary to print the code
+        cout << programme ;
     }
 
     return error;

@@ -158,6 +158,7 @@ void Programme::print(ostream& os)const
     /*partie_declaration.print(os);
     partie_instruction.print(os); */
     os << partie_declaration << partie_instruction ;
+    //os << partie_instruction ;
 }
 
 
@@ -178,4 +179,18 @@ Programme::~Programme()
 		delete e;
 	}
 }
+
+ bool Programme::optimize(Programme* programme)
+ {
+	 bool res;
+	 
+	 programme->partie_declaration.clone_vars(partie_declaration);
+	 
+	 res =  partie_instruction.optimize(&programme->partie_instruction,programme->partie_declaration.get_variables());
+	 if(res) 
+	 {
+		programme->partie_declaration.optimize();
+	 }
+	 return res;
+ }
 

@@ -53,3 +53,28 @@ void Affectation::print(ostream& os) const
 	cout << ";";*/
     os << (*variable) << " := " << (*expression) << ";" ;
 }
+
+
+bool Affectation::optimize(Instruction** inst,Declrs & variables) 
+{
+	bool error;
+	double value;
+	error = expression -> Evaluation(&value,variables);
+	if(!error) 
+	{
+		return false;
+	}else
+	{ //typedef map<string,Declaration*> Declrs;
+		string nom = variable->get_nom();
+		
+		Variable* var = new Variable(nom);
+		Valeur* valeur = new Valeur(value);
+		*inst = new Affectation(valeur,var);
+		
+		if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(variables[nom]))
+        {
+			v->affect(value);
+		}
+		return true;
+	}
+}

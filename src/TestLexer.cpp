@@ -55,7 +55,7 @@ string getFileContent(string pathfile)
 
 
 
-int main_o()    
+int main_io()    
 {
     string file("./bin/example.lt");
     bool success;
@@ -63,10 +63,12 @@ int main_o()
 
     DEBUG_STDOUT( "Test" << endl);
 	//string* contentFile = getFileContent(file);
-	string  tmp =  "var a,b;";
+	string  tmp =  "var a,e,b;";
 			tmp += "const c = 44.1;";
-			tmp += "lire b;";
-			tmp += "a := (c)*3-5;";
+			
+			tmp += "b := 2;";
+			tmp += "lire e;";
+			tmp += "a := (c+c)*3-5;";
 			tmp += "ecrire a;";
 			tmp += "ecrire a*b;";
 			tmp += "a := b;";
@@ -97,7 +99,28 @@ int main_o()
 		cerr << "erreur Symentique : execution programme " << endl;
 		return 1;
 	}
-    //programme.optimize();
-
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	
+	cout << "~~~~~~~OPTIMISATION~~~~~"<< endl;
+    Programme prog_opz;
+    success =  programme.optimize(&prog_opz);
+    if(!success)
+	{
+		cerr << "erreur optimisation  " << endl;
+		return 1;
+	} else{
+		cout << prog_opz ;
+	}
+	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
+	
+	DEBUG_STDOUT("~~~~~~~EXECUTION~~~~~~~"<< endl);
+    success = prog_opz.execute();
+	if(!success)
+	{
+		cerr << "erreur Symentique : execution programme " << endl;
+		return 1;
+	}
+	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
+	
     return success;
 }
