@@ -7,7 +7,7 @@
 class DeclarationConst : public Declaration
 {
     public:
-        DeclarationConst(string n,double v):Declaration(CONST,n,v){};
+        DeclarationConst(string n,double v):Declaration(CONST,n,v,true){};
         virtual ~DeclarationConst(){};
         void print(ostream& os) const;
     protected:
