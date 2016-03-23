@@ -76,7 +76,8 @@ class OperateurPlus: public OperateurBinaire {
       ~OperateurPlus(){};
    protected:
       double operation(double g, double d);
-	  virtual void printOperator(ostream& os ) const = 0;
+	  void printOperator(ostream& os ) const ;
+	  Expression* create_OperateurBinaire(Expression* g, Expression* d);
 	 
 };
 
@@ -86,7 +87,8 @@ class OperateurMoins: public OperateurBinaire {
       ~OperateurMoins(){};
    protected:
       double operation(double g, double d);
-	  virtual void printOperator(ostream& os ) const = 0;
+	  void printOperator(ostream& os ) const ;
+	  Expression* create_OperateurBinaire(Expression* g, Expression* d);
 };
 
 class OperateurDiv: public OperateurBinaire {
@@ -95,7 +97,8 @@ class OperateurDiv: public OperateurBinaire {
       ~OperateurDiv(){};
    protected:
       double operation(double g, double d);
-	  virtual void printOperator(ostream& os ) const = 0;
+	  void printOperator(ostream& os ) const ;
+	  Expression* create_OperateurBinaire(Expression* g, Expression* d);
 };
 
 class OperateurMul: public OperateurBinaire {
@@ -104,7 +107,8 @@ class OperateurMul: public OperateurBinaire {
       ~OperateurMul(){};
    protected:
       double operation(double g, double d);
-	  virtual void printOperator(ostream& os ) const = 0;
+	  void printOperator(ostream& os ) const ;
+	  Expression* create_OperateurBinaire(Expression* g, Expression* d);
 };
 
 

@@ -54,7 +54,7 @@ string getFileContent(string pathfile)
 
 
 
-int main()    
+int main_io()    
 {
     string file("./bin/example.lt");
     bool success;
@@ -68,8 +68,9 @@ int main()
 			//tmp += "b := 2;";
 			tmp += "lire e;";
 			tmp += "ecrire e;";
-			//tmp += "a := (c+c)*3-5+0+1*e;";
+			tmp += "a := (c+c)*3-5+0+1*e;";
 			tmp +=  "ecrire (e+0)*1-0;";
+			tmp +=  "ecrire (7*e);";
 			//tmp += "ecrire a;";
 			//tmp += "ecrire a*b;";
 			//tmp += "a := b;";

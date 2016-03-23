@@ -2,7 +2,9 @@
 #include "DeclarationVariable.h"
 #include "Expression.h"
 #include "Symbol.h"
+#include <iostream>
 
+using namespace std;
 //Ecrire::Ecrire(Expression* exp):
 //Instruction(WRITE),expression(exp){};
 
@@ -59,11 +61,14 @@ void Ecrire::print(ostream& os) const
 
 bool Ecrire::optimize(Instruction** inst,Declrs & variables) 
 {
-	bool error;
+	bool error = true;
 	double value;
-	Expression* expr_to_write;
+	Expression* expr_to_write,* expOpz ;
 	
-	Expression* expOpz = expression -> get_ptimized_expr(variables);
+	expOpz = expression -> get_ptimized_expr(variables);
+	
+	//(expOpz) -> print(cout);
+	//cout << endl;
 	
 	error = expOpz -> Evaluation(&value,variables);
 	

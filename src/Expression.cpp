@@ -39,7 +39,7 @@ Expression* Variable::get_ptimized_expr( Declrs & variables)
 
 bool Variable::Evaluation(double *res,const Declrs & variables) {
    Declrs::const_iterator var = variables.find(nom);
-   if (var!=variables.end() && var.is_initialized()) {
+   if ( var!=variables.end() && (var->second)->is_initialized() ) {
       *res = (var->second)->get_valeur();
 	  return true;
    } else {
@@ -57,7 +57,7 @@ void Variable::print(ostream& os) const{
 Expression* OperateurBinaire::get_ptimized_expr( Declrs & variables) 
 {
 	double valueG,valueD;
-	Expression* gaucheOpz,*droiteOPZ,*res;
+	Expression* gaucheOpz,*droiteOPZ;
 	
 	if(gauche->Evaluation(&valueG,variables)) 
 	{
@@ -73,15 +73,15 @@ Expression* OperateurBinaire::get_ptimized_expr( Declrs & variables)
 		droiteOPZ = droite-> get_ptimized_expr(variables) ;
 	}
 	
-	if((valueG =0 || valueD =0) && (this->ident = PLUS || this->ident = MINUS))
+	if((valueG ==0 || valueD ==0) && (this->ident == PLUS || this->ident == MINUS))
 	{
-		if(valueG =0) return droiteOPZ;
+		if(valueG ==0) return droiteOPZ;
 		else return gaucheOpz;
 	}
 	
-	if((valueG =1 || valueD =1) && (this->ident = MULT || this->ident = DIVIDE))
+	if((valueG ==1 || valueD ==1) && (this->ident == MULT || this->ident == DIVIDE))
 	{
-		if(valueG =1) return droiteOPZ;
+		if(valueG ==1) return droiteOPZ;
 		else return gaucheOpz;
 	
 	}	
@@ -122,13 +122,13 @@ void OperateurBinaire::print(ostream& os) const
 Expression* Parentese::get_ptimized_expr( Declrs & variables) 
 {
 	double value;
-	Expression* opz_expr;
+	Expression* opz_expr ;
 	
 	if(Evaluation(&value,variables)) 
 	{
 		opz_expr = new Parentese (new Valeur(value));
 	}else {
-		opz_expr = new Parentese (opz_expr->get_ptimized_expr( variables) );
+		opz_expr = new Parentese (expression->get_ptimized_expr( variables) );
 	}
 	return opz_expr;
 }
@@ -165,7 +165,7 @@ double OperateurMoins::operation(double g, double d) {
 
 void OperateurMoins::printOperator(ostream& os) const
 {
-    os << " _ ";
+    os << " - ";
 }
 
 Expression* OperateurMoins::create_OperateurBinaire(Expression* g, Expression* d)
@@ -192,7 +192,7 @@ double OperateurMul::operation(double g, double d) {
    return g*d;
 }
 
-void OperateurDiv::printOperator(ostream& os) const
+void OperateurMul::printOperator(ostream& os) const
 {
     os << " * ";
 }
