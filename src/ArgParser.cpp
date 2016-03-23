@@ -85,13 +85,14 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 						filePath = sourceFile;
 						return SUCCESS;
 					}	else	{
-						cout << "Filename has no extension or wrong one (" << p.extension() << "). Should have .lut extension" << endl;
+						cerr << "Filename has no extension or wrong one (" << p.extension() << "). Should have .lt extension" << endl;
 					}
 				}	else	{
-					cout << "Input argument is not a regular file" << endl;
+					cerr << "Input argument is not a regular file" << endl;
 				}
 			}	else	{
-				cout << "Input path does not exist" << endl;
+				// cerr << "Input path does not exist" << endl;
+				cerr << "Erreur a l'ouverture du fichier " << sourceFile << endl;
 			}
 			return ERROR_IN_COMMAND_LINE;
 		}
@@ -102,8 +103,8 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 	catch(po::error& e)
 	{
 		if (argc == 1) {
-			cout << "Erreur, veuillez specifier des arguments\n  Utilisation" << endl;
-			cout << "\t../lut [-p] [-a] [-e] [-o] source.lt" << endl
+			cerr << "Erreur, veuillez specifier des arguments\n  Utilisation :" << endl;
+			cerr << "\t../lut [-p] [-a] [-e] [-o] source.lt" << endl
 					<< "\t\t[-p] affiche le code source reconnu" << endl
 					<< "\t\t[-a] analyse le programme de maniere statique" << endl
 					<< "\t\t[-e] execute interactivement le programme" << endl
