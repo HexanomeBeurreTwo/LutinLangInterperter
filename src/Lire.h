@@ -11,7 +11,8 @@ class Lire : public Instruction
         Lire(Variable *var):Instruction(READ),variable(var){};
         virtual ~Lire();
         void print(ostream& os) const;
-        bool execute(Declrs & variables,bool silent);
+        bool execute(Declrs & variables);
+        bool analyse(Declrs & variables);
         bool optimize(Instruction** inst,Declrs & variables);
     protected:
         Variable* variable;

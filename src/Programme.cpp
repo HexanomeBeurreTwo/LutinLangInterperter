@@ -192,14 +192,15 @@ Programme::~Programme()
  
 bool Programme::analyse()
 {
-	if(!execute_silent())// D'abord execution en mode silence
+	bool res = do_analyse();
+	if(!res)// D'abord execution en mode silence
 	{
 		check_undeclared();
 		check_uninitialized_var();
-		return false;  
+		
 	}
 	check_unused_vars();
-	return true;
+	return res;
 }
 
 void Programme::check_uninitialized_var()
@@ -217,14 +218,14 @@ void Programme::check_undeclared()
 	partie_declaration.check_undeclared();
 }
 
-bool Programme::execute_silent() 
+bool Programme::do_analyse() 
 {
-	return partie_instruction.execute(partie_declaration.get_variables(),true);
+	return partie_instruction.analyse(partie_declaration.get_variables());
 }
 
 
 bool Programme::execute()
 {
-    return partie_instruction.execute(partie_declaration.get_variables(),false);
+    return partie_instruction.execute(partie_declaration.get_variables());
 }
 

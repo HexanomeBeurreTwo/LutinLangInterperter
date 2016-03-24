@@ -18,7 +18,7 @@ class Programme
         bool create_class_from_rules(stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol);
         void print(ostream& os) const ;
         bool execute();
-		bool execute_silent();
+		bool do_analyse();
         bool optimize(Programme* programe);
 		bool analyse();
     protected:

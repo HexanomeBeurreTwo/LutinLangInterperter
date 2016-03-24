@@ -32,11 +32,11 @@ void PartieInstruction::add_instruction(Instruction *inst)//ajout a la fin
 }
 
 
-bool PartieInstruction::execute(Declrs & variables,bool silent)
+bool PartieInstruction::execute(Declrs & variables)
 {
     for (deque<Instruction*>::iterator it = instructions.begin(); it!=instructions.end(); ++it)
     {
-        if( ! (*it)->execute(variables,silent) )
+        if( ! (*it)->execute(variables) )
         {
 			
             return false;
@@ -44,6 +44,21 @@ bool PartieInstruction::execute(Declrs & variables,bool silent)
     }
     return true;
 }
+
+bool PartieInstruction::analyse(Declrs & variables)
+{
+	bool res = true ;
+    for (deque<Instruction*>::iterator it = instructions.begin(); it!=instructions.end(); ++it)
+    {
+        if( ! (*it)->analyse(variables) )
+        {
+			
+            res = false;
+        }
+    }
+    return res;
+}
+
 
 
 

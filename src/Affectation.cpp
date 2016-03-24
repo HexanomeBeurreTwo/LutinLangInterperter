@@ -17,7 +17,7 @@
 using namespace std;
 
 
-bool Affectation::execute(Declrs & variables,bool silent)
+bool Affectation::execute(Declrs & variables)
 {
     string nom = variable -> get_nom();
     Declrs::const_iterator var = variables.find(nom);
@@ -38,6 +38,36 @@ bool Affectation::execute(Declrs & variables,bool silent)
         return false; // Error : affectaion de const !
     }
     else{ // Error Variable non déclarée
+        return false;
+    }
+
+}
+
+bool Affectation::analyse(Declrs & variables)
+{
+    string nom = variable -> get_nom();
+    Declrs::const_iterator var = variables.find(nom);
+    if (var!=variables.end())  //if existe
+    {
+        if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(variables[nom]))
+        {
+			bool error;
+			double value;
+			error = this->expression->analyse(&value,variables);
+			v->set_used();
+			v->set_initialized();
+            return error;
+        }
+        cerr << "Pas possible d'affecter une const : " << nom << endl;
+        return false; // Error : affectaion de const !
+    }
+    else{ // var non declarée
+		Declaration * dec = new DeclarationVariable(nom);
+		dec->set_undeclared();
+		dec->set_used();
+		dec->set_initialized();
+		variables[nom] = dec ;
+
         return false;
     }
 

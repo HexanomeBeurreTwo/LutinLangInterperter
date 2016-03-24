@@ -26,6 +26,12 @@ bool Valeur::Evaluation(double *res, Declrs & variables) {
    return true;
 }
 
+bool Valeur::analyse(double* res,Declrs & variables) 
+{
+	//*res = this->valeur;
+	return true; 
+ }
+
 void Valeur::print(ostream& os) const{
     os <<""<<valeur<<"";
 }
@@ -53,9 +59,6 @@ bool Variable::Evaluation(double *res,Declrs & variables) {
    Declrs::iterator var = variables.find(nom);
    if(var==variables.end()) 
    {
-	   Declaration * dec = new DeclarationVariable(nom);
-	   dec->set_undeclared();
-	   variables[nom] = dec ;
 	   return false;
 	   
    }else if( (var->second)->is_initialized() ) 
@@ -65,6 +68,22 @@ bool Variable::Evaluation(double *res,Declrs & variables) {
 	  return true;
    }
    return false;
+}
+
+bool Variable::analyse(double *res,Declrs & variables) {
+   Declrs::iterator var = variables.find(nom);
+   if(var==variables.end()) 
+   {
+	   Declaration * dec = new DeclarationVariable(nom);
+	   dec->set_undeclared();
+	   dec->set_used();
+	   variables[nom] = dec ;
+	   return false;
+	   
+   }
+   (var->second)-> set_used();
+   
+   return true;
 }
 
 void Variable::print(ostream& os) const{
@@ -133,6 +152,12 @@ bool OperateurBinaire::Evaluation(double *res, Declrs & variables) {
    return true;
 }
 
+bool OperateurBinaire::analyse(double *res, Declrs & variables) {
+   double valg,vald;
+   return gauche->analyse(&valg,variables) && droite->analyse(&vald,variables) ;
+ 
+}
+
 void OperateurBinaire::print(ostream& os) const
 {
     os << (*gauche) ;
@@ -166,6 +191,11 @@ bool Parentese::Evaluation(double *res, Declrs & variables) {
 	bool b =  expression->Evaluation(res,variables);
 	
 	return b;
+}
+
+bool Parentese::analyse(double *res, Declrs & variables) {
+	
+	return expression->analyse(res,variables);
 }
 
 void Parentese::print(ostream& os) const{
