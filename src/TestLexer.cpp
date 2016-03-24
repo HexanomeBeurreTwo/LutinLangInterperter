@@ -56,7 +56,7 @@ string getFileContent(string pathfile)
 
 
 
-int main()    
+int main_p()    
 {
     string file("./bin/example.lt");
 	

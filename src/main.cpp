@@ -43,7 +43,7 @@ int main_x()
 	return 0;
 }
 
-int main_u(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
     string file;
     int error = 0;
