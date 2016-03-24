@@ -69,7 +69,7 @@ int main()
 			tmp += "lire e;";
 			tmp += "ecrire e;";
 			tmp += "a := (c+c)*3-5+0+1*e;";
-			tmp +=  "ecrire (e+0)*1-0;";
+			tmp +=  "ecrire (e+u+0)*1-0;";
 			tmp +=  "ecrire (7*e);";
 			
 			//tmp += "ecrire a;";

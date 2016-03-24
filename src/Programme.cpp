@@ -215,7 +215,7 @@ void Programme::check_unused_vars()
 
 void Programme::check_used_uninitialized() // TODO
 {
-	
+	// si execute_silent() est faite alros ne rien faire ici !
 }
 
 bool Programme::execute_silent() // A finir !
