@@ -1,4 +1,4 @@
-
+#include "Debug.h"
 #include "Programme.h"
 #include "ArgParser.h"
 #include "Lexer.h"
@@ -26,7 +26,7 @@ string getFileContent_x(string pathfile)
 	}	else	{
 		cout << "Error reading the file" << endl;
 	}
-    cout << fileInput << endl;
+    DEBUG_STDOUT(fileInput << endl);
 	return fileInput;
 } 
 
@@ -42,7 +42,7 @@ int main_x()
 	return 0;
 }
 
-int main_u(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
     string file;
     int error = 0;
