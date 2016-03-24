@@ -11,6 +11,7 @@ class Expression  : public Symbol{
       virtual ~Expression(){};
       virtual void print(ostream& os) const  = 0;
       virtual bool Evaluation(double* res,Declrs & variables) = 0;
+      virtual bool analyse(double* res,Declrs & variables) = 0;
       Expression* get_ptimized_expression(Declrs & variables) ;
       virtual Expression* get_ptimized_expr(Declrs & variables) = 0;
 	protected :
@@ -27,6 +28,7 @@ class Valeur: public Expression {
       bool Evaluation(double* res, Declrs & variables);
       void print(ostream& os) const;
       Expression* get_ptimized_expr( Declrs & variables) ;
+      bool analyse(double* res,Declrs & variables) ;
    protected:
       double valeur;
 
@@ -41,6 +43,7 @@ class Variable: public Expression {
       void print(ostream& os) const;
       string get_nom(){return nom;}
       Expression* get_ptimized_expr( Declrs & variables) ;
+      bool analyse(double* res,Declrs & variables) ;
    protected:
       string nom;
 };
@@ -52,6 +55,7 @@ class Parentese: public Expression {
       void print(ostream& os) const;
       bool Evaluation(double* res, Declrs & variables);
       Expression* get_ptimized_expr( Declrs & variables) ;
+      bool analyse(double* res,Declrs & variables) ;
    protected:
       Expression *expression;
 };
@@ -65,6 +69,7 @@ class OperateurBinaire: public Expression { // MINUS MULT DIVIDE PLUS
       bool Evaluation(double *res, Declrs & variables);
       void print(ostream& os) const;
       virtual Expression* get_ptimized_expr( Declrs & variables) ;
+      bool analyse(double* res,Declrs & variables) ;
    protected:
       virtual double operation(double g, double d) = 0;
       virtual void printOperator(ostream& os ) const = 0;

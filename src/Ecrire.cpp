@@ -14,7 +14,7 @@ Ecrire::~Ecrire(){
 }
 
 
-bool Ecrire::execute(Declrs & variables,bool silent)
+bool Ecrire::execute(Declrs & variables)
 {
     /*string nom = this->variable -> get_nom();
     double valeur;
@@ -31,9 +31,18 @@ bool Ecrire::execute(Declrs & variables,bool silent)
 	bool error;
 	double value;
 	error = expression -> Evaluation(&value,variables);
-	if(!silent) if(error) cout << value <<endl;
+	if(error) cout << value <<endl;
 	return error;
 }
+
+bool Ecrire::analyse(Declrs & variables)
+{
+	bool error;
+	double value;
+	error = expression -> analyse(&value,variables);
+	return error;	
+}
+
 
 void Ecrire::print(ostream& os) const
 {

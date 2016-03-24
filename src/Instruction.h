@@ -20,7 +20,8 @@ class Instruction : public Symbol {
     Instruction(Tokens id) : Symbol(id){};
     virtual ~Instruction(){} ;
     virtual void print(ostream& os) const = 0;
-    virtual bool execute(Declrs & variables,bool silent) = 0;
+    virtual bool execute(Declrs & variables) = 0;
+    virtual bool analyse(Declrs & variables) =0;
     virtual bool optimize(Instruction** inst,Declrs & variables) = 0;
 
 

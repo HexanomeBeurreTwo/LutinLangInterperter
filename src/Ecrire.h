@@ -12,7 +12,8 @@ class Ecrire : public Instruction
         Ecrire(Expression* exp):Instruction(WRITE),expression(exp){}
         virtual ~Ecrire();
         void print(ostream& os) const;
-        bool execute(Declrs & variables,bool silent);
+        bool execute(Declrs & variables);
+        bool analyse(Declrs & variables);
         bool optimize(Instruction** inst,Declrs & variables) ;
     protected:
         Expression* expression;

@@ -56,7 +56,7 @@ string getFileContent(string pathfile)
 
 
 
-int main_io()    
+int main()    
 {
     string file("./bin/example.lt");
 	
@@ -64,15 +64,15 @@ int main_io()
     // traiter les option -e -o -p ... et recuperer le nom du fichier
 
 	//string* contentFile = getFileContent(file);
-	string  tmp =  "var   a,e,h,s;";
+	string  tmp =  "var   a,j,e,h,s;";
 			tmp += "const c = 44.1;";
-			//tmp += "b := 2;";
+			tmp += "b := 2;";
 			tmp += "lire e;";
 			tmp += "ecrire e;";
 			//tmp += "a := (c + c )*3- 5+0+1*e;";
 			tmp += "h := 4;";
-			tmp += "a := h;";
-			tmp +=  "ecrire (e+0)*1- 0;";
+			tmp += "a := h+c+s+j;";
+			tmp +=  "ecrire (e-s+0)*1- 0;";
 			tmp +=  "ecrire (7*e);";
 			//tmp += "e :=-6 * 2;";
 			tmp += "ecrire e;";
@@ -87,9 +87,9 @@ int main_io()
 	//tmp = getFileContent(file);
 	
 	
-	DEBUG_STDOUT("~~~~~INPUT FILE~~~~~~~~" << endl
+	cout << "~~~~~INPUT FILE~~~~~~~~" << endl
 		 << 	   tmp 		  << endl
-		 << "~~~~~~~~~~~~~~~~~~~~~~~" << endl);
+		 << "~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
     Lexer lexer(tmp);  
     lexer.analyseAll();
@@ -102,9 +102,9 @@ int main_io()
 		return 1;
 	}
 	
-	DEBUG_STDOUT("~~~~~~~AFFICHAGE~~~~~~~"<< endl);
-    DEBUG_STDOUT(programme );
-	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
+	cout << "~~~~~~~AFFICHAGE~~~~~~~"<< endl
+	<< programme 
+	<< "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	
 	cout << "~~~~~~~ANALYSE~~~~~~~~~"<< endl;
 	success = programme.analyse() ;
@@ -116,16 +116,16 @@ int main_io()
 	}
 	
 	
-	DEBUG_STDOUT("~~~~~~~EXECUTION~~~~~~~"<< endl);
+	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
     success = programme.execute();
 	if(!success)
 	{
 		cerr << "erreur Symentique : execution programme " << endl;
 		return 1;
 	}
-	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	
-	DEBUG_STDOUT("~~~~~~~OPTIMISATION~~~~~"<< endl);
+	cout << "~~~~~~~OPTIMISATION~~~~~"<< endl;
     Programme prog_opz;
     success =  programme.optimize(&prog_opz);
     if(!success)
@@ -133,18 +133,18 @@ int main_io()
 		cerr << "erreur optimisation  " << endl;
 		return 1;
 	} else{
-		DEBUG_STDOUT(prog_opz );
+		cout << prog_opz ;
 	}
-	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	
-	DEBUG_STDOUT("~~~~~~~EXECUTION~~~~~~~"<< endl);
+	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
     success = prog_opz.execute();
 	if(!success)
 	{
 		cerr << "erreur Symentique : execution programme " << endl;
 		return 1;
 	}
-	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	
 
 	
