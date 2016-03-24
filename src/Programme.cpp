@@ -163,11 +163,6 @@ void Programme::print(ostream& os)const
 
 
 
-bool Programme::execute()
-{
-    return partie_instruction.execute(partie_declaration.get_variables());
-}
-
 
 Programme::~Programme()
 {
@@ -195,12 +190,17 @@ Programme::~Programme()
  }
  
  
-void Programme::analyse()
+bool Programme::analyse()
 {
-	//if(!execute_silent()) return; // D'abord execution en mode silence 
-	check_uninitialized_var();
+	bool res = do_analyse();
+	if(!res)// D'abord execution en mode silence
+	{
+		check_undeclared();
+		check_uninitialized_var();
+		
+	}
 	check_unused_vars();
-	check_used_uninitialized();
+	return res;
 }
 
 void Programme::check_uninitialized_var()
@@ -213,13 +213,19 @@ void Programme::check_unused_vars()
 	partie_declaration.check_unused_vars();
 }
 
-void Programme::check_used_uninitialized() // TODO
+void Programme::check_undeclared() 
 {
-	// si execute_silent() est faite alros ne rien faire ici !
+	partie_declaration.check_undeclared();
 }
 
-bool Programme::execute_silent() // A finir !
+bool Programme::do_analyse() 
 {
-	return partie_instruction.execute(partie_declaration.get_variables());
+	return partie_instruction.analyse(partie_declaration.get_variables());
+}
+
+
+bool Programme::execute()
+{
+    return partie_instruction.execute(partie_declaration.get_variables());
 }
 

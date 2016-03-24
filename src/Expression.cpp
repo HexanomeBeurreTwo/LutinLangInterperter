@@ -7,6 +7,13 @@
 
 using namespace std;
 
+
+Expression* Expression::get_ptimized_expression(Declrs & variables) {
+  Expression* res;
+  res = get_ptimized_expr(variables);
+  return res;
+}
+
 //####################################### VALEUR
 
 Expression* Valeur::get_ptimized_expr( Declrs & variables) 
@@ -14,10 +21,16 @@ Expression* Valeur::get_ptimized_expr( Declrs & variables)
 	return new Valeur(valeur);	
 }
 
-bool Valeur::Evaluation(double *res,const Declrs & variables) {
+bool Valeur::Evaluation(double *res, Declrs & variables) {
    *res = this->valeur;
    return true;
 }
+
+bool Valeur::analyse(double* res,Declrs & variables) 
+{
+	//*res = this->valeur;
+	return true; 
+ }
 
 void Valeur::print(ostream& os) const{
     os <<""<<valeur<<"";
@@ -28,25 +41,49 @@ void Valeur::print(ostream& os) const{
 
 Expression* Variable::get_ptimized_expr( Declrs & variables) 
 {
+
 	double value;
+	Expression* exp;
+	
 	if(Evaluation(&value,variables)) 
 	{
-		return new Valeur(value);
+		exp = new Valeur(value);
 	}
 	
-	return new Variable(nom);
+	exp = new Variable(nom);
+	
+	return exp;
 }
 
-bool Variable::Evaluation(double *res,const Declrs & variables) {
-   Declrs::const_iterator var = variables.find(nom);
-   if ( var!=variables.end() && (var->second)->is_initialized() ) {
+bool Variable::Evaluation(double *res,Declrs & variables) {
+   Declrs::iterator var = variables.find(nom);
+   if(var==variables.end()) 
+   {
+	   return false;
+	   
+   }else if( (var->second)->is_initialized() ) 
+   {
       *res = (var->second)->get_valeur();
 	  (var->second) -> set_used();
 	  return true;
-   } else {
-	  cerr << "ERR : Var '"<< nom <<"' undeclared or uninitialized" << endl;
-      return false;
    }
+   return false;
+}
+
+bool Variable::analyse(double *res,Declrs & variables) {
+   Declrs::iterator var = variables.find(nom);
+   if(var==variables.end()) 
+   {
+	   Declaration * dec = new DeclarationVariable(nom);
+	   dec->set_undeclared();
+	   dec->set_used();
+	   variables[nom] = dec ;
+	   return false;
+	   
+   }
+   (var->second)-> set_used();
+   
+   return true;
 }
 
 void Variable::print(ostream& os) const{
@@ -60,6 +97,7 @@ Expression* OperateurBinaire::get_ptimized_expr( Declrs & variables)
 {
 	double valueG,valueD;
 	Expression* gaucheOpz,*droiteOPZ;
+	
 	
 	if(gauche->Evaluation(&valueG,variables)) 
 	{
@@ -75,10 +113,12 @@ Expression* OperateurBinaire::get_ptimized_expr( Declrs & variables)
 		droiteOPZ = droite-> get_ptimized_expr(variables) ;
 	}
 	
+	
 	if((valueG ==0 || valueD ==0) && (this->ident == PLUS || this->ident == MINUS))
 	{
 		if(valueG ==0) return droiteOPZ;
 		else return gaucheOpz;
+		
 	}
 	
 	if((valueG ==1 || valueD ==1) && (this->ident == MULT || this->ident == DIVIDE))
@@ -98,15 +138,24 @@ OperateurBinaire::~OperateurBinaire() {
    delete droite;
 }
 
-bool OperateurBinaire::Evaluation(double *res,const Declrs & variables) {
+bool OperateurBinaire::Evaluation(double *res, Declrs & variables) {
    double valg,vald;
+   
    if( !gauche->Evaluation(&valg,variables) ||
 	   !droite->Evaluation(&vald,variables) )
    {
+		
 		return false;
    }
    *res = operation(valg,vald);
+   
    return true;
+}
+
+bool OperateurBinaire::analyse(double *res, Declrs & variables) {
+   double valg,vald;
+   return gauche->analyse(&valg,variables) && droite->analyse(&vald,variables) ;
+ 
 }
 
 void OperateurBinaire::print(ostream& os) const
@@ -125,6 +174,7 @@ Expression* Parentese::get_ptimized_expr( Declrs & variables)
 {
 	double value;
 	Expression* opz_expr ;
+
 	
 	if(Evaluation(&value,variables)) 
 	{
@@ -132,11 +182,20 @@ Expression* Parentese::get_ptimized_expr( Declrs & variables)
 	}else {
 		opz_expr = new Parentese (expression->get_ptimized_expr( variables) );
 	}
+	
 	return opz_expr;
 }
 
-bool Parentese::Evaluation(double *res,const Declrs & variables) {
-   return expression->Evaluation(res,variables);
+bool Parentese::Evaluation(double *res, Declrs & variables) {
+	
+	bool b =  expression->Evaluation(res,variables);
+	
+	return b;
+}
+
+bool Parentese::analyse(double *res, Declrs & variables) {
+	
+	return expression->analyse(res,variables);
 }
 
 void Parentese::print(ostream& os) const{

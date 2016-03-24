@@ -93,7 +93,7 @@ int main_y() {
     //PI->print();
     cout << *PI;
 
-    succes = PI->execute(PD->get_variables());
+    //	succes = PI->execute(PD->get_variables());
 
     if(!succes)
     {
@@ -144,7 +144,7 @@ int main_c() {
   
     cout << *PI;
 
-    succes = PI->execute(PD->get_variables());
+    //succes = PI->execute(PD->get_variables());
 
     if(!succes) 
     {

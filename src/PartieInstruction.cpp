@@ -38,11 +38,28 @@ bool PartieInstruction::execute(Declrs & variables)
     {
         if( ! (*it)->execute(variables) )
         {
+			
             return false;
         }
     }
     return true;
 }
+
+bool PartieInstruction::analyse(Declrs & variables)
+{
+	bool res = true ;
+    for (deque<Instruction*>::iterator it = instructions.begin(); it!=instructions.end(); ++it)
+    {
+        if( ! (*it)->analyse(variables) )
+        {
+			
+            res = false;
+        }
+    }
+    return res;
+}
+
+
 
 
 bool PartieInstruction::optimize(PartieInstruction *partie_instruction_opz, Declrs & variables)

@@ -35,6 +35,15 @@ bool Ecrire::execute(Declrs & variables)
 	return error;
 }
 
+bool Ecrire::analyse(Declrs & variables)
+{
+	bool error;
+	double value;
+	error = expression -> analyse(&value,variables);
+	return error;	
+}
+
+
 void Ecrire::print(ostream& os) const
 {
 	//cout << "ecrire ";
@@ -65,7 +74,7 @@ bool Ecrire::optimize(Instruction** inst,Declrs & variables)
 	double value;
 	Expression* expr_to_write,* expOpz ;
 	
-	expOpz = expression -> get_ptimized_expr(variables);
+	expOpz = expression -> get_ptimized_expression(variables);
 	
 	//(expOpz) -> print(cout);
 	//cout << endl;
