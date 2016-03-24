@@ -41,8 +41,10 @@ bool Variable::Evaluation(double *res,const Declrs & variables) {
    Declrs::const_iterator var = variables.find(nom);
    if ( var!=variables.end() && (var->second)->is_initialized() ) {
       *res = (var->second)->get_valeur();
+	  (var->second) -> set_used();
 	  return true;
    } else {
+	  cerr << "ERR : Var '"<< nom <<"' undeclared or uninitialized" << endl;
       return false;
    }
 }

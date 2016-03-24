@@ -64,13 +64,14 @@ int main()
 	//string* contentFile = getFileContent(file);
 	string  tmp =  "var a,e,b;";
 			tmp += "const c = 44.1;";
-			
+			tmp += "var k; ";
 			//tmp += "b := 2;";
 			tmp += "lire e;";
 			tmp += "ecrire e;";
 			tmp += "a := (c+c)*3-5+0+1*e;";
 			tmp +=  "ecrire (e+0)*1-0;";
 			tmp +=  "ecrire (7*e);";
+			
 			//tmp += "ecrire a;";
 			//tmp += "ecrire a*b;";
 			//tmp += "a := b;";
@@ -97,6 +98,10 @@ int main()
 	
 	cout << "~~~~~~~AFFICHAGE~~~~~~~"<< endl;
     cout << programme ;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	
+	cout << "~~~~~~~ANALYSE~~~~~~~"<< endl;
+	programme.analyse();
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	
 	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
@@ -128,6 +133,9 @@ int main()
 		return 1;
 	}
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	
+
+	
 	
     return success;
 }

@@ -15,6 +15,7 @@ class Declaration : public Symbol
         double get_valeur(){return valeur;}
 		bool is_used(){return used;}
 		bool is_initialized(){return initialized;}
+		void set_used(){used = true;}
     protected:
         string nom;
         double valeur;
