@@ -54,7 +54,7 @@ string getFileContent(string pathfile)
 
 
 
-int main()    
+int main_io()    
 {
     string file("./bin/example.lt");
 	
@@ -62,15 +62,19 @@ int main()
     // traiter les option -e -o -p ... et recuperer le nom du fichier
 
 	//string* contentFile = getFileContent(file);
-	string  tmp =  "var a,e,b;";
+	string  tmp =  "var   a,e,h,s;";
 			tmp += "const c = 44.1;";
-			tmp += "var k; ";
 			//tmp += "b := 2;";
 			tmp += "lire e;";
 			tmp += "ecrire e;";
-			tmp += "a := (c+c)*3-5+0+1*e;";
-			tmp +=  "ecrire (e+u+0)*1-0;";
+			//tmp += "a := (c + c )*3- 5+0+1*e;";
+			tmp += "h := 4;";
+			tmp += "a := h;";
+			tmp +=  "ecrire (e+0)*1- 0;";
 			tmp +=  "ecrire (7*e);";
+			//tmp += "e :=-6 * 2;";
+			tmp += "ecrire e;";
+			//tmp += "ecrire 5--3;";
 			
 			//tmp += "ecrire a;";
 			//tmp += "ecrire a*b;";
@@ -100,9 +104,15 @@ int main()
     cout << programme ;
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
 	
-	cout << "~~~~~~~ANALYSE~~~~~~~"<< endl;
-	programme.analyse();
+	cout << "~~~~~~~ANALYSE~~~~~~~~~"<< endl;
+	success = programme.analyse() ;
 	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	if(!success)
+	{
+		cerr << "ABORT : Des erreurs ont survenus. " << endl;
+		return 1;
+	}
+	
 	
 	cout << "~~~~~~~EXECUTION~~~~~~~"<< endl;
     success = programme.execute();

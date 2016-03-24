@@ -14,7 +14,7 @@ Ecrire::~Ecrire(){
 }
 
 
-bool Ecrire::execute(Declrs & variables)
+bool Ecrire::execute(Declrs & variables,bool silent)
 {
     /*string nom = this->variable -> get_nom();
     double valeur;
@@ -31,7 +31,7 @@ bool Ecrire::execute(Declrs & variables)
 	bool error;
 	double value;
 	error = expression -> Evaluation(&value,variables);
-	if(error) cout << value <<endl;
+	if(!silent) if(error) cout << value <<endl;
 	return error;
 }
 
@@ -65,7 +65,7 @@ bool Ecrire::optimize(Instruction** inst,Declrs & variables)
 	double value;
 	Expression* expr_to_write,* expOpz ;
 	
-	expOpz = expression -> get_ptimized_expr(variables);
+	expOpz = expression -> get_ptimized_expression(variables);
 	
 	//(expOpz) -> print(cout);
 	//cout << endl;

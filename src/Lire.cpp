@@ -6,7 +6,7 @@ Lire::~Lire()
     delete variable;
 }
 
-bool Lire::execute(Declrs & variables)
+bool Lire::execute(Declrs & variables,bool silent)
 {
     string nom = variable -> get_nom();
     double valeur;
@@ -15,7 +15,7 @@ bool Lire::execute(Declrs & variables)
     {
         if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(variables[nom]) )
         {
-            cin >> valeur;
+			if(! silent) cin >> valeur;
             v->affect(valeur);
             return true;
         }else // impossible d'affecter a un const

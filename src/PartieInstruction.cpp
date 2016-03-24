@@ -31,17 +31,19 @@ void PartieInstruction::add_instruction(Instruction *inst)//ajout a la fin
 }
 
 
-bool PartieInstruction::execute(Declrs & variables)
+bool PartieInstruction::execute(Declrs & variables,bool silent)
 {
     for (deque<Instruction*>::iterator it = instructions.begin(); it!=instructions.end(); ++it)
     {
-        if( ! (*it)->execute(variables) )
+        if( ! (*it)->execute(variables,silent) )
         {
+			
             return false;
         }
     }
     return true;
 }
+
 
 
 bool PartieInstruction::optimize(PartieInstruction *partie_instruction_opz, Declrs & variables)

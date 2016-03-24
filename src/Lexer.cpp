@@ -14,7 +14,9 @@ using boost::regex;
 const char keyword_str[] = "^(const |var |ecrire |lire )";
 const char identifier_str[] = "^([a-zA-Z][a-zA-Z0-9]*)";
 const char number_str[] =  "^([0-9]*\\.?[0-9]+)";
-const char operators_str[] = "^(\\+|-|\\*|\\/|\\(|\\)|;|=|,|:=)";
+const char operators_str[] = "^(\\+|-|\\*|\\/|\\(|\\)|;|=|,|:=)"; 
+//const char number_str[] =  "^(-?[0-9]*\\.?[0-9]+)";
+//const char operators_str[] = "^(\\+|- ?|\\*|\\/|\\(|\\)|;|=|,|:=)"; 
 
 const regex keyword(keyword_str);
 const regex identifier(identifier_str); 

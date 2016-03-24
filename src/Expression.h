@@ -10,8 +10,11 @@ class Expression  : public Symbol{
       //Expression():Instruction(E){};
       virtual ~Expression(){};
       virtual void print(ostream& os) const  = 0;
-      virtual bool Evaluation(double* res,const Declrs & variables) = 0;
+      virtual bool Evaluation(double* res,Declrs & variables) = 0;
+      Expression* get_ptimized_expression(Declrs & variables) ;
       virtual Expression* get_ptimized_expr(Declrs & variables) = 0;
+	protected :
+		
 	  
 };
 
@@ -21,7 +24,7 @@ class Valeur: public Expression {
       Valeur(int val):Expression(VAL),valeur(val){};
       Valeur(double val):Expression(VAL),valeur(val){};
       ~Valeur(){};
-      bool Evaluation(double* res,const Declrs & variables);
+      bool Evaluation(double* res, Declrs & variables);
       void print(ostream& os) const;
       Expression* get_ptimized_expr( Declrs & variables) ;
    protected:
@@ -34,7 +37,7 @@ class Variable: public Expression {
    public:
       Variable(string n):Expression(VAR),nom(n){};
       ~Variable(){};
-      bool Evaluation(double* res,const Declrs & variables);
+      bool Evaluation(double* res, Declrs & variables);
       void print(ostream& os) const;
       string get_nom(){return nom;}
       Expression* get_ptimized_expr( Declrs & variables) ;
@@ -47,7 +50,7 @@ class Parentese: public Expression {
       Parentese(Expression * expr):Expression(OPENBY),expression(expr){};
       ~Parentese(){delete expression;};
       void print(ostream& os) const;
-      bool Evaluation(double* res,const Declrs & variables);
+      bool Evaluation(double* res, Declrs & variables);
       Expression* get_ptimized_expr( Declrs & variables) ;
    protected:
       Expression *expression;
@@ -59,7 +62,7 @@ class OperateurBinaire: public Expression { // MINUS MULT DIVIDE PLUS
    public:
       OperateurBinaire(Tokens id_symb,Expression * g, Expression * d):Expression(id_symb),gauche (g),droite (d){};
       ~OperateurBinaire();
-      bool Evaluation(double *res,const Declrs & variables);
+      bool Evaluation(double *res, Declrs & variables);
       void print(ostream& os) const;
       virtual Expression* get_ptimized_expr( Declrs & variables) ;
    protected:
