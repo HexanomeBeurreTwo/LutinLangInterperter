@@ -15,6 +15,8 @@ class PartieDeclarative : public Symbol
         Declrs& get_variables();
         void clone_vars(const PartieDeclarative& src);
 		void optimize();
+		void check_uninitialized_var();
+		void check_unused_vars();
 
     protected:
         Declrs variables;

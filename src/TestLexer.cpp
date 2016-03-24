@@ -18,7 +18,7 @@ string getFileContent(string pathfile);
 // 		Lexer lex(*cotentFile);
 
 //         if(lex.analyseAll())    {
-//                 cout << "Success! " << lex.tokensList.size() << " tokens found." << endl;
+//                 DEBUG_STDOUT("Success! " << lex.tokensList.size() << " tokens found." << endl);
 //         }
 
 //         return 0;
@@ -37,11 +37,11 @@ string getFileContent(string pathfile)
 			{
 			  DEBUG_STDOUT(line << endl);
 			  tmp +=  line;
-			  //cout << tmp << endl;
+			  //DEBUG_STDOUT(tmp << endl);
 			}
 			myfile.close();
         } else  {
-                cerr << "Error reading the file" << endl;
+                DEBUG_STDOUT("Error reading the file" << endl);
         }
 
 		DEBUG_STDOUT("Analyse du fichier " << endl
@@ -55,9 +55,10 @@ string getFileContent(string pathfile)
 
 
 
-int main_io()    
+int main_u()    
 {
     string file("./bin/example.lt");
+	
     bool success;
     // traiter les option -e -o -p ... et recuperer le nom du fichier
 
@@ -65,17 +66,27 @@ int main_io()
 	//string* contentFile = getFileContent(file);
 	string  tmp =  "var a,e,b;";
 			tmp += "const c = 44.1;";
-			
-			tmp += "b := 2;";
+			tmp += "var k; ";
+			//tmp += "b := 2;";
 			tmp += "lire e;";
-			tmp += "a := (c+c)*3-5;";
-			tmp += "ecrire a;";
-			tmp += "ecrire a*b;";
-			tmp += "a := b;";
-			tmp += "ecrire a;";	
+			tmp += "ecrire e;";
+			tmp += "a := (c+c)*3-5+0+1*e;";
+			tmp +=  "ecrire (e+u+0)*1-0;";
+			tmp +=  "ecrire (7*e);";
+			
+			//tmp += "ecrire a;";
+			//tmp += "ecrire a*b;";
+			//tmp += "a := b;";
+			//tmp += "ecrire a;";	
 	
 	//tmp = "sdf var F";
 	//tmp = getFileContent(file);
+	
+	
+	DEBUG_STDOUT("~~~~~INPUT FILE~~~~~~~~" << endl
+		 << 	   tmp 		  << endl
+		 << "~~~~~~~~~~~~~~~~~~~~~~~" << endl);
+
     Lexer lexer(tmp);  
     lexer.analyseAll();
     Programme programme;
@@ -91,6 +102,10 @@ int main_io()
     DEBUG_STDOUT(programme );
 	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
 	
+	DEBUG_STDOUT("~~~~~~~ANALYSE~~~~~~~"<< endl);
+	programme.analyse();
+	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
+	
 	DEBUG_STDOUT("~~~~~~~EXECUTION~~~~~~~"<< endl);
     success = programme.execute();
 	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
@@ -99,9 +114,9 @@ int main_io()
 		cerr << "erreur Symentique : execution programme " << endl;
 		return 1;
 	}
-	cout << "~~~~~~~~~~~~~~~~~~~~~~~"<< endl;
+	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
 	
-	cout << "~~~~~~~OPTIMISATION~~~~~"<< endl;
+	DEBUG_STDOUT("~~~~~~~OPTIMISATION~~~~~"<< endl);
     Programme prog_opz;
     success =  programme.optimize(&prog_opz);
     if(!success)
@@ -109,7 +124,7 @@ int main_io()
 		cerr << "erreur optimisation  " << endl;
 		return 1;
 	} else{
-		cout << prog_opz ;
+		DEBUG_STDOUT(prog_opz );
 	}
 	DEBUG_STDOUT("~~~~~~~~~~~~~~~~~~~~~~~"<< endl);
 	

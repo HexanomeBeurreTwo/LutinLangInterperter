@@ -16,6 +16,7 @@ bool PartieDeclarative::add_declaration(Declaration *inst)
         variables[inst->get_nom()] = inst;
         return true;
     }else{
+		cerr << "ERR : Variable '" << nom << "' deja utilisee " << endl;  
         return false;
     }
 }
@@ -72,6 +73,36 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
 		}
 		
     } 
-	
+ }
+ 
+ void PartieDeclarative::check_uninitialized_var()
+ {
+	string uninitialized_var = "ERR : uninitialized vars : ";
+	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
+    {
+        if( DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(it->second)  )
+		if (!v->is_initialized())
+        {
+			uninitialized_var += v->get_nom() + " ";
+		}
+		
+    } 
+	cerr << uninitialized_var << endl;
+ }
+ 
+  
+ void PartieDeclarative::check_unused_vars()
+ {
+	string uninitialized_var = "ERR : unused vars : ";
+	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
+    {
+        
+		if (!(it->second)->is_used())
+        {
+			uninitialized_var += (it->second)->get_nom() + " ";
+		}
+		
+    } 
+	cerr << uninitialized_var << endl;
  }
 

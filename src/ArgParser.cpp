@@ -76,6 +76,7 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
         if (vm.count("print")) printFlag = true;
 
 		if (vm.count("input")) {
+
 			sourceFile = vm["input"].as<std::string>();
 			path p(sourceFile);
 			if (exists(p))	{
@@ -94,6 +95,7 @@ int ArgParser::discoverFlags(const int argc, char const *argv[])	{
 				// cerr << "Input path does not exist" << endl;
 				cerr << "Erreur a l'ouverture du fichier " << sourceFile << endl;
 			}
+
 			return ERROR_IN_COMMAND_LINE;
 		}
 

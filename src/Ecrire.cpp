@@ -2,7 +2,9 @@
 #include "DeclarationVariable.h"
 #include "Expression.h"
 #include "Symbol.h"
+#include <iostream>
 
+using namespace std;
 //Ecrire::Ecrire(Expression* exp):
 //Instruction(WRITE),expression(exp){};
 
@@ -41,7 +43,7 @@ void Ecrire::print(ostream& os) const
 	os << "ecrire " << *expression << ";" ;
 }
 
-bool Ecrire::optimize(Instruction** inst,Declrs & variables) 
+/*bool Ecrire::optimize_back(Instruction** inst,Declrs & variables) 
 {
 	bool error;
 	double value;
@@ -55,6 +57,34 @@ bool Ecrire::optimize(Instruction** inst,Declrs & variables)
 		*inst = new Ecrire(vl);
 		return true;
 	}
+}*/
+
+bool Ecrire::optimize(Instruction** inst,Declrs & variables) 
+{
+	bool error = true;
+	double value;
+	Expression* expr_to_write,* expOpz ;
+	
+	expOpz = expression -> get_ptimized_expr(variables);
+	
+	//(expOpz) -> print(cout);
+	//cout << endl;
+	
+	error = expOpz -> Evaluation(&value,variables);
+	
+	if(!error) 
+	{
+		expr_to_write = expOpz;
+		
+	}else{ //typedef map<string,Declaration*> Declrs;
+		expr_to_write = new Valeur(value);
+		
+	}
+	
+	*inst = new Ecrire(expr_to_write);
+	return true;
 }
+
+
 
 
