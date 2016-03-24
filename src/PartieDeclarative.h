@@ -17,6 +17,7 @@ class PartieDeclarative : public Symbol
 		void optimize();
 		void check_uninitialized_var();
 		void check_unused_vars();
+		void check_undeclared();
 
     protected:
         Declrs variables;

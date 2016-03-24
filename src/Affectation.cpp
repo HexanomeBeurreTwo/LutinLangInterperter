@@ -17,7 +17,7 @@
 using namespace std;
 
 
-bool Affectation::execute(Declrs & variables)
+bool Affectation::execute(Declrs & variables,bool silent)
 {
     string nom = variable -> get_nom();
     Declrs::const_iterator var = variables.find(nom);
@@ -28,7 +28,11 @@ bool Affectation::execute(Declrs & variables)
 			bool error;
 			double value;
 			error = this->expression->Evaluation(&value,variables);
-            if (error) v->affect(value);
+            if (error) 
+			{
+				v->affect(value);
+				v->set_used();
+			}
             return error;
         }
         return false; // Error : affectaion de const !
@@ -47,37 +51,11 @@ Affectation::~Affectation()
 
 void Affectation::print(ostream& os) const
 {
-	/*variable->print();
-	cout << " := ";
-	expression -> print();
-	cout << ";";*/
+
     os << (*variable) << " := " << (*expression) << ";" ;
 }
 
 
-/*bool optimize_back(Instruction** inst,Declrs & variables) 
-{
-	bool error;
-	double value;
-	error = expression -> Evaluation(&value,variables);
-	if(!error) 
-	{
-		return false;
-	}else
-	{ //typedef map<string,Declaration*> Declrs;
-		string nom = variable->get_nom();
-		
-		Variable* var = new Variable(nom);
-		Valeur* valeur = new Valeur(value);
-		*inst = new Affectation(valeur,var);
-		
-		if(DeclarationVariable* v = dynamic_cast<DeclarationVariable*>(variables[nom]))
-        {
-			v->affect(value);
-		}
-		return true;
-	}
-}*/
 
 
 bool Affectation::optimize(Instruction** inst,Declrs & variables) 
@@ -87,7 +65,7 @@ bool Affectation::optimize(Instruction** inst,Declrs & variables)
 	Expression* expr_to_affect;
 	
 	string nom = variable->get_nom();	
-	Expression* expOpz = expression -> get_ptimized_expr(variables);
+	Expression* expOpz = expression -> get_ptimized_expression(variables);
 	
 	error = expOpz -> Evaluation(&value,variables);
 	

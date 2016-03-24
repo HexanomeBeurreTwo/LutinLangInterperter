@@ -20,13 +20,13 @@ class Programme
         bool execute();
 		bool execute_silent();
         bool optimize(Programme* programe);
-		void analyse();
+		bool analyse();
     protected:
 
     private:
 		void check_uninitialized_var(); // OK ! 
 		void check_unused_vars(); // OK !
-		void check_used_uninitialized(); // TODO !
+		void check_undeclared(); // TODO !
 		
         deque<Expression*> expressions; // une file d'expression ordonnée selon date creation
         PartieInstruction partie_instruction;

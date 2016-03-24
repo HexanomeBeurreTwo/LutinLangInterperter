@@ -77,6 +77,7 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
  
  void PartieDeclarative::check_uninitialized_var()
  {
+	bool founded = false;
 	string uninitialized_var = "ERR : uninitialized vars : ";
 	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
     {
@@ -84,25 +85,48 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
 		if (!v->is_initialized())
         {
 			uninitialized_var += v->get_nom() + " ";
+			founded = true;
 		}
 		
     } 
-	cerr << uninitialized_var << endl;
+	if(founded)
+		cerr << uninitialized_var << endl;
  }
  
   
  void PartieDeclarative::check_unused_vars()
  {
-	string uninitialized_var = "ERR : unused vars : ";
+	bool founded = false;
+	string uninitialized_var = "WRN : unused vars : ";
 	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
     {
         
 		if (!(it->second)->is_used())
         {
 			uninitialized_var += (it->second)->get_nom() + " ";
+			founded = true;
 		}
 		
     } 
-	cerr << uninitialized_var << endl;
+	if(founded)
+		cerr << uninitialized_var << endl;
  }
 
+ 
+ void PartieDeclarative::check_undeclared()
+ {
+	bool founded = false;
+	string uninitialized_var = "ERR : undeclared vars : ";
+	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
+    {
+        
+		if (!(it->second)->is_declared())
+        {
+			uninitialized_var += (it->second)->get_nom() + " ";
+			founded = true;
+		}
+		
+    } 
+	if(founded)
+		cerr << uninitialized_var << endl;
+ }

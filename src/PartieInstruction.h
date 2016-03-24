@@ -18,7 +18,7 @@ class PartieInstruction : public Symbol
         virtual ~PartieInstruction();
         void add_instruction(Instruction *inst);
         void print(ostream& os) const;
-        bool execute(Declrs & variables);
+        bool execute(Declrs & variables,bool silent);
         bool optimize(PartieInstruction *partie_instruction_opz, Declrs & variables);
 
     protected:
