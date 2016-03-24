@@ -16,6 +16,7 @@ const char keyword_str[] = "^(const |var |ecrire |lire )";
 const char identifier_str[] = "^([a-zA-Z][a-zA-Z0-9]*)";
 const char number_str[] =  "^([0-9]*\\.?[0-9]+)";
 const char operators_str[] = "^(\\+|-|\\*|\\/|\\(|\\)|;|=|,|:=)"; 
+const char others_str[] = "^(\\S+)";
 //const char number_str[] =  "^(-?[0-9]*\\.?[0-9]+)";
 //const char operators_str[] = "^(\\+|- ?|\\*|\\/|\\(|\\)|;|=|,|:=)"; 
 
@@ -23,6 +24,7 @@ const regex keyword(keyword_str);
 const regex identifier(identifier_str); 
 const regex number(number_str);
 const regex operators(operators_str);
+const regex others(others_str);
 
 ValuableToken Lexer::getCurrentToken()	{
 	return lastTokenFetched;
@@ -44,7 +46,7 @@ Cursor Lexer::getCursor()	{
 
 bool Lexer::consumeNext()	{
 	//If INVALID
-	if ( hasNext() ) //&& tokensList[cursor+1]->token != INVALID)
+	if ( hasNext() )
 	{
 		cursor++;
 		return true;
@@ -76,6 +78,7 @@ void Lexer::leftTrim(string &inputString)	{
 				break;
 		}
 	}
+
 	inputString.erase(0, charToEraseNum);
 }
 
@@ -83,35 +86,38 @@ bool Lexer::analyseAll()	{
 	string inputToAnalyse = fileLines;
 	int numOfCharToRemove;
 	// cout << "Analysis begin..." << endl;
+	cursorList.push_back(Cursor(line, column));
 
 	do
 	{
-		leftTrim(inputToAnalyse);
-
-		cursorList.push_back(Cursor(line, column));
-
 		DEBUG_STDOUT("******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl);
 		// cout << "[" << inputToAnalyse << "] @" << line+1 << "," << column+1 << endl;
+
+		leftTrim(inputToAnalyse);
 
 		ValuableToken *tokenFetched = new ValuableToken();
 		tokensList.push_back(tokenFetched);
 		string foundKeyword;
 		numOfCharToRemove = 0;
 		analyseNext(inputToAnalyse, tokensList.back(), foundKeyword, numOfCharToRemove);
-		
-		// symbolsList.push_back(new Symbol(...))
-		
-		if (tokenFetched->token == INVALID)	{	return false;	}
-		if (tokenFetched->token == END)	{	line++;	column = 0;	}
 
 		// Remove word from input
 		inputToAnalyse.erase(0, numOfCharToRemove);
 
+		// symbolsList.push_back(new Symbol(...))
+		
 		//Cursor update
 		column += numOfCharToRemove;
-
+		cursorList.push_back(Cursor(line, column));
+		
+		if (tokensList.back()->token == INVALID)	{
+			cerr << "Erreur lexicale " << getCursor(cursorList.size()-1) << " caractere " << *((string*)tokenFetched->value) << endl;
+			//remove last token from list
+			tokensList.pop_back();
+		}
+		
+		if (tokenFetched->token == END)	{	line++;	column = 0;}
 	} while (inputToAnalyse.length() > 0);
-
 	cursorList.push_back(Cursor(line, column));
 
 	DEBUG_STDOUT( "******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl);
@@ -120,6 +126,7 @@ bool Lexer::analyseAll()	{
 	eof->token = END_OF_FILE;
 	tokensList.push_back(eof);
 	// cout << "Analysis ended..." << endl;
+
 	return true;
 }
 
@@ -229,8 +236,17 @@ bool Lexer::analyseNext(string inputToAnalyse, ValuableToken *tokenFetched, stri
 				break;      
 		} 
 	}
+	else if (regex_search(inputToAnalyse, results, others))	{
+		string strFetched = results[0].str();
+		size = strFetched.size();
+		tokenFetched->value = (void*) new string(strFetched);
+
+		tokenFetched->token = INVALID;
+	}
 	else {
-		// cout << "It's an error!" << endl;
+		// cerr << "Erreur lexicale " << getCursor() << " caractère inconnu"<< endl;
+		cerr << "Not handled error" << endl;
+
 		size = 0;
 		tokenFetched->value = NULL;
 		tokenFetched->token = INVALID;

@@ -64,6 +64,13 @@ int main(int argc, char const *argv[])
     Automaton automate(&lexer,&programme);
 
     error = !automate.read();
+    if (error)  {   return 0; }
+
+    /*  -a argument: Static analysis    */
+    if (argParser->getStaticAnalysisFlag())
+    {
+        //Make necessary to do a static analysis
+    }
 
     /*  -o argument: Optimization   */
     if (argParser->getOptimizeFlag())
@@ -78,7 +85,6 @@ int main(int argc, char const *argv[])
         }
 
         if (argParser->getPrintFlag())  cout << pr2;
-
     }
 
     /*	-e argument: Execution	*/
@@ -86,12 +92,6 @@ int main(int argc, char const *argv[])
     {
     	//Make necessary to execute program
 	    error = programme.execute();
-    }
-
-    /*	-a argument: Static analysis	*/
-    if (argParser->getStaticAnalysisFlag())
-    {
-    	//Make necessary to do a static analysis
     }
 
     /*  -p argument: Print code */

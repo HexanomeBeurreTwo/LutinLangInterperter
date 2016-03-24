@@ -32,32 +32,32 @@ bool Automaton::read(){
 	while(!end && 
 		  nextSymbol.token != INVALID
 	){
-			DEBUG_STDOUT ( nextSymbol  << endl ) ;
-			tmpSt = stateStack.top();
-			if( !tmpSt->transition(this, nextSymbol) ) 
-			{
-				cerr << "Pas de transition "<< nextSymbol
-					<< " possible dans l'etat " << tmpSt->getStateNumber() 
-					<< endl;
+		DEBUG_STDOUT ( nextSymbol  << endl ) ;
+		tmpSt = stateStack.top();
+		if( !tmpSt->transition(this, nextSymbol) ) 
+		{
+			cerr << "Pas de transition "<< nextSymbol
+				<< " possible dans l'etat " << tmpSt->getStateNumber() 
+				<< endl;
 
-				// TODO: Detect Const Var error and raise it
-				// TODO: Detect Var Const error and raise it
-				return false;
-			}
-			if(nextSymbol.token == END_OF_FILE) {
-				end = true;
-				bool res = stateStack.top()->getStateNumber() == Accepte_STATE;
+			// TODO: Detect Const Var error and raise it
+			// TODO: Detect Var Const error and raise it
+			return false;
+		}
+		if(nextSymbol.token == END_OF_FILE) {
+			end = true;
+			bool res = stateStack.top()->getStateNumber() == Accepte_STATE;
 
-				if(res) DEBUG_STDOUT( "Automate ok!" << endl );
-				return res;
-			}
-			tmp = nextSymbol;
-			nextSymbol = lexer->getNext();
-			if(nextSymbol.token == INVALID)
-			{
-				cerr << "Token apres " << tmp << "est invalide " <<endl;
-				return false;
-			} 
+			if(res) DEBUG_STDOUT( "Automate ok!" << endl );
+			return res;
+		}
+		tmp = nextSymbol;
+		nextSymbol = lexer->getNext();
+		if(nextSymbol.token == INVALID)
+		{
+			cerr << "Token apres " << tmp << "est invalide " <<endl;
+			return false;
+		} 
 	}
 	DEBUG_STDOUT ( nextSymbol  << endl);
     return false;
