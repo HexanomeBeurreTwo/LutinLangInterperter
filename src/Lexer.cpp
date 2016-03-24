@@ -105,18 +105,20 @@ bool Lexer::analyseAll()	{
 		inputToAnalyse.erase(0, numOfCharToRemove);
 
 		// symbolsList.push_back(new Symbol(...))
+		
+		//Cursor update
+		column += numOfCharToRemove;
+		cursorList.push_back(Cursor(line, column));
+		
 		if (tokensList.back()->token == INVALID)	{
 			cerr << "Erreur lexicale " << getCursor(cursorList.size()-1) << " caractere " << *((string*)tokenFetched->value) << endl;
 			//remove last token from list
 			tokensList.pop_back();
 		}
-		//Cursor update
-		column += numOfCharToRemove;
-
+		
 		if (tokenFetched->token == END)	{	line++;	column = 0;}
-		cursorList.push_back(Cursor(line, column));
 	} while (inputToAnalyse.length() > 0);
-	// cursorList.push_back(Cursor(line, column));
+	cursorList.push_back(Cursor(line, column));
 
 	DEBUG_STDOUT( "******* Cursor at (" << cursorList.back().line << "," << cursorList.back().column << ") **********"<< endl);
 
