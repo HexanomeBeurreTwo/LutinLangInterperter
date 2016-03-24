@@ -24,7 +24,7 @@ bool Automaton::read(){
 
 	if(nextSymbol.token == INVALID)
 	{
-		cerr << "Premier token INVALID " << endl;
+		DEBUG_STDERR( "Premier token INVALID " << endl);
 		return false;
 	}			
 	E0* initState = new E0();
@@ -36,9 +36,9 @@ bool Automaton::read(){
 			tmpSt = stateStack.top();
 			if( !tmpSt->transition(this, nextSymbol) ) 
 			{
-				cerr << "Pas de transition "<< nextSymbol
+				DEBUG_STDERR( "Pas de transition "<< nextSymbol
 					<< " possible dans l'etat " << tmpSt->getStateNumber() 
-					<< endl;
+					<< endl);
 
 				// TODO: Detect Const Var error and raise it
 				// TODO: Detect Var Const error and raise it
@@ -55,7 +55,7 @@ bool Automaton::read(){
 			nextSymbol = lexer->getNext();
 			if(nextSymbol.token == INVALID)
 			{
-				cerr << "Token apres " << tmp << "est invalide " <<endl;
+				DEBUG_STDERR( "Token apres " << tmp << "est invalide " <<endl);
 				return false;
 			} 
 	}
@@ -81,7 +81,7 @@ bool Automaton::shift(ValuableToken& s, State* nextState){
 
 		if(!res)
 		{
-			cerr << "impossible de consommer le Token: " << s << endl; 
+			DEBUG_STDERR ( "impossible de consommer le Token: " << s << endl); 
 		}
 		return res;
 }
@@ -95,7 +95,7 @@ bool Automaton::reduce(int count, ValuableToken& s, int coutSymbol ){
         bool res = programme->create_class_from_rules(&symbolStack,s,coutSymbol);
 		if(!res)
 		{
-			cerr << "impossible de reduire la rélge " << s << " -> .."<<endl; 
+			DEBUG_STDERR( "impossible de reduire la rélge " << s << " -> .."<<endl ); 
 		}
 		return res;
 }

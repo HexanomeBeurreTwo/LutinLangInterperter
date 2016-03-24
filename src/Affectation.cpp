@@ -54,7 +54,7 @@ bool Affectation::analyse(Declrs & variables)
 			bool error;
 			double value;
 			error = this->expression->analyse(&value,variables);
-			v->set_used();
+			//v->set_used();
 			v->set_initialized();
             return error;
         }

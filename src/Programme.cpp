@@ -193,12 +193,12 @@ Programme::~Programme()
 bool Programme::analyse()
 {
 	bool res = do_analyse();
-	if(!res)// D'abord execution en mode silence
-	{
+	//if(!res)// D'abord execution en mode silence
+	//{
 		check_undeclared();
 		check_uninitialized_var();
 		
-	}
+	//}
 	check_unused_vars();
 	return res;
 }
@@ -226,6 +226,7 @@ bool Programme::do_analyse()
 
 bool Programme::execute()
 {
+	//DEBUG_STDOUT("Programme::execute()" << endl);
     return partie_instruction.execute(partie_declaration.get_variables());
 }
 

@@ -57,11 +57,8 @@ Expression* Variable::get_ptimized_expr( Declrs & variables)
 
 bool Variable::Evaluation(double *res,Declrs & variables) {
    Declrs::iterator var = variables.find(nom);
-   if(var==variables.end()) 
-   {
-	   return false;
-	   
-   }else if( (var->second)->is_initialized() ) 
+
+   if( var!=variables.end() && (var->second)->is_initialized() ) 
    {
       *res = (var->second)->get_valeur();
 	  (var->second) -> set_used();

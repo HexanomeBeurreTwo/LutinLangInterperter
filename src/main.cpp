@@ -45,7 +45,7 @@ int main_x()
 
 int main(int argc, char const *argv[])
 {
-    string file;
+	string file;
     int error = 0;
     // traiter les option -e -o -p ... et récuperer le nom du fichier
     ArgParser* argParser = new ArgParser(argc, argv);
@@ -64,11 +64,13 @@ int main(int argc, char const *argv[])
     Automaton automate(&lexer,&programme);
 
     error = !automate.read();
+    if(error) return 0;
 
     /*  -o argument: Optimization   */
     if (argParser->getOptimizeFlag())
     {
         //Make necessary to transform / optimize code
+        //cerr << "Optimization" << endl;
         Programme pr2;
         error =  programme.optimize(&pr2);
         if(!error)
@@ -85,6 +87,7 @@ int main(int argc, char const *argv[])
     if (argParser->getExecutionFlag())
     {
     	//Make necessary to execute program
+    	//cerr << "execute" << endl;
 	    error = programme.execute();
     }
 
@@ -92,12 +95,15 @@ int main(int argc, char const *argv[])
     if (argParser->getStaticAnalysisFlag())
     {
     	//Make necessary to do a static analysis
+    	//cerr << "analyse" << endl;
+    	programme.analyse();
     }
 
     /*  -p argument: Print code */
     if (argParser->getPrintFlag() && !argParser->getOptimizeFlag())
     {
         //Make necessary to print the code
+        //cerr << "print" << endl;
         cout << programme ;
     }
 

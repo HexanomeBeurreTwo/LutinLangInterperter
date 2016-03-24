@@ -31,7 +31,8 @@ bool Ecrire::execute(Declrs & variables)
 	bool error;
 	double value;
 	error = expression -> Evaluation(&value,variables);
-	if(error) cout << value <<endl;
+	if(error) 
+		cout << value <<endl;
 	return error;
 }
 
