@@ -58,6 +58,7 @@ struct Cursor {
     Cursor(int cline,int ccolumn) : line(cline), column(ccolumn) {};
 };
 
+ostream& operator<< (ostream& os, const Cursor& t);
 ostream& operator<< (ostream& os, const ValuableToken& t);
 bool is_terminal_token(const ValuableToken& t);
 

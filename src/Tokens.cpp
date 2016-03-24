@@ -3,42 +3,46 @@
 
 ostream& operator<< (ostream& os, const ValuableToken& t){
         switch(t.token){
-                case VAR : os << "---VAR--" << endl; break;
-                case CONST : os << "---CONST--" << endl; break;
-                case AFFECT : os << "---AFFECT--" << endl; break;
-                case EQUAL : os << "---EQUAL--" << endl; break;
-                case SEP : os << "---SEP--" << endl; break;
-                case WRITE : os << "---WRITE--" << endl; break;
-                case READ : os << "---READ--" << endl; break;
-                case END : os << "---END--" << endl; break;
-                case ID : os << "---ID--" << endl; break;
-                case VAL : os << "---VAL--" << endl; break;
-                case MINUS : os << "---MINUS--" << endl; break;
-                case OPENBY : os << "---OPENBY--" << endl; break;
-                case CLOSEBY : os << "---CLOSEBY--" << endl; break;
-                case MULT : os << "---MULT--" << endl; break;
-                case DIVIDE : os << "---DIVIDE--" << endl; break;
-                case PLUS : os << "---PLUS--" << endl; break;
+                case VAR : os << "---VAR--"; break;
+                case CONST : os << "---CONST--"; break;
+                case AFFECT : os << "---AFFECT--"; break;
+                case EQUAL : os << "---EQUAL--"; break;
+                case SEP : os << "---SEP--"; break;
+                case WRITE : os << "---WRITE--"; break;
+                case READ : os << "---READ--"; break;
+                case END : os << "---END--"; break;
+                case ID : os << "---ID--"; break;
+                case VAL : os << "---VAL--"; break;
+                case MINUS : os << "---MINUS--"; break;
+                case OPENBY : os << "---OPENBY--"; break;
+                case CLOSEBY : os << "---CLOSEBY--"; break;
+                case MULT : os << "---MULT--"; break;
+                case DIVIDE : os << "---DIVIDE--"; break;
+                case PLUS : os << "---PLUS--"; break;
 
-				case P : os << "---P--" << endl; break;
-				case PD : os << "---PD--" << endl; break;
-				case LD : os << "---LD--" << endl; break;
-				case LV : os << "---LV--" << endl; break;
-				case LC : os << "---LC--" << endl; break;
-				case D : os << "---D--" << endl; break;
-				case PI : os << "---PI--" << endl; break;
-				case LI : os << "---LI--" << endl; break;
-				case E : os << "---E--" << endl; break;
+				case P : os << "---P--"; break;
+				case PD : os << "---PD--"; break;
+				case LD : os << "---LD--"; break;
+				case LV : os << "---LV--"; break;
+				case LC : os << "---LC--"; break;
+				case D : os << "---D--"; break;
+				case PI : os << "---PI--"; break;
+				case LI : os << "---LI--"; break;
+				case E : os << "---E--"; break;
 				
-				case INVALID : os << "---INVALID--" << endl; break;
-				case END_OF_FILE : os << "---END_OF_FILE--" << endl; break;
+				case INVALID : os << "---INVALID--"; break;
+				case END_OF_FILE : os << "---END_OF_FILE--"; break;
 		
 				
-                default : os << "Indefined !" << endl;
+                default : os << "Indefined !";
         }
         return os;
 }
 
+ostream& operator<< (ostream& os, const Cursor& c){
+	os << "(" << c.line << ":" << c.column << ")";
+	return os;
+}
 
 //Cette fonction est utilisé dans shift
 bool is_terminal_token(const ValuableToken& t)
