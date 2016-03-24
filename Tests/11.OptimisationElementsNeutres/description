@@ -1,0 +1,1 @@
+Ce test vérifie l'optimisation des éléments neutre de la multiplication, somme et soustraction, respectivement 1 et 0. (option optimisation -o). Aussi 0 divisé par un entier c'est optimisé.

@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
     Programme programme;
     Automaton automate(&lexer,&programme);
 
-    error = automate.read();
+    error = !automate.read();
 
     /*  -o argument: Optimization   */
     if (argParser->getOptimizeFlag())

@@ -189,8 +189,37 @@ Programme::~Programme()
 	 res =  partie_instruction.optimize(&programme->partie_instruction,programme->partie_declaration.get_variables());
 	 if(res) 
 	 {
-		programme->partie_declaration.optimize();
+		//programme->partie_declaration.optimize(); // on a dit qu'on enlève pas les const
 	 }
 	 return res;
  }
+ 
+ 
+void Programme::analyse()
+{
+	//if(!execute_silent()) return; // D'abord execution en mode silence 
+	check_uninitialized_var();
+	check_unused_vars();
+	check_used_uninitialized();
+}
+
+void Programme::check_uninitialized_var()
+{
+	partie_declaration.check_uninitialized_var();
+}
+
+void Programme::check_unused_vars()
+{
+	partie_declaration.check_unused_vars();
+}
+
+void Programme::check_used_uninitialized() // TODO
+{
+	// si execute_silent() est faite alros ne rien faire ici !
+}
+
+bool Programme::execute_silent() // A finir !
+{
+	return partie_instruction.execute(partie_declaration.get_variables());
+}
 
