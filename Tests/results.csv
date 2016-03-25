@@ -1,0 +1,21 @@
+Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
+01.NoArgument;Ok;Non test̩;Ok;Non test̩;Ok
+02.FichierInexistant;Ok;Non test̩;Ok;Non test̩;Ok
+03.FichierExistant;Ok;Non test̩;Non test̩;Non test̩;Ok
+04.Affichage;Ok;Ok;Non test̩;Non test̩;Ok
+05.DoubleDeclaration;Ok;Non test̩;Ok;Non test̩;Ok
+06.1.AnalyseStatique;Ok;Non test̩;Ok;Non test̩;Ok
+06.2.AnalyseStatique;Ok;Non test̩;Ok;Non test̩;Ok
+06.3.AnalyseStatique;Ok;Non test̩;Ok;Non test̩;Ok
+06.4.AnalyseStatique;Ok;Non test̩;Ok;Non test̩;Ok
+07.Execution;Ok;Ok;Non test̩;Non test̩;Ok
+08.1.Optimisation;Ok;Ok;Non test̩;Non test̩;Ok
+08.2.Optimisation;Ok;Ok;Non test̩;Non test̩;Ok
+09.ErreurLexicale;Ok;Non test̩;Ok;Non test̩;Ok
+10.ErreurSyntaxique;Echec;Non test̩;Echec;Non test̩;Echec
+11.OptimisationElementsNeutres;Ok;Echec;Non test̩;Non test̩;Echec
+12.ConstVar;Ok;Non test̩;Echec;Non test̩;Echec
+13.VarConst;Ok;Non test̩;Echec;Non test̩;Echec
+14.ConstConst;Ok;Non test̩;Echec;Non test̩;Echec
+15.ConstSansInitialisation;Ok;Non test̩;Echec;Non test̩;Echec
+16.ConstNonUtilisee;Ok;Non test̩;Ok;Non test̩;Ok
