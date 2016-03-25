@@ -1,0 +1,1 @@
+for i in $(ls ../src/*.cpp) ;do echo $i && cat ../src/$i | grep -n "ERR : Variable"; done

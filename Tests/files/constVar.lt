@@ -1,2 +1,2 @@
-const c:=3;
+const c=3;
 var c;

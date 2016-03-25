@@ -35,17 +35,20 @@ bool Automaton::read(){
 
 			DEBUG_STDOUT ( nextSymbol  << endl ) ;
 			tmpSt = stateStack.top();
-			if( !tmpSt->transition(this, nextSymbol) ) 
+			if( !tmpSt->transition(this, nextSymbol) ) // faut fraie la différence entre erreur syntaxique et varibale déja déclarée
 			{
 				DEBUG_STDERR( "Pas de transition "<< nextSymbol
 					<< " possible dans l'etat " << tmpSt->getStateNumber() 
 					<< endl);
 
-
+				
+				//cerr << "Erreur syntaxique (1:7) symbole , attendu" << endl;
+				cerr << "Erreur syntaxique "<< lexer->getCursor() <<" symbole ... attendu" << endl;
+				
 			// TODO: Detect Const Var error and raise it
 			// TODO: Detect Var Const error and raise it
-			return false;
-		}
+				return false;
+			}
 		if(nextSymbol.token == END_OF_FILE) {
 			end = true;
 			bool res = stateStack.top()->getStateNumber() == Accepte_STATE;

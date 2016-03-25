@@ -111,19 +111,40 @@ Expression* OperateurBinaire::get_ptimized_expr( Declrs & variables)
 	}
 	
 	
-	if((valueG ==0 || valueD ==0) && (this->ident == PLUS || this->ident == MINUS))
+	
+	if( (this->ident == PLUS || this->ident == MINUS) && (valueG ==0 || valueD ==0)  )
 	{
-		if(valueG ==0) return droiteOPZ;
+		if(valueG ==0) return  droiteOPZ ;
 		else return gaucheOpz;
 		
 	}
 	
-	if((valueG ==1 || valueD ==1) && (this->ident == MULT || this->ident == DIVIDE))
+	if((this->ident == MULT ) && (valueG ==1 || valueD ==1) )
 	{
-		if(valueG ==1) return droiteOPZ;
+		if(valueG ==1) return droiteOPZ  ;
 		else return gaucheOpz;
 	
 	}	
+	
+	if((this->ident == MULT ) && (valueG ==0 || valueD ==0) )
+	{
+		return new Valeur(0);
+	
+	}
+	
+	if( (this->ident == DIVIDE) && valueD ==1 )
+	{
+		return gaucheOpz ;
+	
+	}
+	
+	
+	if( (this->ident == DIVIDE) && valueG ==0 )
+	{
+		return new Valeur(0);
+	
+	}
+
 
 	return create_OperateurBinaire(gaucheOpz, droiteOPZ);
 		

@@ -122,7 +122,8 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
  void PartieDeclarative::check_undeclared()
  {
 	bool founded = false;
-	string uninitialized_var = "ERR : undeclared vars : ";
+	//string uninitialized_var = "ERR : undeclared vars : ";
+	string uninitialized_var = "la variable ";
 	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
     {
         
@@ -134,5 +135,5 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
 		
     } 
 	if(founded)
-		cerr << uninitialized_var << endl;
+		cerr << uninitialized_var+"n'a pas ete declaree." << endl;
  }

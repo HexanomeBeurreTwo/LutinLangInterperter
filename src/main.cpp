@@ -63,8 +63,8 @@ int main(int argc, char const *argv[])
     Programme programme;
     Automaton automate(&lexer,&programme);
 
-    error = !automate.read();
-    if(error) return 0;
+    error = automate.read();
+    if(!error) return 1;
 
 
     /*  -a argument: Static analysis    */
@@ -107,5 +107,5 @@ int main(int argc, char const *argv[])
         cout << programme ;
     }
 
-    return error;
+    return !error;
 }

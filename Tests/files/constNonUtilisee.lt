@@ -1,6 +1,6 @@
 const a=10;
 var b;
-lire b;
 var c;
+lire b;
 c:=b*10;
 
