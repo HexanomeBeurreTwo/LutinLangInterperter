@@ -68,19 +68,24 @@ bool Variable::Evaluation(double *res,Declrs & variables) {
 }
 
 bool Variable::analyse(double *res,Declrs & variables) {
-   Declrs::iterator var = variables.find(nom);
-   if(var==variables.end()) 
-   {
+	Declrs::iterator var = variables.find(nom);
+	cout << "hello" << endl;
+	if(var==variables.end()) //Variable not declared
+	{
 	   Declaration * dec = new DeclarationVariable(nom);
 	   dec->set_undeclared();
 	   dec->set_used();
 	   variables[nom] = dec ;
+
 	   return false;
-	   
-   }
-   (var->second)-> set_used();
-   
-   return true;
+	}	else if (! (var->second)->is_initialized() )	{	//Var not initialized
+		
+		return false;
+	}
+
+	(var->second)-> set_used();
+
+	return true;
 }
 
 void Variable::print(ostream& os) const{
@@ -229,7 +234,7 @@ double OperateurPlus::operation(double g, double d) {
 
 void OperateurPlus::printOperator(ostream& os) const
 {
-    os << " + ";
+    os << "+";
 }
 
 Expression* OperateurPlus::create_OperateurBinaire(Expression* g, Expression* d)
@@ -244,7 +249,7 @@ double OperateurMoins::operation(double g, double d) {
 
 void OperateurMoins::printOperator(ostream& os) const
 {
-    os << " - ";
+    os << "-";
 }
 
 Expression* OperateurMoins::create_OperateurBinaire(Expression* g, Expression* d)
@@ -259,7 +264,7 @@ double OperateurDiv::operation(double g, double d) {
 
 void OperateurDiv::printOperator(ostream& os) const
 {
-    os << " / ";
+    os << "/";
 }
 
 Expression* OperateurDiv::create_OperateurBinaire(Expression* g, Expression* d)
@@ -273,7 +278,7 @@ double OperateurMul::operation(double g, double d) {
 
 void OperateurMul::printOperator(ostream& os) const
 {
-    os << " * ";
+    os << "*";
 }
 
 Expression* OperateurMul::create_OperateurBinaire(Expression* g, Expression* d)

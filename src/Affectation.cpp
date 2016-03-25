@@ -85,6 +85,10 @@ void Affectation::print(ostream& os) const
     os << (*variable) << " := " << (*expression) << ";" ;
 }
 
+void Affectation::get_expression(ostream& os)
+{
+    expression->print(os);
+}
 
 
 

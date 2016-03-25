@@ -112,7 +112,6 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
 			uninitialized_var += (it->second)->get_nom() + " ";
 			founded = true;
 		}
-		
     } 
 	if(founded)
 		cerr << uninitialized_var << endl;
@@ -134,6 +133,6 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
 		}
 		
     } 
-	if(founded)
-		cerr << uninitialized_var+"n'a pas ete declaree." << endl;
+	// if(founded)
+		// cerr << uninitialized_var+"n'a pas ete declaree." << endl;
  }

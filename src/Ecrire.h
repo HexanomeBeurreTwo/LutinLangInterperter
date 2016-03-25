@@ -12,6 +12,7 @@ class Ecrire : public Instruction
         Ecrire(Expression* exp):Instruction(WRITE),expression(exp){}
         virtual ~Ecrire();
         void print(ostream& os) const;
+        void get_expression(ostream& os);
         bool execute(Declrs & variables);
         bool analyse(Declrs & variables);
         bool optimize(Instruction** inst,Declrs & variables) ;

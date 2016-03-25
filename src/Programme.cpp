@@ -145,7 +145,7 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         break;
 
         default: // pour le debug
-            std::cerr << "Indifined rule !" << endl;
+            std::cerr << "Indefined rule !" << endl;
             return false;
             break;
     }

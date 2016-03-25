@@ -53,6 +53,11 @@ void Ecrire::print(ostream& os) const
 	os << "ecrire " << *expression << ";" ;
 }
 
+void Ecrire::get_expression(ostream& os)
+{
+    expression->print(os);
+}
+
 /*bool Ecrire::optimize_back(Instruction** inst,Declrs & variables) 
 {
 	bool error;

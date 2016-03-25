@@ -50,12 +50,14 @@ bool Lire::analyse(Declrs & variables)
         }
     }
     else{ // Error Variable non déclarée
+       cerr << "la variable " << nom << " n'a pas ete declaree." << endl;
+
 		Declaration * dec = new DeclarationVariable(nom);
 		dec->set_undeclared();
 		dec->set_used();
 		variables[nom] = dec ;
         dec->set_initialized();
-        return false;
+        return true;
     }
 }
 
@@ -68,6 +70,10 @@ void Lire::print(ostream& os) const
 
 }
 
+void Lire::get_expression(ostream& os)
+{
+    variable->print(os);
+}
 
 bool Lire::optimize(Instruction** inst,Declrs & variables)
 {

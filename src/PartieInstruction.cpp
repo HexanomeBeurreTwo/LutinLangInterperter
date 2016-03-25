@@ -52,7 +52,8 @@ bool PartieInstruction::analyse(Declrs & variables)
     {
         if( ! (*it)->analyse(variables) )
         {
-			
+            cerr << "une valeur dans l'expression " ; (*it)->get_expression(cerr) ; cerr << " n'est pas connue." << endl;
+
             res = false;
         }
     }
