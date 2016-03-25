@@ -40,10 +40,6 @@ bool Automaton::read(){
 				DEBUG_STDERR( "Pas de transition "<< nextSymbol
 					<< " possible dans l'etat " << tmpSt->getStateNumber() 
 					<< endl);
-
-				
-				//cerr << "Erreur syntaxique (1:7) symbole , attendu" << endl;
-				cerr << "Erreur syntaxique "<< lexer->getCursor() <<" symbole ... attendu" << endl;
 				
 			// TODO: Detect Const Var error and raise it
 			// TODO: Detect Var Const error and raise it
