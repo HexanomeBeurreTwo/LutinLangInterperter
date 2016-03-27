@@ -56,7 +56,7 @@ string getFileContent(string pathfile)
 
 
 
-int main_g()    
+int main_u()    
 {
     string file("./bin/example.lt");
 	
@@ -65,18 +65,19 @@ int main_g()
 
     DEBUG_STDOUT( "Test" << endl);
 	//string* contentFile = getFileContent(file);
-	string  tmp =  "var   a,j,e,h,s;";
-			tmp += "const c = 44.1;";
-			tmp += "b := 2;";
-			tmp += "lire e;";
-			tmp += "ecrire e;";
+	string  tmp = "var a;const b=10;lire a;ecrire (a-0)*1+0+0/b;";
+			//tmp =  "var   a,j,e,h,s;";
+			//tmp += "const c = 44.1;";
+			// tmp += "b := 2;";
+			// tmp += "lire e;";
+			// tmp += "ecrire e;";
 			//tmp += "a := (c + c )*3- 5+0+1*e;";
-			tmp += "h := 4;";
-			tmp += "a := h+c+s+j;";
-			tmp +=  "ecrire (e-s+0)*1- 0;";
-			tmp +=  "ecrire (7*e);";
+			// tmp += "h := 4;";
+			// tmp += "a := h+c+s+j;";
+			// tmp +=  "ecrire (e-s+0)*1- 0;";
+			// tmp +=  "ecrire (7*e);";
 			//tmp += "e :=-6 * 2;";
-			tmp += "ecrire e;";
+			// tmp += "ecrire e;";
 			//tmp += "ecrire 5--3;";
 			
 			//tmp += "ecrire a;";
@@ -101,6 +102,9 @@ int main_g()
 	{
 		cerr << "erreur Syntaxique : construction automate " << endl;
 		return 1;
+	} else 
+	{
+		DEBUG_STDOUT( "Automate ok!" << endl );
 	}
 	
 	DEBUG_STDOUT("~~~~~~~AFFICHAGE~~~~~~~"<< endl

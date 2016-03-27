@@ -13,7 +13,7 @@
 class Programme
 {
     public:
-        Programme(){};
+        Programme():id_expression(0){};
         virtual ~Programme();
         bool create_class_from_rules(stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol);
         void print(ostream& os) const ;
@@ -27,9 +27,13 @@ class Programme
 		void check_uninitialized_var(); // OK ! 
 		void check_unused_vars(); // OK !
 		void check_undeclared(); // OK !
+		Expression* get_expression(int index);
 		
+        //deque<Expression*> expressions; // une file d'expression ordonnée selon date creation
+		map<int,Expression*> expressions;
         PartieInstruction partie_instruction;
         PartieDeclarative partie_declaration;
+		int id_expression;
 		
 
     friend ostream& operator<< (ostream& os, const Programme& programme)
