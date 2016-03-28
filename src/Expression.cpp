@@ -69,7 +69,6 @@ bool Variable::Evaluation(double *res,Declrs & variables) {
 
 bool Variable::analyse(double *res,Declrs & variables) {
 	Declrs::iterator var = variables.find(nom);
-	cout << "hello" << endl;
 	if(var==variables.end()) //Variable not declared
 	{
 	   Declaration * dec = new DeclarationVariable(nom);
