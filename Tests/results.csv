@@ -13,9 +13,9 @@ Test ID;Return code validation;Out result;StdErr result;File creation result;Glo
 08.2.Optimisation;Ok;Ok;Non testé;Non testé;Ok
 09.ErreurLexicale;Ok;Non testé;Ok;Non testé;Ok
 10.ErreurSyntaxique;Echec;Non testé;Echec;Non testé;Echec
-11.OptimisationElementsNeutres;Ok;Echec;Non testé;Non testé;Echec
-12.ConstVar;Ok;Non testé;Echec;Non testé;Echec
-13.VarConst;Ok;Non testé;Echec;Non testé;Echec
-14.ConstConst;Ok;Non testé;Echec;Non testé;Echec
+11.OptimisationElementsNeutres;Ok;Ok;Non testé;Non testé;Ok
+12.ConstVar;Ok;Non testé;Ok;Non testé;Ok
+13.VarConst;Ok;Non testé;Ok;Non testé;Ok
+14.ConstConst;Ok;Non testé;Ok;Non testé;Ok
 15.ConstSansInitialisation;Ok;Non testé;Echec;Non testé;Echec
 16.ConstNonUtilisee;Ok;Non testé;Ok;Non testé;Ok
