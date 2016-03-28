@@ -1,59 +1,256 @@
 @startuml
-!include ../base.txt
+skinparam classAttributeIconSize 0
+
 
 title UML Diagram
 
-object Automate
+object Automaton
+Automaton : -ValuableToken nextSymbol
+Automaton : -stack <ValuableToken> symbolStack
+Automaton : -stack <State*> stateStack
+Automaton : -Lexer *lexer
+Automaton : -Programme* programme
 
-Automate : lecture()
+Automaton : +bool read()
+Automaton : +bool shift(valuableToken, State*)
+Automaton : +bool reduce(int, valuablaTokenn, int)
+Automaton : +Automaton(Lexer*,Programme*)
+
+object Programme
+Programme : -PartieInstruction partie_instruction
+Programme : -PartieDeclarative partie_declaration
+
+Programme : -void check_uninitialized_var()
+Programme : -void check_unused_vars()
+Programme : -void check_undeclared()
+Programme : +Programme()
+Programme : +bool create_class_from_rules(stack<ValuableToken> *,ValuableToken ,int)
+Programme : +void print(ostream& os) const
+Programme : +bool execute()
+Programme : +bool do_analyse()
+Programme : +bool optimize(Programme*)
+Programme : +bool analyse()
 
 object Lexer
-Lexer : Symbole getNext()
+Lexer : -string fileLines
+Lexer : -ValuableToken lastTokenFetched
+Lexer : -unsigned int cursor
+Lexer : -vector<Cursor> cursorList
+Lexer : -int line
+Lexer : -int column
+Lexer : +vector<ValuableToken*> tokensList
+
+Lexer : +Symbole getNext()
+Lexer : +Lexer(string)
+Lexer : +void leftTrim(string)
+Lexer : +ValuableToken getNext()
+Lexer : +Cursor getCursor(unsigned int)
+Lexer : +Cursor getCursor()
+Lexer : +bool consumeNext()
+Lexer : +bool hasNext()
+Lexer : +bool analyseNext(string, ValuableToken *, string, int)
+Lexer : +bool analyseAll()
+Lexer : +ValuableToken getCurrentToken()
 
 object Symbole
-note left: Enum (Minus, OpenBy, CloseBy, Mult, Divide, Plus) & Enum (End, Sep, Operator, Const, Var)
-object Expr
-object Number
+Symbole : #Tokens ident
+
+Symbole : +Symbol(Tokens id)
+Symbole : +{abstract} void print(ostream& os) const
+Symbole : +operator int() const
+
+object Expression
+Expression : +Expression(Tokens)
+Expression : +{abstract} void print(ostream& os) const
+Expression : +{abstract} bool Evaluation(double*,Declrs)
+Expression : +{abstract} bool analyse(double,Declrs)
+Expression : +Expression* get_ptimized_expression(Declrs)
+Expression : +Expression* get_ptimized_expr(Declrs)
+
+object Valeur
+Valeur : -double valeur
+
+Valeur : +Valeur(int val)
+Valeur : +Valeur(double val)
+Valeur : +bool Evaluation(double*, Declrs)
+Valeur : +void print(ostream& os) const
+Valeur : +Expression* get_ptimized_expr(Declrs)
+Valeur : +bool analyse(double*,Declrs)
+
 object Variable
+Variable : -String nom
+
+Variable : +Variable(string)
+Variable : +bool Evaluation(double*, Declrs)
+Variable : +void print(ostream& os) const
+Variable : +string get_nom()
+Variable : +Expression* get_ptimized_expr(Declrs)
+Variable : +bool analyse(double*,Declrs)
+
 object DeclarationVariable
+DeclarationVariable : +DeclarationVariable(string)
+DeclarationVariable : +void print(ostream& os) const
+DeclarationVariable : +void affect(double )
+
 object DeclarationConst
-object ExprBin
-object ExprMult
-object ExprDivide
-object ExprPlus
-object ExprMinus
+DeclarationConst : +DeclarationConst(string, double)
+DeclarationConst : +void print(ostream& os) const
+
+object OperateurBinaire
+OperateurBinaire : #Expression * gauche
+OperateurBinaire : #Expression * droite
+
+OperateurBinaire : #{abstract} double operation(double, double)
+OperateurBinaire : #{abstract} void printOperator(ostream& os)
+OperateurBinaire : #{abstract} Expression* create_OperateurBinaire(Expression*, Expression*)
+OperateurBinaire : +OperateurBinaire(Tokens,Expression *, Expression *)
+OperateurBinaire : +bool Evaluation(double *, Declrs)
+OperateurBinaire : +void print(ostream& os) const
+OperateurBinaire : +{abstract} Expression* get_ptimized_expr( Declrs) 
+OperateurBinaire : +bool analyse(double*,Declrs) 
+
+object OperateurMul
+OperateurMul : #double operation(double, double)
+OperateurMul : #void printOperator(ostream& os ) const
+OperateurMul : #Expression* create_OperateurBinaire(Expression*, Expression*)
+OperateurMul : +OperateurMul(Expression *, Expression *)
+
+object OperateurDiv
+OperateurDiv : #double operation(double, double)
+OperateurDiv : #void printOperator(ostream& os ) const
+OperateurDiv : #Expression* create_OperateurBinaire(Expression*, Expression*)
+OperateurDiv : +OperateurDiv(Expression *, Expression *)
+
+object OperateurPlus
+OperateurPlus : #double operation(double, double)
+OperateurPlus : #void printOperator(ostream& os ) const
+OperateurPlus : #Expression* create_OperateurBinaire(Expression*, Expression*)
+OperateurPlus : +OperateurPlus(Expression *, Expression *)
+
+object OperateurMoins
+OperateurMoins : #double operation(double, double)
+OperateurMoins : #void printOperator(ostream& os ) const
+OperateurMoins : #Expression* create_OperateurBinaire(Expression*, Expression*)
+OperateurMoins : +OperateurMoins(Expression *, Expression *)
 
 object Instruction
+Instruction : +Instruction(Tokens)
+Instruction : +{abstract} void print(ostream& os) const
+Instruction : +{abstract} void get_expression(ostream& os)
+Instruction : +{abstract} bool execute(Declrs)
+Instruction : +{abstract} bool analyse(Declrs)
+Instruction : +{abstract} bool optimize(Instruction**,Declrs)
+
 object PartieInstruction
+PartieInstruction : #deque<Instruction*> instructions
+
+PartieInstruction : +PartieInstruction():
+PartieInstruction : +void add_instruction(Instruction *)
+PartieInstruction : +void print(ostream& os) const
+PartieInstruction : +bool execute(Declrs)
+PartieInstruction : +bool analyse(Declrs)
+PartieInstruction : +bool optimize(PartieInstruction *, Declrs)
+
 object PartieDeclarative
+PartieDeclarative : #Declrs variables
+
+PartieDeclarative : +PartieDeclarative()
+PartieDeclarative : +bool add_declaration(Declaration *)
+PartieDeclarative : +void print(ostream& os) const 
+PartieDeclarative : +Declrs& get_variables()
+PartieDeclarative : +void clone_vars(const PartieDeclarative)
+PartieDeclarative : +void optimize()
+PartieDeclarative : +void check_uninitialized_var()
+PartieDeclarative : +void check_unused_vars()
+PartieDeclarative : +void check_undeclared()
+
 object Declaration
-Declaration : String name
-object Affect
+Declaration : #string nom
+Declaration : #double valeur
+Declaration : #bool used
+Declaration : #bool initialized
+Declaration : #bool declared
+
+Declaration : +Declaration(Tokens,string ,double ,bool)
+Declaration : +virtual void print(ostream& ) const
+Declaration : +string get_nom()
+Declaration : +double get_valeur()
+Declaration : +bool is_used()
+Declaration : +bool is_initialized()
+Declaration : +void set_initialized()
+Declaration : +void set_used()
+Declaration : +bool is_declared()
+Declaration : +void set_undeclared()		
+
+object Affectation
+Affectation : -Expression *expression
+Affectation : -Variable* variable
+
+Affectation : +Affectation(Expression *,Variable*)
+Affectation : +void print(ostream& ) const
+Affectation : +void get_expression(ostream&)
+Affectation : +bool execute(Declrs)
+Affectation : +bool analyse(Declrs)
+Affectation : +bool optimize(Instruction**,Declrs)
+
 object Lire
+Lire : #Variable* variable
+
+Lire : +Lire(Variable *)
+Lire : +void print(ostream& os) const
+Lire : +void get_expression(ostream& os)
+Lire : +bool execute(Declrs)
+Lire : +bool analyse(Declrs)
+Lire : +bool optimize(Instruction**,Declrs)
+
 object Ecrire
+Ecrire : #Expression* expression
 
-object Etat
+Ecrire : +Ecrire(Expression* exp)
+Ecrire : +void print(ostream& os) const
+Ecrire : +void get_expression(ostream& os)
+Ecrire : +bool execute(Declrs)
+Ecrire : +bool analyse(Declrs)
+Ecrire : +bool optimize(Instruction**,Declrs)
 
-Automate *-- Lexer
-Automate *-- Symbole : pileSymboles 0..*
-Automate *-- Etat : pileEtats 0..*
+object State
+State : +State()
+State : +{abstract} bool transition(Automaton *, ValuableToken)
+State : +{abstract} int getStateNumber()
 
-Symbole <|-- Expr
+object Tokens
+Tokens : +enum Token
+Tokens : +struct ValuableToken
+Tokens : +struct Cursor
+Tokens : +bool is_terminal_token(const ValuableToken)
+
+Automaton *-- Lexer
+Automaton *-- Symbole : pileSymboles 0..*
+Automaton *-- State : pileEtats 0..*
+Automaton *-- Programme
+
+Symbole <|-- Expression
 Symbole <|-- Instruction
 Symbole <|-- PartieInstruction
 Symbole <|-- PartieDeclarative
 
 
-Expr <|-- Number
-Expr <|-- Variable
-Expr <|-- ExprBin
-Instruction <|-- Expr
+Expression <|-- Valeur
+Expression <|-- Variable
+Expression <|-- OperateurBinaire
+Instruction <|-- Expression
 
-ExprBin --* Expr: 2..2
-ExprBin <|-- ExprMult
-ExprBin <|-- ExprDivide
-ExprBin <|-- ExprPlus
-ExprBin <|-- ExprMinus
+Programme o-- Tokens : 0..*
+Programme *-- PartieInstruction : 1..1
+Programme *-- PartieDeclarative : 1..1
+Programme o-- Expression : 0..*
+
+OperateurBinaire --* Expression: 2..2
+OperateurBinaire <|-- OperateurMul
+OperateurBinaire <|-- OperateurDiv
+OperateurBinaire <|-- OperateurPlus
+OperateurBinaire<|-- OperateurMoins
+
 
 PartieDeclarative *-- Declaration
 
@@ -61,14 +258,19 @@ Declaration <|-- DeclarationVariable
 Declaration <|-- DeclarationConst
 
 Instruction --* PartieInstruction : 0..*
-Instruction <|-- Affect
+Instruction <|-- Affectation
 Instruction <|-- Lire
 Instruction <|-- Ecrire
 
 Lire *-- Variable
-Ecrire *-- Expr
+Ecrire *-- Expression
 
-Affect *-- Variable
-Affect *-- Expr
+Affectation *-- Variable
+Affectation *-- Expression
+
+Automaton o-- Tokens
+Instruction o-- Tokens
+State o-- Tokens
+Symbole o-- Tokens
 
 @enduml
