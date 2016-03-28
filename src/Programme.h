@@ -26,9 +26,8 @@ class Programme
     private:
 		void check_uninitialized_var(); // OK ! 
 		void check_unused_vars(); // OK !
-		void check_undeclared(); // TODO !
+		void check_undeclared(); // OK !
 		
-        deque<Expression*> expressions; // une file d'expression ordonnée selon date creation
         PartieInstruction partie_instruction;
         PartieDeclarative partie_declaration;
 		

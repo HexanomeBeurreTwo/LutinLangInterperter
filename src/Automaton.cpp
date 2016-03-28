@@ -4,6 +4,7 @@
 #include "State.h"
 using namespace std;
 
+
 #define Accepte_STATE 18
 
 /*int Automaton::init(int nbParam, char * param[]){ // A faire dans le main
@@ -50,7 +51,7 @@ bool Automaton::read(){
 			bool res = stateStack.top()->getStateNumber() == Accepte_STATE;
 
 
-				if(res) DEBUG_STDOUT( "Automate ok!" << endl );
+				//if(res) DEBUG_STDOUT( "Automate ok!" << endl );
 				return res;
 			}
 			tmp = nextSymbol;

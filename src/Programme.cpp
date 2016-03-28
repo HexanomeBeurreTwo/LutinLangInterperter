@@ -9,7 +9,8 @@
 #include "Symbol.h"
 
 
-#define VALUE_AS(x,type) *((type*)x.value)
+#define TOKEN_VALUE_AS(x,type) *((type*)x.value)
+#define TOKEN_VALUE_AS_POINTER(x,type) ((type*)x.value)
 
 
 bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,ValuableToken symbol,int countSymbol)
@@ -40,7 +41,6 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
     case P : // rule 1: P -> PD PI
         break;//on fait rien
 
-
     case PD : // rule 2: PD -> PD LD end
           // rule 3: PD -> ε
         break;//on fait rien
@@ -57,20 +57,19 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
             if(countSymbol == 3 && tokens[0].token == ID )
             // rule 8: LI -> id affect E
             {
-                e1 = expressions.front();expressions.pop_front();
-                partie_instruction.add_instruction(new Affectation(e1,new Variable(VALUE_AS(tokens[0],string))));
+                e1 = TOKEN_VALUE_AS_POINTER(tokens[2],Expression) ;
+                partie_instruction.add_instruction(new Affectation(e1,new Variable(TOKEN_VALUE_AS(tokens[0],string))));
             }
             else if(countSymbol == 2 && tokens[0].token == WRITE )
             // rule 9: LI -> write E
             {
-                //partie_instruction.add_instruction(new Ecrire(new Variable(VALUE_AS(tokens[1],string))));
-				e1 = expressions.front();expressions.pop_front();
+				e1 = TOKEN_VALUE_AS_POINTER(tokens[1],Expression) ; 
 				partie_instruction.add_instruction(new Ecrire(e1));
             }
             else if(countSymbol == 2 && tokens[0].token == READ)
             // rule 10: LI -> read id
             {
-                partie_instruction.add_instruction(new Lire(new Variable(VALUE_AS(tokens[1],string))));
+                partie_instruction.add_instruction(new Lire(new Variable(TOKEN_VALUE_AS(tokens[1],string))));
             }
         break;
 
@@ -78,12 +77,12 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
             if(countSymbol == 3 && tokens[0].token == LV)
             // rule 11: LV -> LV sep id
             {
-                return partie_declaration.add_declaration(new DeclarationVariable(VALUE_AS(tokens[2],string)));
+                return partie_declaration.add_declaration(new DeclarationVariable(TOKEN_VALUE_AS(tokens[2],string)));
             }
             else if(countSymbol == 1 && tokens[0].token == ID)
               // rule 12: LV -> id
             {
-                return partie_declaration.add_declaration(new DeclarationVariable(VALUE_AS(tokens[0],string)));
+                return partie_declaration.add_declaration(new DeclarationVariable(TOKEN_VALUE_AS(tokens[0],string)));
             }
 
         break;
@@ -93,39 +92,41 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
         break;//on fait rien
 
     case D : // rule 15: D -> id equal val
-        return partie_declaration.add_declaration(new DeclarationConst(VALUE_AS(tokens[0],string),VALUE_AS(tokens[2],double)));
+        return partie_declaration.add_declaration(new DeclarationConst(TOKEN_VALUE_AS(tokens[0],string),TOKEN_VALUE_AS(tokens[2],double)));
         break;
 
     case E :
 			if(countSymbol == 3 && tokens[0].token == OPENBY)
             // rule 20: E -> ( E )
             {
-                e1 = expressions.front();expressions.pop_front();
-                expressions.push_back(new Parentese(e1));
+				e1 = TOKEN_VALUE_AS_POINTER(tokens[1],Expression) ; 
+				symbolStack -> top() . value = new Parentese(e1);
+                
             }
             else if(countSymbol == 3 )
             {
-                e1 = expressions.front();expressions.pop_front();
-                e2 = expressions.front();expressions.pop_front();
+                e1 = TOKEN_VALUE_AS_POINTER(tokens[0],Expression) ;
+                e2 = TOKEN_VALUE_AS_POINTER(tokens[2],Expression) ;
+				
                 if(tokens[1].token == PLUS)
                 // rule 16: E -> E + E
                 {
-                    expressions.push_back(new OperateurPlus(e1,e2));
+                    symbolStack -> top() . value = new OperateurPlus(e1,e2);
                 }
                 else if(tokens[1].token == MINUS)
                 // rule 17: E -> E - E
                 {
-                    expressions.push_back(new OperateurMoins(e1,e2));
+                    symbolStack -> top() . value = new OperateurMoins(e1,e2);
                 }
                 else if(tokens[1].token == DIVIDE)
                 // rule 18: E -> E / E
                 {
-                    expressions.push_back(new OperateurDiv(e1,e2));
+                    symbolStack -> top() . value = new OperateurDiv(e1,e2);
                 }
                 else if(tokens[1].token == MULT)
                 // rule 19: E -> E * E
                 {
-                    expressions.push_back(new OperateurMul(e1,e2));
+                    symbolStack -> top() . value = new OperateurMul(e1,e2);
                 }
             }
             else if(countSymbol == 1)
@@ -133,12 +134,12 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
                 if(tokens[0].token == ID)
                 // rule 21: E -> id
                 {
-                    expressions.push_back(new Variable(VALUE_AS(tokens[0],string)));
+					symbolStack -> top() . value = new Variable(TOKEN_VALUE_AS(tokens[0],string));
                 }
                 else if(tokens[0].token == VAL)
                 // rule 22: E -> val
                 {
-                    expressions.push_back(new Valeur(VALUE_AS(tokens[0],double)));
+					symbolStack -> top() . value = new Valeur(TOKEN_VALUE_AS(tokens[0],double));
                 }
             }
 
@@ -155,10 +156,7 @@ bool Programme::create_class_from_rules(std::stack<ValuableToken> *symbolStack,V
 
 void Programme::print(ostream& os)const
 {
-    /*partie_declaration.print(os);
-    partie_instruction.print(os); */
     os << partie_declaration << partie_instruction ;
-    //os << partie_instruction ;
 }
 
 
@@ -166,13 +164,7 @@ void Programme::print(ostream& os)const
 
 Programme::~Programme()
 {
-	Expression *e;
-	while (!expressions.empty())
-	{
-		e = expressions.front();
-		expressions.pop_front();
-		delete e;
-	}
+
 }
 
  bool Programme::optimize(Programme* programme)

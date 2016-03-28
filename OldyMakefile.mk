@@ -85,7 +85,7 @@ $(OBJ)/PartieDeclarative.o: $(SRC)/Declaration.h $(SRC)/Symbol.h
 $(OBJ)/PartieInstruction.o: $(SRC)/Instruction.h $(SRC)/Symbol.h
 $(OBJ)/Programme.o: $(SRC)/Expression.h $(SRC)/PartieDeclarative.h $(SRC)/PartieInstruction.h $(SRC)/Tokens.h $(SRC)/DeclarationConst.h \
 $(SRC)/DeclarationVariable.h $(SRC)/Affectation.h $(SRC)/Ecrire.h $(SRC)/Lire.h $(SRC)/Symbol.h $(SRC)/Debug.h
-$(OBJ)/Automaton.o: $(SRC)/$(STATES)/E0.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Lexer.h $(SRC)/Programme.h $(SRC)/Debug.h
+$(OBJ)/Automaton.o: $(SRC)/$(STATES)/E0.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Lexer.h $(SRC)/Programme.h 
 $(OBJ)/$(STATES)/E0.o: $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h $(SRC)/$(STATES)/E1.h $(SRC)/State.h $(SRC)/Tokens.h $(SRC)/Automaton.h
 $(OBJ)/$(STATES)/E1.o: $(SRC)/State.h $(SRC)/Symbol.h $(SRC)/Automaton.h $(SRC)/State.h $(SRC)/Automaton.h $(SRC)/Tokens.h
 
