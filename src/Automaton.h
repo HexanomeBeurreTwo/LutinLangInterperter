@@ -18,6 +18,7 @@ class Automaton {
 		bool read();
 		bool shift(ValuableToken& s, State* nextState);
 		bool reduce(int count, ValuableToken& s, int coutSymbol);
+		Lexer* getLexer(){return lexer;}
 
 	private :
 

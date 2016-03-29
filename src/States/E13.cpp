@@ -15,7 +15,11 @@ bool E13::transition(Automaton *automaton, ValuableToken s) {
   switch(s.token) {
     case EQUAL:
       return automaton->shift(s, new E14());
-    default: return false; // Error !
+    default: 
+      cerr << "Erreur " << automaton->getLexer()->getCursor() << " Symbole attendu : := "<< endl;
+      return false; // Error !
+     
+      
   }
   return false;
 }

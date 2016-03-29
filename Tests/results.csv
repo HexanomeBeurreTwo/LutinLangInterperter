@@ -17,5 +17,5 @@ Test ID;Return code validation;Out result;StdErr result;File creation result;Glo
 12.ConstVar;Ok;Non testé;Ok;Non testé;Ok
 13.VarConst;Ok;Non testé;Ok;Non testé;Ok
 14.ConstConst;Ok;Non testé;Ok;Non testé;Ok
-15.ConstSansInitialisation;Ok;Non testé;Echec;Non testé;Echec
+15.ConstSansInitialisation;Ok;Non testé;Ok;Non testé;Ok
 16.ConstNonUtilisee;Ok;Non testé;Ok;Non testé;Ok
