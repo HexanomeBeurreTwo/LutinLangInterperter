@@ -18,7 +18,9 @@ bool E3::transition(Automaton *automaton, ValuableToken s) {
       ValuableToken t;
       t.token = LV;
       return automaton->reduce(1, t, 1);
-    default: return false; // Error !
+    default: 
+      cerr << "Erreur " << automaton->getLexer()->getCursor() << " Symboles attendus : , ou ; "<< endl;
+      return false; // Error !
   }
   return false;
 }
