@@ -10,19 +10,6 @@
 using namespace std;
 
 string getFileContent(string pathfile);
-// int main_x()
-// {
-// 		string file = "./bin/example.lt";
-//         // Create Lexer instance with it
-// 		string* cotentFile = getFileContent(file);
-// 		Lexer lex(*cotentFile);
-
-//         if(lex.analyseAll())    {
-//                 DEBUG_STDOUT("Success! " << lex.tokensList.size() << " tokens found." << endl);
-//         }
-
-//         return 0;
-// }
 
 
 string getFileContent(string pathfile)
@@ -37,7 +24,6 @@ string getFileContent(string pathfile)
 			{
 			  DEBUG_STDOUT(line << endl);
 			  tmp +=  line;
-			  //DEBUG_STDOUT(tmp << endl);
 			}
 			myfile.close();
         } else  {
@@ -49,7 +35,6 @@ string getFileContent(string pathfile)
 			 <<   tmp << endl
 			 <<"#####" << endl);
 		
-		//string* fileInput = new string(tmp);
         return  tmp;
 }
 
@@ -66,24 +51,24 @@ int main_u()
     DEBUG_STDOUT( "Test" << endl);
 	//string* contentFile = getFileContent(file);
 	string  tmp = "var a;const b=10;lire a;ecrire (a-0)*1+0+0/b;";
-			//tmp =  "var   a,j,e,h,s;";
-			//tmp += "const c = 44.1;";
-			// tmp += "b := 2;";
-			// tmp += "lire e;";
-			// tmp += "ecrire e;";
-			//tmp += "a := (c + c )*3- 5+0+1*e;";
-			// tmp += "h := 4;";
-			// tmp += "a := h+c+s+j;";
-			// tmp +=  "ecrire (e-s+0)*1- 0;";
-			// tmp +=  "ecrire (7*e);";
-			//tmp += "e :=-6 * 2;";
-			// tmp += "ecrire e;";
-			//tmp += "ecrire 5--3;";
+	//tmp =  "var   a,j,e,h,s;";
+	//tmp += "const c = 44.1;";
+	// tmp += "b := 2;";
+	// tmp += "lire e;";
+	// tmp += "ecrire e;";
+	//tmp += "a := (c + c )*3- 5+0+1*e;";
+	// tmp += "h := 4;";
+	// tmp += "a := h+c+s+j;";
+	// tmp +=  "ecrire (e-s+0)*1- 0;";
+	// tmp +=  "ecrire (7*e);";
+	//tmp += "e :=-6 * 2;";
+	// tmp += "ecrire e;";
+	//tmp += "ecrire 5--3;";
 			
-			//tmp += "ecrire a;";
-			//tmp += "ecrire a*b;";
-			//tmp += "a := b;";
-			//tmp += "ecrire a;";	
+	//tmp += "ecrire a;";
+	//tmp += "ecrire a*b;";
+	//tmp += "a := b;";
+	//tmp += "ecrire a;";	
 	
 	//tmp = "sdf var F";
 	//tmp = getFileContent(file);

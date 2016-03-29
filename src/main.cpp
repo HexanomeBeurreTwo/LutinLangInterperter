@@ -21,7 +21,6 @@ string getFileContent_x(string pathfile)
 		while ( getline (myfile,line) )
 	 	{
 		  fileInput += line;
-          // fileInput +='\n';
 		}
 		myfile.close();
 	}	else	{

@@ -17,7 +17,6 @@ using namespace std;
 
 #include <boost/regex.hpp>
 
-// #include "Symbol.h"
 
 class Lexer
 {
@@ -39,7 +38,6 @@ class Lexer
         string fileLines;
         ValuableToken lastTokenFetched;
         unsigned int cursor;
-        // TODO: replace with struct cursor
         vector<Cursor> cursorList;
         int line;
         int column;

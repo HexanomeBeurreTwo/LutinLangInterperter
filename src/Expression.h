@@ -7,7 +7,6 @@
 class Expression  : public Symbol{
    public:
       Expression(Tokens id_symb):Symbol(id_symb){};
-      //Expression():Instruction(E){};
       virtual ~Expression(){};
       virtual void print(ostream& os) const  = 0;
       virtual bool Evaluation(double* res,Declrs & variables) = 0;

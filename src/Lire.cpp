@@ -63,9 +63,6 @@ bool Lire::analyse(Declrs & variables)
 
 void Lire::print(ostream& os) const
 {
-	/*cout << "lire ";
-	variable->print();
-	cout <<";";*/
 	os  << "lire " << (*variable) << ";" ;
 
 }

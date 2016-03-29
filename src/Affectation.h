@@ -16,9 +16,6 @@
 #include "Expression.h"
 
 
-// TODO Gerer la liste des varible et leurs valeurs
-// la map Vars
-
 class Affectation : public Instruction {
 
  public:

@@ -17,24 +17,24 @@ E0::E0() : State() { }
 
 bool E0::transition(Automaton *automaton, ValuableToken s) {
   switch(s.token) {
-    case ID:
-    case VAR:
-    case CONST:
-    case READ:
-    case WRITE:
-		ValuableToken t;
-		t.token = PD;
-		return automaton->reduce(0, t, 0);
-		break;
-    case END_OF_FILE:
-        //ValuableToken t;
-        t.token = PD;
-		return automaton->reduce(0, t, 0);
-		break;
-	case PD :
-		return automaton->shift(s, new E1()); 
-		break;
-    default: return false; // Error !
+  case ID:
+  case VAR:
+  case CONST:
+  case READ:
+  case WRITE:
+    ValuableToken t;
+    t.token = PD;
+    return automaton->reduce(0, t, 0);
+    break;
+  case END_OF_FILE:
+    //ValuableToken t;
+    t.token = PD;
+    return automaton->reduce(0, t, 0);
+    break;
+  case PD :
+    return automaton->shift(s, new E1()); 
+    break;
+  default: return false; // Error !
   }
   return false;
 }

@@ -14,15 +14,13 @@
 using namespace std;
 #include <string>
 
-// #include "Symbol.h"
-
 
 class ArgParser
 {
     public:
         ~ArgParser();
         ArgParser(int argc, char const *argv[]);
-        int discoverFlags(const int argc, char const *argv[]);
+        size_t discoverFlags(const int argc, char const *argv[]);
         bool getPrintFlag();
         bool getExecutionFlag();
         bool getStaticAnalysisFlag();

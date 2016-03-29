@@ -16,7 +16,6 @@ bool PartieDeclarative::add_declaration(Declaration *inst)
         variables[inst->get_nom()] = inst;
         return true;
     }else{
-		//cerr << "ERR : Variable '" << nom << "' deja utilisee " << endl;  
 		cerr << "la variable "<<nom<<" est deja declaree" << endl;
         return false;
     }
@@ -29,10 +28,8 @@ bool PartieDeclarative::add_declaration(Declaration *inst)
 
 void PartieDeclarative::print(ostream& os) const
 {
-    //  // show content of variables
+
   for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
-    //std::cout << it->first << " => " << it->second << '\n';
-    //(it->second)->print();
     os << *(it->second) ;
 
 }
@@ -80,7 +77,6 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
  {
 	bool founded = false;
 	
-	//string uninitialized_var = "ERR : uninitialized vars : ";
 	string uninitialized_var = "variable non affectee : ";
 	
 	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
@@ -120,7 +116,7 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
  
  void PartieDeclarative::check_undeclared()
  {
-	bool founded = false;
+   //bool founded = false;
 	//string uninitialized_var = "ERR : undeclared vars : ";
 	string uninitialized_var = "la variable ";
 	for (Declrs::const_iterator it=variables.begin(); it!=variables.end(); ++it)
@@ -129,7 +125,7 @@ void PartieDeclarative::clone_vars(const PartieDeclarative& src)
 		if (!(it->second)->is_declared())
         {
 			uninitialized_var += (it->second)->get_nom() + " ";
-			founded = true;
+			//founded = true;
 		}
 		
     } 

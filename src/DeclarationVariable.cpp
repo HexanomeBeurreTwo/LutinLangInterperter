@@ -11,6 +11,5 @@ void DeclarationVariable:: affect(double val)
 
 void DeclarationVariable::print(ostream& os) const
 {
-    //cout << "var " << nom <<";"<<endl;
     os << "var " << nom <<";"<<endl;
 }

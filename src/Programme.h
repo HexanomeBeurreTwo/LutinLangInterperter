@@ -24,9 +24,9 @@ class Programme
     protected:
 
     private:
-		void check_uninitialized_var(); // OK ! 
-		void check_unused_vars(); // OK !
-		void check_undeclared(); // OK !
+		void check_uninitialized_var(); 
+		void check_unused_vars(); 
+		void check_undeclared(); 
 		
         PartieInstruction partie_instruction;
         PartieDeclarative partie_declaration;

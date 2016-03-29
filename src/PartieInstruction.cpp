@@ -14,11 +14,8 @@ PartieInstruction::~PartieInstruction()
 
 void PartieInstruction::print(ostream& os) const
 {
-    // parcours de deque + \n + appel a print()
     for (deque<Instruction*>::const_iterator it = instructions.begin(); it!=instructions.end(); ++it)
     {
-        /*(*it)->print();
-        cout << endl; */
         os << *(*it) << endl;
 
     }
@@ -28,7 +25,6 @@ void PartieInstruction::print(ostream& os) const
 void PartieInstruction::add_instruction(Instruction *inst)//ajout a la fin
 {
     instructions.push_back(inst);
-    //return true;
 }
 
 

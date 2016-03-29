@@ -25,10 +25,8 @@ bool E18::transition(Automaton *automaton, ValuableToken s) {
     case WRITE:
       return automaton->shift(s, new E27());
     case END_OF_FILE:
-	  //ValuableToken t;
-	  //t.token = P;
       //////////////////////////////// on est arrivé à la fin du programme
-	  //return automaton->reduce(2, t, 2);
+
 	  return true;
 	  break;
    	case LI:

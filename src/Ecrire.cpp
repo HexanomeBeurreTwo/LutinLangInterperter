@@ -16,18 +16,6 @@ Ecrire::~Ecrire(){
 
 bool Ecrire::execute(Declrs & variables)
 {
-    /*string nom = this->variable -> get_nom();
-    double valeur;
-    Declrs::const_iterator var = variables.find(nom);
-    if (var!=variables.end())  //if existe
-    {
-        valeur = this->variable->Evaluation(variables);
-        cout << valeur <<endl;
-        return true;
-    }
-    else{ // Error Variable non déclarée
-        return false;
-    }*/
 	bool error;
 	double value;
 	error = expression -> Evaluation(&value,variables);
@@ -47,9 +35,6 @@ bool Ecrire::analyse(Declrs & variables)
 
 void Ecrire::print(ostream& os) const
 {
-	//cout << "ecrire ";
-	//variable->print();
-	//cout <<";";
 	os << "ecrire " << *expression << ";" ;
 }
 
@@ -57,22 +42,6 @@ void Ecrire::get_expression(ostream& os)
 {
     expression->print(os);
 }
-
-/*bool Ecrire::optimize_back(Instruction** inst,Declrs & variables) 
-{
-	bool error;
-	double value;
-	error = expression -> Evaluation(&value,variables);
-	if(!error) 
-	{
-		return false;
-	}else
-	{
-		Valeur* vl = new Valeur(value);
-		*inst = new Ecrire(vl);
-		return true;
-	}
-}*/
 
 bool Ecrire::optimize(Instruction** inst,Declrs & variables) 
 {

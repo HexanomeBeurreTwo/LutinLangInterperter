@@ -14,7 +14,6 @@ class Automaton {
 		Automaton(Lexer *lex,Programme*prog):lexer(lex),programme(prog){};
 		~Automaton(){};
 
-		//int init (int nbParam, char * param[]);
 		bool read();
 		bool shift(ValuableToken& s, State* nextState);
 		bool reduce(int count, ValuableToken& s, int coutSymbol);

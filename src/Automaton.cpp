@@ -37,15 +37,11 @@ bool Automaton::read(){
 			DEBUG_STDOUT ( nextSymbol  << endl ) ;
 			tmpSt = stateStack.top();
 			if( !tmpSt->transition(this, nextSymbol) ) 
-		 // faut fraie la différence entre erreur syntaxique et varibale déja déclarée
 			{
 				DEBUG_STDERR( "Pas de transition "<< nextSymbol
 					<< " possible dans l'etat " << tmpSt->getStateNumber() 
 					<< endl);
 				
-			// TODO: Detect Const Var error and raise it
-			// TODO: Detect Var Const error and raise it
-				//cerr << "Symbole innatendu " << lexer->getCursor() << endl;
 				return false;
 			}
 		if(nextSymbol.token == END_OF_FILE) {

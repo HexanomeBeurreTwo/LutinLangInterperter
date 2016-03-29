@@ -17,8 +17,6 @@ const char identifier_str[] = "^([a-zA-Z][a-zA-Z0-9]*)";
 const char number_str[] =  "^([0-9]*\\.?[0-9]+)";
 const char operators_str[] = "^(\\+|-|\\*|\\/|\\(|\\)|;|=|,|:=)"; 
 const char others_str[] = "^(\\S+)";
-//const char number_str[] =  "^(-?[0-9]*\\.?[0-9]+)";
-//const char operators_str[] = "^(\\+|- ?|\\*|\\/|\\(|\\)|;|=|,|:=)"; 
 
 const regex keyword(keyword_str);
 const regex identifier(identifier_str); 
@@ -32,7 +30,6 @@ ValuableToken Lexer::getCurrentToken()	{
 
 ValuableToken Lexer::getNext()	{
 	lastTokenFetched = *(tokensList[cursor]);
-	//consumeNext();// à enlever apres avoir fini les tests
 	return lastTokenFetched;
 }
 

@@ -28,7 +28,6 @@ bool Valeur::Evaluation(double *res, Declrs & variables) {
 
 bool Valeur::analyse(double* res,Declrs & variables) 
 {
-	//*res = this->valeur;
 	return true; 
  }
 
